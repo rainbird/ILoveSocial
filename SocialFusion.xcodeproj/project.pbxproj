@@ -300,7 +300,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E19A2D0C1420927400BE491A /* New Group */ = {
+		E19A2D0C1420927400BE491A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				E19A2D0F142092CF00BE491A /* CoreData Models */,
@@ -308,7 +308,7 @@
 				E19A2D0D1420928D00BE491A /* Categories */,
 				E1ABA41C141FA882002CD0A6 /* ViewContrlloers */,
 			);
-			name = "New Group";
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		E19A2D0D1420928D00BE491A /* Categories */ = {
@@ -373,7 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				E1ABA4D7141FAC8C002CD0A6 /* Nibs */,
-				E19A2D0C1420927400BE491A /* New Group */,
+				E19A2D0C1420927400BE491A /* Classes */,
 				E1ABA443141FA882002CD0A6 /* SDK */,
 				E1ABA433141FA882002CD0A6 /* Resource */,
 				E1ABA408141FA6E1002CD0A6 /* SocialFusion */,
