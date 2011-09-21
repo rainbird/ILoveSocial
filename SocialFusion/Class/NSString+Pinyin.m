@@ -39,7 +39,7 @@
         
         [pinyin appendString:firstLetter];
     }
-    NSLog(@"pinyin%@",pinyin);
+    //NSLog(@"pinyin%@",pinyin);
     return pinyin;
 }
 

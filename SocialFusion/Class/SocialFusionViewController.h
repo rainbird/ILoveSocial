@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataViewController.h"
 
-@interface SocialFusionViewController : UIViewController<UIAlertViewDelegate>
+@interface SocialFusionViewController : CoreDataViewController<UIAlertViewDelegate>
 
-@property(nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property(nonatomic, retain) UIAlertView *hasLoggedInAlertView;
 @property(nonatomic, retain) IBOutlet UILabel *weiboStatusLabel;
 @property(nonatomic, retain) IBOutlet UILabel *renrenStatusLabel;

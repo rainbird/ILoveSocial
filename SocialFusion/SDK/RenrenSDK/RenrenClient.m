@@ -357,7 +357,7 @@ static NSString* const AppID = @"157389";
 
 //请求最近的一条状态
 - (void)getLatestStatus:(NSString *)userID {
-    NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								 @"status.get", @"method",
                                  userID, @"owner_id",
 								 nil];

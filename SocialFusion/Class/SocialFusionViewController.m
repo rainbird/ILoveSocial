@@ -12,8 +12,8 @@
 #import "FriendProfileViewController.h"
 #import "MainPageViewController.h"
 
-#import "RenrenUser.h"
-#import "WeiboUser.h"
+#import "RenrenUser+Addition.h"
+#import "WeiboUser+Addition.h"
 
 #import "WeiboClient.h"
 #import "RenrenClient.h"
@@ -34,8 +34,17 @@
 @synthesize weiboStatusLabel = _weiboStatusLabel,
             renrenStatusLabel = _renrenStatusLabel,
             hasLoggedInAlertView = _hasLoggedInAlertView;
-@synthesize managedObjectContext = _managedObjectContext;
 @synthesize logoutClient = _logoutClient;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        NSLog(@"init social fusion view controller using nib file %@", nibNameOrNil);
+    }
+    return self;
+}
 
 - (void)dealloc
 {
@@ -64,8 +73,15 @@
     [super viewDidLoad];    
         
 	if ([RenrenClient authorized]) {
-        NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
-		[_renrenStatusLabel setText:[info stringForKey:@"renren_Name"]];
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        NSString *renrenID = [ud objectForKey:@"renren_ID"];
+        self.currentRenrenUser = [RenrenUser userWithID:renrenID inManagedObjectContext:self.managedObjectContext];
+        if(self.currentRenrenUser == nil) {
+            [self rrDidLogin];
+        }
+        else {
+            [_renrenStatusLabel setText:[ud stringForKey:@"renren_Name"]];
+        }
 	} else {
 		[_renrenStatusLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
 	}
@@ -88,9 +104,13 @@
 
 - (IBAction)gotoMain:(id)sender
 {
-    FriendProfileViewController *friendProfileViewController = [FriendProfileViewController controllerWithContext:self.managedObjectContext];
-    [self.navigationController pushViewController:friendProfileViewController animated:YES];
-    [friendProfileViewController release];
+    if(![RenrenClient authorized] && ![WeiboClient authorized])
+        return;
+    FriendProfileViewController *vc = [[FriendProfileViewController alloc] init];
+    vc.currentRenrenUser = self.currentRenrenUser;
+    NSLog(@"is that possible?");
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
 - (void)showHasLoggedInAlert:(BOOL)whoCalled {
@@ -182,7 +202,7 @@
             [ud setValue:renrenID forKey:@"renren_ID"];
             [ud synchronize];
             [_renrenStatusLabel setText:renrenName];
-            [RenrenUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
+            self.currentRenrenUser = [RenrenUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
             [self.managedObjectContext processPendingChanges];
         };
     }];

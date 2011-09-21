@@ -7,19 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataTableViewController.h"
 
-@interface FriendProfileViewController : UIViewController<UITableViewDelegate, UITableViewDataSource> {
-    NSArray *_friendsList;
-    UITableView *_tablev;
-    NSMutableDictionary *_friendStatus;
+@interface FriendProfileViewController : CoreDataTableViewController {
+    BOOL _isLoading;
+    UIImageView *_topShadowImageView;
+    UIImageView *_buttomShadowImageView;
+    UIButton *_backButton;
 }
 
-@property (nonatomic, retain) NSArray *friendsList;
-@property (nonatomic, retain) UITableView *tablev;
-@property (nonatomic, retain) NSMutableDictionary *friendStatus;
-
-@property(nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-
-+ (FriendProfileViewController *)controllerWithContext:(NSManagedObjectContext *)managedObjectContext;
+@property (nonatomic, retain) IBOutlet UIButton *backButton;
+- (IBAction)backButtonPressed:(id)sender;
 
 @end

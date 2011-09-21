@@ -1,57 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="837" systemVersion="11A494a" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="RenrenStatus" representedClassName="RenrenStatus">
+    <entity name="Image" representedClassName="Image">
+        <attribute name="data" optional="YES" attributeType="Binary"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date"/>
+        <attribute name="url" attributeType="String" indexed="YES"/>
+    </entity>
+    <entity name="RenrenStatus" representedClassName="RenrenStatus" parentEntity="Status">
         <attribute name="commentsCount" optional="YES" attributeType="String"/>
-        <attribute name="createdAt" optional="YES" attributeType="Date"/>
         <attribute name="forwardMessage" optional="YES" attributeType="String"/>
         <attribute name="rootStatusID" optional="YES" attributeType="String"/>
         <attribute name="rootText" optional="YES" attributeType="String"/>
         <attribute name="rootUserID" optional="YES" attributeType="String"/>
         <attribute name="rootUserName" optional="YES" attributeType="String"/>
-        <attribute name="statusID" optional="YES" attributeType="String"/>
-        <attribute name="text" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
-        <attribute name="userID" optional="YES" attributeType="String"/>
-        <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RenrenUser" inverseName="statuses" inverseEntity="RenrenUser"/>
-        <relationship name="isFriendStatusOf" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RenrenUser" inverseName="friendsStatuses" inverseEntity="RenrenUser"/>
     </entity>
-    <entity name="RenrenUser" representedClassName="RenrenUser">
+    <entity name="RenrenUser" representedClassName="RenrenUser" parentEntity="User">
         <attribute name="birthday" optional="YES" attributeType="String"/>
         <attribute name="emailHash" optional="YES" attributeType="String"/>
         <attribute name="gender" optional="YES" attributeType="String"/>
         <attribute name="headURL" optional="YES" attributeType="String"/>
         <attribute name="hometownLocation" optional="YES" attributeType="String"/>
         <attribute name="mainURL" optional="YES" attributeType="String"/>
+        <attribute name="universityHistory" optional="YES" attributeType="String"/>
+        <attribute name="workHistory" optional="YES" attributeType="String"/>
+        <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RenrenUser" inverseName="friends" inverseEntity="RenrenUser"/>
+    </entity>
+    <entity name="Status" representedClassName="Status">
+        <attribute name="createdAt" optional="YES" attributeType="Date" indexed="YES"/>
+        <attribute name="statusID" attributeType="String" indexed="YES"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="statuses" inverseEntity="User"/>
+    </entity>
+    <entity name="User" representedClassName="User">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="pinyinName" optional="YES" attributeType="String"/>
         <attribute name="tinyURL" optional="YES" attributeType="String"/>
-        <attribute name="tinyURLData" optional="YES" attributeType="Binary"/>
-        <attribute name="universityHistory" optional="YES" attributeType="String"/>
-        <attribute name="userID" optional="YES" attributeType="String"/>
-        <attribute name="workHistory" optional="YES" attributeType="String"/>
-        <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RenrenUser" inverseName="friends" inverseEntity="RenrenUser"/>
-        <relationship name="friendsStatuses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RenrenStatus" inverseName="isFriendStatusOf" inverseEntity="RenrenStatus"/>
-        <relationship name="statuses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RenrenStatus" inverseName="author" inverseEntity="RenrenStatus"/>
+        <attribute name="userID" attributeType="String" indexed="YES"/>
+        <relationship name="statuses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Status" inverseName="author" inverseEntity="Status"/>
     </entity>
-    <entity name="WeiboStatus" representedClassName="WeiboStatus">
+    <entity name="WeiboStatus" representedClassName="WeiboStatus" parentEntity="Status">
         <attribute name="bmiddlePicURL" optional="YES" attributeType="String"/>
         <attribute name="commentsCount" optional="YES" attributeType="String"/>
-        <attribute name="createdAt" optional="YES" attributeType="Date"/>
         <attribute name="favorited" optional="YES" attributeType="Boolean"/>
         <attribute name="originalPicURL" optional="YES" attributeType="String"/>
         <attribute name="repostsCount" optional="YES" attributeType="String"/>
         <attribute name="source" optional="YES" attributeType="String"/>
-        <attribute name="statusID" optional="YES" attributeType="String"/>
-        <attribute name="text" optional="YES" attributeType="String"/>
         <attribute name="thumbnailPicURL" optional="YES" attributeType="String"/>
         <attribute name="updateDate" optional="YES" attributeType="Date"/>
-        <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WeiboUser" inverseName="statuses" inverseEntity="WeiboUser"/>
         <relationship name="favoritedBy" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WeiboUser" inverseName="favorites" inverseEntity="WeiboUser"/>
         <relationship name="isFriendStatuesOf" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WeiboUser" inverseName="friendsStatuses" inverseEntity="WeiboUser"/>
         <relationship name="repostBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeiboStatus" inverseName="repostStatus" inverseEntity="WeiboStatus"/>
         <relationship name="repostStatus" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WeiboStatus" inverseName="repostBy" inverseEntity="WeiboStatus"/>
     </entity>
-    <entity name="WeiboUser" representedClassName="WeiboUser">
+    <entity name="WeiboUser" representedClassName="WeiboUser" parentEntity="User">
         <attribute name="blogURL" optional="YES" attributeType="String"/>
         <attribute name="city" optional="YES" attributeType="String"/>
         <attribute name="createAt" optional="YES" attributeType="Date"/>
@@ -62,23 +63,20 @@
         <attribute name="friendsCount" optional="YES" attributeType="String"/>
         <attribute name="gender" optional="YES" attributeType="String"/>
         <attribute name="location" optional="YES" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="pinyinName" optional="YES" attributeType="String"/>
         <attribute name="profileImageURL" optional="YES" attributeType="String"/>
         <attribute name="province" optional="YES" attributeType="String"/>
         <attribute name="selfDescription" optional="YES" attributeType="String"/>
         <attribute name="statusesCount" optional="YES" attributeType="String"/>
-        <attribute name="userID" optional="YES" attributeType="String"/>
         <attribute name="verified" optional="YES" attributeType="Boolean"/>
         <relationship name="favorites" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeiboStatus" inverseName="favoritedBy" inverseEntity="WeiboStatus"/>
-        <relationship name="followers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeiboUser" inverseName="friends" inverseEntity="WeiboUser"/>
-        <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeiboUser" inverseName="followers" inverseEntity="WeiboUser"/>
         <relationship name="friendsStatuses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeiboStatus" inverseName="isFriendStatuesOf" inverseEntity="WeiboStatus"/>
-        <relationship name="statuses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeiboStatus" inverseName="author" inverseEntity="WeiboStatus"/>
     </entity>
     <elements>
+        <element name="Image" positionX="160" positionY="192" width="128" height="90"/>
         <element name="RenrenStatus" positionX="351" positionY="339" width="128" height="240"/>
-        <element name="RenrenUser" positionX="160" positionY="192" width="128" height="285"/>
+        <element name="RenrenUser" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="Status" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="120"/>
         <element name="WeiboStatus" positionX="-162" positionY="264" width="128" height="285"/>
         <element name="WeiboUser" positionX="160" positionY="192" width="128" height="285"/>
     </elements>

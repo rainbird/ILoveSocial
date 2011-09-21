@@ -13,4 +13,8 @@
 - (void)setImageFromUrl:(NSString*)urlString 
               completion:(void (^)(void))completion;
 
+- (void)loadImageFromURL:(NSString *)urlString 
+              completion:(void (^)())completion 
+          cacheInContext:(NSManagedObjectContext *)context;
+
 @end

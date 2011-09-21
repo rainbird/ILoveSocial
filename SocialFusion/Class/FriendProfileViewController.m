@@ -7,114 +7,51 @@
 //
 
 #import "FriendProfileViewController.h"
-#import "FreindProfileTabelViewCell.h"
+#import "RenrenFreindProfileTabelViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 #import "UIImageView+DispatchLoad.h"
-#import "RenrenUser.h"
-#import "WeiboUser.h"
-#import "RenrenStatus.h"
-#import "WeiboStatus.h"
+#import "RenrenUser+Addition.h"
+#import "RenrenStatus+Addition.h"
+#import "Image+Addition.h"
+#import "User+Addition.h"
 #import "RenrenClient.h"
-#import "WeiboClient.h"
+
+#define kCustomRowCount     8
+
+@interface FriendProfileViewController()
+- (void)clearData;
+- (void)loadFriends;
+@end
 
 @implementation FriendProfileViewController
-@synthesize friendsList = _friendsList,
-            tablev = _tablev,
-            friendStatus = _friendStatus;
-@synthesize managedObjectContext;
 
-+ (FriendProfileViewController *)controllerWithContext:(NSManagedObjectContext *)managedObjectContext {
-    FriendProfileViewController *aController = [[FriendProfileViewController alloc] init];
-    aController.managedObjectContext = managedObjectContext;
-    /*NSArray *renrenUsers = [RenrenUser allUsersInManagedObjectContext:aController.managedObjectContext];
-    NSLog(@"renren count:%d", [renrenUsers count]);
-    NSArray *weiboUsers = [WeiboUser allUsersInManagedObjectContext:aController.managedObjectContext];
-    NSLog(@"weibo count:%d", [weiboUsers count]);
-    NSArray *allUsers = [renrenUsers arrayByAddingObjectsFromArray:weiboUsers];
-    NSLog(@"all count:%d", [allUsers count]);
-    
-    NSSortDescriptor *sortByID = [NSSortDescriptor sortDescriptorWithKey:@"userID" ascending:YES];
-    aController.friendsList = [allUsers sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortByID]];
-    NSLog(@"all count sorted:%d", [aController.friendsList count]);*/
-    return aController;
-}
+@synthesize backButton = _backButton;
 
-- (id)init {
-    self = [super init];
-    if(self) {
-        NSLog(@"init friend profile view controller");
-        self.friendStatus = [NSMutableDictionary dictionary];
-    }
-    return self;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-    [super loadView];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
-    self.view = view;
-
-    UIImage *backgroundImage = [UIImage imageNamed:@"background.png"];
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
-    [self.view addSubview:backgroundImageView];
-    
-    self.tablev = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460) style:UITableViewStylePlain];
-    [self.tablev setDelegate:self];
-    [self.tablev setDataSource:self];
-    self.tablev.scrollEnabled = YES;
-    self.tablev.backgroundColor = [UIColor clearColor];
-    self.tablev.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tablev];
-    
-    // load friend list
-    RenrenClient *renren = [RenrenClient client];
-    [renren setCompletionBlock:^(RenrenClient *client) {
-        if(!client.hasError) {
-            NSArray *friends = client.responseJSONObject;
-            for(NSDictionary *dict in friends) {
-                //NSLog(@"friends profile:%@", dict);
-                [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
-            }
-            self.friendsList = [RenrenUser allFriendsInManagedObjectContext:self.managedObjectContext];
-            [self.tablev reloadData];
-        }
-    }];
-    [renren getFriendsProfile];
-}
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"view did load");
-    
+    NSLog(@"friend profile view did load");
+    _topShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellTopShadow.png"]];
+    _topShadowImageView.frame = CGRectMake(0, -20, 320, 20);
+    [self.view addSubview:_topShadowImageView];
+    _buttomShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellBottomShadow.png"]];
+    _buttomShadowImageView.frame = CGRectMake(0, 460, 320, 20);
+    [self.view addSubview:_buttomShadowImageView];
+    [self.backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
+    if(self.currentRenrenUser.friends.count == 0)
+        [self loadFriends];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    NSLog(@"clear all cache");
+    [Image clearAllCacheInContext:self.managedObjectContext];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -124,135 +61,165 @@
 }
 
 - (void)dealloc {
-    self.managedObjectContext = nil;
-    self.friendsList = nil;
-    self.tablev = nil;
-    self.friendStatus = nil;
+    [_backButton release];
+    [_topShadowImageView release];
+    [_buttomShadowImageView release];
     [super dealloc];
 }
 
-- (void)loadFriendsDataCompleted {
-    NSLog(@"load all friends data completed");
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (void)configureRequest:(NSFetchRequest *)request
 {
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return self.friendsList.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Friend Profile Cell";
-    FreindProfileTabelViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell =
-        [[[FreindProfileTabelViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] 
-         autorelease];
-    }
-    RenrenUser* renrenFriend = [self.friendsList objectAtIndex:indexPath.row];
-    cell.textLabel.text = renrenFriend.name;
-    cell.imageView.image = nil;
+    [request setEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext]];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"pinyinName" 
+                                                         ascending:YES]; 
+    NSArray *descriptors = [NSArray arrayWithObject:sort]; 
+    [request setSortDescriptors:descriptors]; 
     
-    if(renrenFriend.tinyURLData != nil) {
-        cell.imageView.image = [UIImage imageWithData:renrenFriend.tinyURLData]; 
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.currentRenrenUser.friends];
+    [request setPredicate:predicate];
+    
+    [request setFetchBatchSize:kCustomRowCount * 3];
+}
+
+- (void)showHeadImageAnimation:(UIImageView *)imageView {
+    imageView.alpha = 0;
+    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
+        imageView.alpha = 1;
+    } completion:nil];
+}
+
+- (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    RenrenFreindProfileTabelViewCell *relationshipCell = (RenrenFreindProfileTabelViewCell *)cell;
+    RenrenUser *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if(![relationshipCell.latestStatus.text isEqualToString:[usr latestStatus].text]) {
+        relationshipCell.latestStatus.text = [usr latestStatus].text;
+        relationshipCell.latestStatus.alpha = 0.3f;
+        [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
+            relationshipCell.latestStatus.alpha = 1;
+        } completion:nil];
+    }
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    RenrenFreindProfileTabelViewCell *relationshipCell = (RenrenFreindProfileTabelViewCell *)cell;
+    RenrenUser *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    relationshipCell.userName.text = usr.name;
+    if(![usr latestStatus]) {
+        if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
+            if(indexPath.row < kCustomRowCount)
+                [RenrenStatus loadStatus:usr inManagedObjectContext:self.managedObjectContext];
+    }
+    relationshipCell.latestStatus.text = [usr latestStatus].text;
+    
+    NSData *imageData = nil;
+    if([Image imageWithURL:usr.tinyURL inManagedObjectContext:self.managedObjectContext])
+        imageData = [Image imageWithURL:usr.tinyURL inManagedObjectContext:self.managedObjectContext].data;
+    if(imageData == nil){
+        if (self.tableView.dragging == NO && self.tableView.decelerating == NO) {
+            if(indexPath.row < kCustomRowCount) {
+                [relationshipCell.headImageView loadImageFromURL:usr.tinyURL completion:^{
+                    [self showHeadImageAnimation:relationshipCell.headImageView];
+                }cacheInContext:self.managedObjectContext];
+            }
+        }
     }
     else {
-        [cell.imageView setImageFromUrl:renrenFriend.tinyURL completion:^(void) {
-            //判断url所属的好友是否显示在当前cell中 不显示则不赋值
-            BOOL find = NO;
-            NSIndexPath *findIndex = nil;
-            NSArray *visibleCellIndexes = [self.tablev indexPathsForVisibleRows];
-            for(NSIndexPath *index in visibleCellIndexes) {
-                RenrenUser* friend = [self.friendsList objectAtIndex:index.row];
-                NSLog(@"visible row:%d,tinyURL:%@,visiblefriend url:%@",index.row,renrenFriend.tinyURL,friend.tinyURL);
-                if([friend.tinyURL isEqualToString:renrenFriend.tinyURL]) {
-                    find = YES;
-                    findIndex = index;
-                    break;
-                }
-            }
-            if(find == NO)
-                return;
-            UITableViewCell *findCell = [self.tablev cellForRowAtIndexPath:findIndex];
-            [findCell setNeedsLayout];
-            //缓存图片 避免每一次加载浪费流量
-            NSData *imageData = UIImageJPEGRepresentation(findCell.imageView.image, 1.0);
-            RenrenUser *findUser = [self.friendsList objectAtIndex:findIndex.row];
-            findUser.tinyURLData = imageData;
-        }];
+        relationshipCell.headImageView.image = [UIImage imageWithData:imageData];
     }
-    
-    /*RenrenStatus *renrenStatus = [[[renrenFriend statuses] allObjects] lastObject];
-    if(renrenStatus)
-        cell.detailTextLabel.text = renrenStatus.text;
-    else {
-        cell.detailTextLabel.text = nil;
-        RenrenClient *renren = [RenrenClient client];
-        [renren setCompletionBlock:^(RenrenClient *client) {
-            if(!client.hasError) {
-                NSDictionary *dict = client.responseJSONObject;
-                //缓存状态 避免每一次加载浪费流量
-                [RenrenStatus insertStatus:dict inManagedObjectContext:self.managedObjectContext];
-                NSString *statusBelongTo = [[dict objectForKey:@"uid"] stringValue];
-                //判断状态所属的好友是否显示在当前cell中 不显示则不赋值
-                BOOL find = NO;
-                NSIndexPath *findIndex = nil;
-                NSArray *visibleCellIndexes = [self.tablev indexPathsForVisibleRows];
-                for(NSIndexPath *index in visibleCellIndexes) {
-                    RenrenUser* friend = [self.friendsList objectAtIndex:index.row];
-                    //NSLog(@"visible row:%d,status id:%@,visiblefriend id:%@",index.row,statusBelongTo,friend.userID);
-                    if([friend.userID isEqualToString:statusBelongTo]) {
-                        find = YES;
-                        findIndex = index;
-                        break;
-                    }
-                }
-                if(find == NO)
-                    return;
-                //NSLog(@"status:%@",dict);
-                UITableViewCell *findCell = [self.tablev cellForRowAtIndexPath:findIndex];
-                findCell.detailTextLabel.text = [dict objectForKey:@"message"];
-                [findCell setNeedsLayout];
-            }
-        }];
-        [renren getLatestStatus:renrenFriend.userID];
-    }*/
-    return cell;
 }
 
-#pragma mark - Table view delegate
+- (NSString *)customCellClassName
+{
+    return @"RenrenFriendProfileTableViewCell";
+}
+
+- (void)clearData
+{
+    [self.currentRenrenUser removeFriends:self.currentRenrenUser.friends];
+}
+
+- (void)loadFriends {
+    RenrenClient *renren = [RenrenClient client];
+    [renren setCompletionBlock:^(RenrenClient *client) {
+        if(!client.hasError) {
+            NSArray *array = client.responseJSONObject;
+            NSMutableSet *friendSet = [NSMutableSet set];
+            for(NSDictionary *dict in array) {
+                User *friend = [User insertRenrenFriend:dict inManagedObjectContext:self.managedObjectContext];
+                [friendSet addObject:friend];
+                
+            }
+            [self.currentRenrenUser addFriends:friendSet];
+            NSLog(@"add finished");
+        }
+    }];
+    [renren getFriendsProfile];
+}
+
+
+- (void)loadExtraDataForOnscreenRows 
+{
+    NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+    for (NSIndexPath *indexPath in visiblePaths)
+    {
+        RenrenUser *friend = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        Image *image = [Image imageWithURL:friend.tinyURL inManagedObjectContext:self.managedObjectContext];
+        if (!image.data)
+        {
+            RenrenFreindProfileTabelViewCell *relationshipCell = (RenrenFreindProfileTabelViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            [relationshipCell.headImageView loadImageFromURL:friend.tinyURL completion:^{
+                [self showHeadImageAnimation:relationshipCell.headImageView];
+            }cacheInContext:self.managedObjectContext];
+        }
+        if(![friend latestStatus]) 
+        {
+            [RenrenStatus loadStatus:friend inManagedObjectContext:self.managedObjectContext];
+        }
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    //RenrenFreindProfileTabelViewCell *relationshipCell = (RenrenFreindProfileTabelViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - Deferred image loading (UIScrollViewDelegate)
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    return 60;
+    if (!decelerate)
+	{
+        [self loadExtraDataForOnscreenRows];
+    }
 }
 
-- (void)setFriendsList:(NSArray *)friendsList {
-    if(_friendsList != friendsList) {
-        [_friendsList release];
-        _friendsList = [friendsList retain];
-        // 此处可添加按中文排序的代码
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadExtraDataForOnscreenRows];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // 控制shadow显示
+    //NSLog(@"offset:%f, height:%f", scrollView.contentOffset.y, scrollView.contentSize.height);
+    if(scrollView.contentOffset.y < 0 && scrollView.contentSize.height > 0) {
+        _topShadowImageView.alpha = 1;
+        _topShadowImageView.frame = CGRectMake(0, - scrollView.contentOffset.y - 20, 320, 20);
     }
+    else {
+         _topShadowImageView.alpha = 0;
+    }
+    if(scrollView.contentOffset.y > scrollView.contentSize.height - 460 && scrollView.contentSize.height > 0) {
+        _buttomShadowImageView.alpha = 1;
+        _buttomShadowImageView.frame = CGRectMake(0, scrollView.contentSize.height - scrollView.contentOffset.y, 320, 20);
+    }
+    else {
+        _buttomShadowImageView.alpha = 0;
+    }
+}
+
+// IBAction
+- (IBAction)backButtonPressed:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
