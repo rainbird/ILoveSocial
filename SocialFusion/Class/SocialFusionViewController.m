@@ -66,12 +66,23 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)configToolbar {
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
+    backButton.frame = CGRectMake(12, 12, 31, 34);
+    UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
+    NSMutableArray *toolBarItems = [NSMutableArray array];
+    [toolBarItems addObject:backButtonItem];
+    self.toolbarItems = toolBarItems;
+}
+
 #pragma mark - View lifecycle
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-        
+    [self configToolbar];    
 	if ([RenrenClient authorized]) {
         NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
         NSString *renrenID = [ud objectForKey:@"renren_ID"];
@@ -108,7 +119,7 @@
         return;
     FriendProfileViewController *vc = [[FriendProfileViewController alloc] init];
     vc.currentRenrenUser = self.currentRenrenUser;
-    NSLog(@"is that possible?");
+    vc.toolbarItems = self.toolbarItems;
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
 }

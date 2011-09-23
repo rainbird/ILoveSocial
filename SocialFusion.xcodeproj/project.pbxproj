@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E1247267142A58090086AC61 /* RenrenMainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1247266142A58090086AC61 /* RenrenMainPageViewController.xib */; };
 		E14D17C8142771AD006B675E /* backButton-highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C6142771AD006B675E /* backButton-highlight@2x.png */; };
 		E14D17C9142771AD006B675E /* backButton-highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C7142771AD006B675E /* backButton-highlight.png */; };
 		E14D17CC142771C2006B675E /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17CB142771C2006B675E /* backButton@2x.png */; };
@@ -85,6 +86,8 @@
 		E1ABA4D4141FAB2F002CD0A6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA4D3141FAB2F002CD0A6 /* MobileCoreServices.framework */; };
 		E1ABA4DA141FAC8D002CD0A6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA4D8141FAC8D002CD0A6 /* MainWindow.xib */; };
 		E1ABA4DB141FAC8D002CD0A6 /* SocialFusionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */; };
+		E1BBA99F142C331100F09C42 /* NavigationToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BBA99E142C331100F09C42 /* NavigationToolBar.m */; };
+		E1BBA9A1142C33DF00F09C42 /* SFNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */; };
 		E1BF91CB1421F1AD002F6F1A /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BF91CA1421F1AD002F6F1A /* background@2x.png */; };
 		E1BF91D214223C0A002F6F1A /* default_renren_tiny.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */; };
 		E1FB62291423323100828E24 /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FB62281423323100828E24 /* backButton.png */; };
@@ -116,6 +119,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E1247266142A58090086AC61 /* RenrenMainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RenrenMainPageViewController.xib; sourceTree = "<group>"; };
 		E14D17C6142771AD006B675E /* backButton-highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight@2x.png"; sourceTree = "<group>"; };
 		E14D17C7142771AD006B675E /* backButton-highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight.png"; sourceTree = "<group>"; };
 		E14D17CB142771C2006B675E /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
@@ -234,6 +238,9 @@
 		E1ABA4D3141FAB2F002CD0A6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E1ABA4D8141FAC8D002CD0A6 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialFusionViewController.xib; sourceTree = "<group>"; };
+		E1BBA99D142C331100F09C42 /* NavigationToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; path = NavigationToolBar.h; sourceTree = "<group>"; };
+		E1BBA99E142C331100F09C42 /* NavigationToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationToolBar.m; sourceTree = "<group>"; };
+		E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFNavigationController.xib; sourceTree = "<group>"; };
 		E1BF91CA1421F1AD002F6F1A /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_renren_tiny.png; sourceTree = "<group>"; };
 		E1FB62281423323100828E24 /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
@@ -440,6 +447,8 @@
 				E1ABA422141FA882002CD0A6 /* MainPageViewController.m */,
 				E1ABA42B141FA882002CD0A6 /* SocialFusionViewController.h */,
 				E1ABA42C141FA882002CD0A6 /* SocialFusionViewController.m */,
+				E1BBA99D142C331100F09C42 /* NavigationToolBar.h */,
+				E1BBA99E142C331100F09C42 /* NavigationToolBar.m */,
 			);
 			name = ViewContrlloers;
 			path = SocialFusion/Class;
@@ -595,6 +604,8 @@
 				E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */,
 				E19A2D161420A06000BE491A /* RenrenFriendProfileTableViewCell.xib */,
 				E19A2D271421EA2B00BE491A /* FriendProfileViewController.xib */,
+				E1247266142A58090086AC61 /* RenrenMainPageViewController.xib */,
+				E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */,
 			);
 			name = Nibs;
 			path = SocialFusion/Nibs;
@@ -700,6 +711,8 @@
 				E14D17CC142771C2006B675E /* backButton@2x.png in Resources */,
 				E14D17CF142855B3006B675E /* bottomGradient.png in Resources */,
 				E14D17D0142855B3006B675E /* bottomGradient@2x.png in Resources */,
+				E1247267142A58090086AC61 /* RenrenMainPageViewController.xib in Resources */,
+				E1BBA9A1142C33DF00F09C42 /* SFNavigationController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +771,7 @@
 				E1FB62931424894200828E24 /* User+Addition.m in Sources */,
 				E1FB62A31424978100828E24 /* RenrenUser.m in Sources */,
 				E1FB62A61424978300828E24 /* User.m in Sources */,
+				E1BBA99F142C331100F09C42 /* NavigationToolBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

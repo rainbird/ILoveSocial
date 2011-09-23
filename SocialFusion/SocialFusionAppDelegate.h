@@ -14,8 +14,6 @@
 
 }
 
-@property (nonatomic, retain) UINavigationController *navigationController;
-
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet SocialFusionViewController *viewController;
 // core data

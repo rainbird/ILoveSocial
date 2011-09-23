@@ -8,12 +8,12 @@
 
 #import "SocialFusionAppDelegate.h"
 #import "SocialFusionViewController.h"
+#import "NavigationToolBar.h"
 
 @implementation SocialFusionAppDelegate
 
 
 @synthesize window=_window;
-@synthesize navigationController = _navigationController;
 @synthesize viewController=_viewController;
 
 @synthesize managedObjectContext=__managedObjectContext;//session  
@@ -23,11 +23,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
     self.viewController.managedObjectContext = self.managedObjectContext;
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
-    self.navigationController.navigationBarHidden = YES;
-    self.window.rootViewController = self.navigationController;
+    UINavigationController *navigationController = [NavigationToolBar SFNavigationController];
+    navigationController.viewControllers = [NSArray arrayWithObject:self.viewController];    
+    self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -80,7 +79,6 @@
     [super dealloc];
     [_window release];
     [_viewController release];
-    self.navigationController = nil;
     [self.managedObjectModel release];
     [self.managedObjectContext release];
     [self.persistentStoreCoordinator release]; 

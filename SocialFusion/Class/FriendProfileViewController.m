@@ -15,6 +15,7 @@
 #import "Image+Addition.h"
 #import "User+Addition.h"
 #import "RenrenClient.h"
+#import "NavigationToolBar.h"
 
 #define kCustomRowCount     8
 
@@ -27,10 +28,25 @@
 
 @synthesize backButton = _backButton;
 
+- (void)configToolbar {
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
+    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    backButton.frame = CGRectMake(12, 12, 31, 34);
+    UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
+    NSMutableArray *toolBarItems = [NSMutableArray array];
+    [toolBarItems addObject:backButtonItem];
+    self.toolbarItems = nil;
+    self.toolbarItems = toolBarItems;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self configToolbar];
     NSLog(@"friend profile view did load");
+    self.navigationController.toolbarHidden = NO;
     _topShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellTopShadow.png"]];
     _topShadowImageView.frame = CGRectMake(0, -20, 320, 20);
     [self.view addSubview:_topShadowImageView];
@@ -69,7 +85,7 @@
 
 - (void)configureRequest:(NSFetchRequest *)request
 {
-    [request setEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext]];
+    [request setEntity:[NSEntityDescription entityForName:@"RenrenUser" inManagedObjectContext:self.managedObjectContext]];
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"pinyinName" 
                                                          ascending:YES]; 
     NSArray *descriptors = [NSArray arrayWithObject:sort]; 
@@ -146,7 +162,8 @@
             NSArray *array = client.responseJSONObject;
             NSMutableSet *friendSet = [NSMutableSet set];
             for(NSDictionary *dict in array) {
-                User *friend = [User insertRenrenFriend:dict inManagedObjectContext:self.managedObjectContext];
+                NSLog(@"dict:%@",dict);
+                RenrenUser *friend = [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
                 [friendSet addObject:friend];
                 
             }
@@ -200,7 +217,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     // 控制shadow显示
-    //NSLog(@"offset:%f, height:%f", scrollView.contentOffset.y, scrollView.contentSize.height);
+    NSLog(@"offset:%f, height:%f", scrollView.contentOffset.y, scrollView.contentSize.height);
     if(scrollView.contentOffset.y < 0 && scrollView.contentSize.height > 0) {
         _topShadowImageView.alpha = 1;
         _topShadowImageView.frame = CGRectMake(0, - scrollView.contentOffset.y - 20, 320, 20);
@@ -219,6 +236,7 @@
 
 // IBAction
 - (IBAction)backButtonPressed:(id)sender {
+    self.navigationController.toolbarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

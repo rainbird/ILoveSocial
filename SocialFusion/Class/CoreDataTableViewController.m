@@ -65,6 +65,7 @@
     
     [self configureRequest:fetchRequest];
     
+    [NSFetchedResultsController deleteCacheWithName:@"cache"];
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"cache"];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
