@@ -68,7 +68,6 @@
 					</object>
 					<bool key="IBUIOpaque">NO</bool>
 					<bool key="IBUIClipsSubviews">YES</bool>
-					<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 					<int key="IBUIContentMode">4</int>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					<object class="NSMutableArray" key="IBUIItems">
@@ -82,7 +81,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 						<object class="IBUINavigationItem" key="IBUINavigationItem" id="1065443716">
-							<reference key="IBUINavigationBar"/>
 							<string key="IBUITitle">Root View Controller</string>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>

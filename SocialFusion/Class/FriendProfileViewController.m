@@ -16,6 +16,7 @@
 #import "User+Addition.h"
 #import "RenrenClient.h"
 #import "NavigationToolBar.h"
+#import "MainPageViewController.h"
 
 #define kCustomRowCount     8
 
@@ -162,7 +163,6 @@
             NSArray *array = client.responseJSONObject;
             NSMutableSet *friendSet = [NSMutableSet set];
             for(NSDictionary *dict in array) {
-                NSLog(@"dict:%@",dict);
                 RenrenUser *friend = [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
                 [friendSet addObject:friend];
                 
@@ -198,7 +198,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //RenrenFreindProfileTabelViewCell *relationshipCell = (RenrenFreindProfileTabelViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.selected = NO;
+    cell.highlighted = NO;
+    [self.tableView reloadData];
+    MainPageViewController *vc = [[[MainPageViewController alloc] init] autorelease];
+    vc.toolbarItems = self.toolbarItems;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Deferred image loading (UIScrollViewDelegate)
@@ -217,7 +223,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     // 控制shadow显示
-    NSLog(@"offset:%f, height:%f", scrollView.contentOffset.y, scrollView.contentSize.height);
+    //NSLog(@"offset:%f, height:%f", scrollView.contentOffset.y, scrollView.contentSize.height);
     if(scrollView.contentOffset.y < 0 && scrollView.contentSize.height > 0) {
         _topShadowImageView.alpha = 1;
         _topShadowImageView.frame = CGRectMake(0, - scrollView.contentOffset.y - 20, 320, 20);

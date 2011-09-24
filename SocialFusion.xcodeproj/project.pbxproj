@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E1247267142A58090086AC61 /* RenrenMainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1247266142A58090086AC61 /* RenrenMainPageViewController.xib */; };
+		E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1247266142A58090086AC61 /* MainPageViewController.xib */; };
 		E14D17C8142771AD006B675E /* backButton-highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C6142771AD006B675E /* backButton-highlight@2x.png */; };
 		E14D17C9142771AD006B675E /* backButton-highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C7142771AD006B675E /* backButton-highlight.png */; };
 		E14D17CC142771C2006B675E /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17CB142771C2006B675E /* backButton@2x.png */; };
@@ -90,6 +90,11 @@
 		E1BBA9A1142C33DF00F09C42 /* SFNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */; };
 		E1BF91CB1421F1AD002F6F1A /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BF91CA1421F1AD002F6F1A /* background@2x.png */; };
 		E1BF91D214223C0A002F6F1A /* default_renren_tiny.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */; };
+		E1F1D4DD142E09ED00720635 /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F1D4DC142E09ED00720635 /* LabelViewController.m */; };
+		E1F1D4E4142E24FD00720635 /* LabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */; };
+		E1F1D4E6142E277700720635 /* LabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F1D4E5142E277700720635 /* LabelTableViewCell.xib */; };
+		E1F1D4E9142E2B7800720635 /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F1D4E7142E2B7800720635 /* label.png */; };
+		E1F1D4EA142E2B7800720635 /* label-highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F1D4E8142E2B7800720635 /* label-highlight.png */; };
 		E1FB62291423323100828E24 /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FB62281423323100828E24 /* backButton.png */; };
 		E1FB624114247EA000828E24 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */; };
 		E1FB624214247EA000828E24 /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB624014247EA000828E24 /* CoreDataViewController.m */; };
@@ -119,7 +124,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E1247266142A58090086AC61 /* RenrenMainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RenrenMainPageViewController.xib; sourceTree = "<group>"; };
+		E1247266142A58090086AC61 /* MainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageViewController.xib; sourceTree = "<group>"; };
 		E14D17C6142771AD006B675E /* backButton-highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight@2x.png"; sourceTree = "<group>"; };
 		E14D17C7142771AD006B675E /* backButton-highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight.png"; sourceTree = "<group>"; };
 		E14D17CB142771C2006B675E /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
@@ -238,11 +243,18 @@
 		E1ABA4D3141FAB2F002CD0A6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E1ABA4D8141FAC8D002CD0A6 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialFusionViewController.xib; sourceTree = "<group>"; };
-		E1BBA99D142C331100F09C42 /* NavigationToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; path = NavigationToolBar.h; sourceTree = "<group>"; };
-		E1BBA99E142C331100F09C42 /* NavigationToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationToolBar.m; sourceTree = "<group>"; };
+		E1BBA99D142C331100F09C42 /* NavigationToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationToolBar.h; path = SocialFusion/Class/NavigationToolBar.h; sourceTree = "<group>"; };
+		E1BBA99E142C331100F09C42 /* NavigationToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationToolBar.m; path = SocialFusion/Class/NavigationToolBar.m; sourceTree = "<group>"; };
 		E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFNavigationController.xib; sourceTree = "<group>"; };
 		E1BF91CA1421F1AD002F6F1A /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_renren_tiny.png; sourceTree = "<group>"; };
+		E1F1D4DB142E09EC00720635 /* LabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelViewController.h; sourceTree = "<group>"; };
+		E1F1D4DC142E09ED00720635 /* LabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelViewController.m; sourceTree = "<group>"; };
+		E1F1D4E2142E24FC00720635 /* LabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelTableViewCell.h; sourceTree = "<group>"; };
+		E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelTableViewCell.m; sourceTree = "<group>"; };
+		E1F1D4E5142E277700720635 /* LabelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LabelTableViewCell.xib; path = ../Class/LabelTableViewCell.xib; sourceTree = "<group>"; };
+		E1F1D4E7142E2B7800720635 /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
+		E1F1D4E8142E2B7800720635 /* label-highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "label-highlight.png"; sourceTree = "<group>"; };
 		E1FB62281423323100828E24 /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
 		E1FB623D14247EA000828E24 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = SocialFusion/Class/CoreDataTableViewController.h; sourceTree = "<group>"; };
 		E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = SocialFusion/Class/CoreDataTableViewController.m; sourceTree = "<group>"; };
@@ -345,6 +357,8 @@
 		E19A2D0E142092BC00BE491A /* Trivals */ = {
 			isa = PBXGroup;
 			children = (
+				E1BBA99D142C331100F09C42 /* NavigationToolBar.h */,
+				E1BBA99E142C331100F09C42 /* NavigationToolBar.m */,
 				E1FB623D14247EA000828E24 /* CoreDataTableViewController.h */,
 				E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */,
 				E1FB623F14247EA000828E24 /* CoreDataViewController.h */,
@@ -447,8 +461,10 @@
 				E1ABA422141FA882002CD0A6 /* MainPageViewController.m */,
 				E1ABA42B141FA882002CD0A6 /* SocialFusionViewController.h */,
 				E1ABA42C141FA882002CD0A6 /* SocialFusionViewController.m */,
-				E1BBA99D142C331100F09C42 /* NavigationToolBar.h */,
-				E1BBA99E142C331100F09C42 /* NavigationToolBar.m */,
+				E1F1D4DB142E09EC00720635 /* LabelViewController.h */,
+				E1F1D4DC142E09ED00720635 /* LabelViewController.m */,
+				E1F1D4E2142E24FC00720635 /* LabelTableViewCell.h */,
+				E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */,
 			);
 			name = ViewContrlloers;
 			path = SocialFusion/Class;
@@ -457,6 +473,8 @@
 		E1ABA433141FA882002CD0A6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E1F1D4E7142E2B7800720635 /* label.png */,
+				E1F1D4E8142E2B7800720635 /* label-highlight.png */,
 				E14D17CD142855B3006B675E /* bottomGradient.png */,
 				E14D17CE142855B3006B675E /* bottomGradient@2x.png */,
 				E1FB62BB1424F68B00828E24 /* tableviewCellBottomShadow@2x.png */,
@@ -604,8 +622,9 @@
 				E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */,
 				E19A2D161420A06000BE491A /* RenrenFriendProfileTableViewCell.xib */,
 				E19A2D271421EA2B00BE491A /* FriendProfileViewController.xib */,
-				E1247266142A58090086AC61 /* RenrenMainPageViewController.xib */,
+				E1247266142A58090086AC61 /* MainPageViewController.xib */,
 				E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */,
+				E1F1D4E5142E277700720635 /* LabelTableViewCell.xib */,
 			);
 			name = Nibs;
 			path = SocialFusion/Nibs;
@@ -711,8 +730,11 @@
 				E14D17CC142771C2006B675E /* backButton@2x.png in Resources */,
 				E14D17CF142855B3006B675E /* bottomGradient.png in Resources */,
 				E14D17D0142855B3006B675E /* bottomGradient@2x.png in Resources */,
-				E1247267142A58090086AC61 /* RenrenMainPageViewController.xib in Resources */,
+				E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */,
 				E1BBA9A1142C33DF00F09C42 /* SFNavigationController.xib in Resources */,
+				E1F1D4E6142E277700720635 /* LabelTableViewCell.xib in Resources */,
+				E1F1D4E9142E2B7800720635 /* label.png in Resources */,
+				E1F1D4EA142E2B7800720635 /* label-highlight.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -772,6 +794,8 @@
 				E1FB62A31424978100828E24 /* RenrenUser.m in Sources */,
 				E1FB62A61424978300828E24 /* User.m in Sources */,
 				E1BBA99F142C331100F09C42 /* NavigationToolBar.m in Sources */,
+				E1F1D4DD142E09ED00720635 /* LabelViewController.m in Sources */,
+				E1F1D4E4142E24FD00720635 /* LabelTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

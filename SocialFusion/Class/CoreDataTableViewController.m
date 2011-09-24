@@ -86,7 +86,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+    NSInteger count = [sectionInfo numberOfObjects];
+    if(count == 0)
+        _firstLoadFlag = YES;
+    else
+        _firstLoadFlag = NO;
+    NSLog(@"cell count:%d", count);
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,13 +122,16 @@
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView beginUpdates];
+    if(!_firstLoadFlag)
+     [self.tableView beginUpdates];
 }
 
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
+    if(_firstLoadFlag)
+        return;
     
     UITableView *tableView = self.tableView;
     
@@ -155,7 +164,11 @@
 
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView endUpdates];
+    if(_firstLoadFlag)
+        [self.tableView reloadData];
+    else
+     [self.tableView endUpdates];
+    
 }
 
 @end

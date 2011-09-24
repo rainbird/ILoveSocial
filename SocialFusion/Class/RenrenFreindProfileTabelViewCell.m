@@ -39,26 +39,18 @@
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
-    if(highlighted) {
-        self.userName.highlighted = YES;
-        self.commentButton.highlighted = YES;
-    }
-    else {
-        self.userName.highlighted = NO;
-        self.commentButton.highlighted = NO;
-    }
+    NSLog(@"highlight:%d", highlighted);
+    if(highlighted == NO && self.selected == YES)
+        return;
+    self.userName.highlighted = highlighted;
+    self.commentButton.highlighted = highlighted;
 }   
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    if(selected) {
-        self.userName.highlighted = YES;
-        self.commentButton.highlighted = YES;
-    }
-    else {
-        self.userName.highlighted = NO;
-        self.commentButton.highlighted = NO;
-    }
+    NSLog(@"selected:%d", selected);
+    self.userName.highlighted = selected;
+    self.commentButton.highlighted = selected;
 }
 
 @end

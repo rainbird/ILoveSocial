@@ -7,16 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RenrenUser.h"
+#import "LabelViewController.h"
 
 @interface MainPageViewController : UIViewController
 
-@property(nonatomic, retain) UILabel *name;
-@property(nonatomic, retain) UILabel *hometown;
-@property(nonatomic, retain) UILabel *university;
-@property(nonatomic, retain) UILabel *gender;
-
-@property(nonatomic, retain) RenrenUser *userInfo;
-
+@property (nonatomic, retain) LabelViewController *lableViewController;
 
 @end
