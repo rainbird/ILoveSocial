@@ -11,5 +11,6 @@
 @interface LabelTableViewCell : UITableViewCell
 
 @property (nonatomic, retain) IBOutlet UILabel *labelName;
+@property (nonatomic, retain) IBOutlet UIImageView *highlightLabelImage;
 
 @end

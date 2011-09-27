@@ -7,6 +7,7 @@
 //
 
 #import "MainPageViewController.h"
+#import "NavigationToolBar.h"
 
 @implementation MainPageViewController
 @synthesize lableViewController = _lableViewController;
@@ -25,6 +26,7 @@
     [toolBarItems addObject:backButtonItem];
     self.toolbarItems = nil;
     self.toolbarItems = toolBarItems;
+    ((NavigationToolBar *)self.navigationController.toolbar).respondView = self.view;
 }
 
 - (void)viewDidLoad {

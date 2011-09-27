@@ -10,6 +10,8 @@
 
 @interface NavigationToolBar : UIToolbar
 
+@property (nonatomic, assign) UIView *respondView;
+
 + (UINavigationController*)SFNavigationController;
 
 @end

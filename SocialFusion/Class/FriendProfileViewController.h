@@ -7,16 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CoreDataTableViewController.h"
+#import "EGOTableViewController.h"
+#import "User.h"
 
-@interface FriendProfileViewController : CoreDataTableViewController {
-    BOOL _isLoading;
+typedef enum {
+    RelationshipViewTypeWeiboFriends,
+    RelationshipViewTypeWeiboFollowers,
+    RelationshipViewTypeRenrenFriends,
+} RelationshipViewType;
+
+@interface FriendProfileViewController : EGOTableViewController {
     UIImageView *_topShadowImageView;
     UIImageView *_buttomShadowImageView;
-    UIButton *_backButton;
+    
+    int _nextCursor;
+    RelationshipViewType _type;
 }
 
-@property (nonatomic, retain) IBOutlet UIButton *backButton;
 - (IBAction)backButtonPressed:(id)sender;
+- (id)initWithType:(RelationshipViewType)type;
 
 @end

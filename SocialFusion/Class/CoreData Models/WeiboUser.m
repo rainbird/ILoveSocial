@@ -2,12 +2,13 @@
 //  WeiboUser.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-9-17.
+//  Created by Blue Bitch on 11-9-27.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
 #import "WeiboUser.h"
 #import "WeiboStatus.h"
+#import "WeiboUser.h"
 
 
 @implementation WeiboUser
@@ -28,5 +29,7 @@
 @dynamic verified;
 @dynamic favorites;
 @dynamic friendsStatuses;
+@dynamic friends;
+@dynamic followers;
 
 @end

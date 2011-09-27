@@ -66,7 +66,6 @@
             }
         }];
     }
-    
     [request release];
 }
 
@@ -79,7 +78,7 @@
     [resultArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [context deleteObject:obj];
     }];
-
+    [request release];
 }
 
 @end

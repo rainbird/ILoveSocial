@@ -32,9 +32,11 @@
         <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="statuses" inverseEntity="User"/>
     </entity>
     <entity name="User" representedClassName="User">
+        <attribute name="latestStatus" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="pinyinName" optional="YES" attributeType="String"/>
         <attribute name="tinyURL" optional="YES" attributeType="String"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date"/>
         <attribute name="userID" attributeType="String" indexed="YES"/>
         <relationship name="statuses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Status" inverseName="author" inverseEntity="Status"/>
     </entity>
@@ -69,6 +71,8 @@
         <attribute name="statusesCount" optional="YES" attributeType="String"/>
         <attribute name="verified" optional="YES" attributeType="Boolean"/>
         <relationship name="favorites" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeiboStatus" inverseName="favoritedBy" inverseEntity="WeiboStatus"/>
+        <relationship name="followers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeiboUser" inverseName="friends" inverseEntity="WeiboUser"/>
+        <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeiboUser" inverseName="followers" inverseEntity="WeiboUser"/>
         <relationship name="friendsStatuses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeiboStatus" inverseName="isFriendStatuesOf" inverseEntity="WeiboStatus"/>
     </entity>
     <elements>
@@ -76,7 +80,7 @@
         <element name="RenrenStatus" positionX="351" positionY="339" width="128" height="240"/>
         <element name="RenrenUser" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Status" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="150"/>
         <element name="WeiboStatus" positionX="-162" positionY="264" width="128" height="285"/>
         <element name="WeiboUser" positionX="160" positionY="192" width="128" height="285"/>
     </elements>

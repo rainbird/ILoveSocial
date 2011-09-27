@@ -2,7 +2,7 @@
 //  RenrenStatus.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-9-17.
+//  Created by Blue Bitch on 11-9-27.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 

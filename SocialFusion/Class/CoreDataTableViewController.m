@@ -91,7 +91,7 @@
         _firstLoadFlag = YES;
     else
         _firstLoadFlag = NO;
-    NSLog(@"cell count:%d", count);
+    //NSLog(@"cell count:%d", count);
     return count;
 }
 
@@ -106,6 +106,7 @@
         if (name) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:[self customCellClassName] owner:self options:nil];
             cell = [nib lastObject];
+            //NSLog(@"Customer Cell");
         }
         else {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -164,6 +165,7 @@
 
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    //NSLog(@"change");
     if(_firstLoadFlag)
         [self.tableView reloadData];
     else

@@ -19,6 +19,5 @@
 - (BOOL)isEqualToUser:(RenrenUser *)user;
 + (NSArray *)allUsersInManagedObjectContext:(NSManagedObjectContext *)context;
 + (NSArray *)allFriendsInManagedObjectContext:(NSManagedObjectContext *)context;
-- (RenrenStatus *)latestStatus;
 
 @end

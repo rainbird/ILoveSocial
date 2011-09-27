@@ -133,11 +133,4 @@
     return res;
 }
 
-- (RenrenStatus *)latestStatus {
-    // just for test
-    NSSortDescriptor *sortByDate = [NSSortDescriptor sortDescriptorWithKey:@"userID" ascending:YES];
-    NSArray * array = [self.statuses sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortByDate]];
-    return [array lastObject];
-}
-
 @end

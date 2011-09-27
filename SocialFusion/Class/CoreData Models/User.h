@@ -2,7 +2,7 @@
 //  User.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-9-17.
+//  Created by Blue Bitch on 11-9-27.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -15,9 +15,11 @@
 @private
 }
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * userID;
-@property (nonatomic, retain) NSString * tinyURL;
 @property (nonatomic, retain) NSString * pinyinName;
+@property (nonatomic, retain) NSString * tinyURL;
+@property (nonatomic, retain) NSString * userID;
+@property (nonatomic, retain) NSString * latestStatus;
+@property (nonatomic, retain) NSDate * updateDate;
 @property (nonatomic, retain) NSSet *statuses;
 @end
 

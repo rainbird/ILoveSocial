@@ -63,6 +63,7 @@
 						<string key="NSFrameSize">{320, 504}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:398</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -233,8 +234,16 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">FriendProfileViewController</string>
+					<string key="className">EGOTableViewController</string>
 					<string key="superclassName">CoreDataTableViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/EGOTableViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FriendProfileViewController</string>
+					<string key="superclassName">EGOTableViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">backButtonPressed:</string>
 						<string key="NS.object.0">id</string>
@@ -244,17 +253,6 @@
 						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">backButtonPressed:</string>
 							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">backButton</string>
-						<string key="NS.object.0">UIButton</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">backButton</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">backButton</string>
-							<string key="candidateClassName">UIButton</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

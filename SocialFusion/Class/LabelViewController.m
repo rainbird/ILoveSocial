@@ -17,11 +17,11 @@
     self = [super init];
     if(self) {
         _labelName = [[NSMutableArray alloc] init];
+        [_labelName addObject:[NSString stringWithString:@"个人信息"]];
         [_labelName addObject:[NSString stringWithString:@"微博"]];
         [_labelName addObject:[NSString stringWithString:@"关注"]];
         [_labelName addObject:[NSString stringWithString:@"粉丝"]];
         [_labelName addObject:[NSString stringWithString:@"收藏"]];
-        [_labelName addObject:[NSString stringWithString:@"个人信息"]];
     }
     return self;
 }
@@ -39,15 +39,17 @@
 - (void)loadView 
 {
     [super loadView];
-    self.view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
+    self.view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 35)] autorelease];
     
-    self.tableView = [[[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 40) style:UITableViewStylePlain] autorelease];
+    self.tableView = [[[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 35) style:UITableViewStylePlain] autorelease];
     [self.view addSubview:self.tableView];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.clipsToBounds = NO;
     self.tableView.scrollEnabled = YES;
     CGRect oldFrame = self.tableView.frame;
     self.tableView.transform = CGAffineTransformMakeRotation(-M_PI_2);
