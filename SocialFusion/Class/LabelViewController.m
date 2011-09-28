@@ -17,7 +17,7 @@
     self = [super init];
     if(self) {
         _labelName = [[NSMutableArray alloc] init];
-        [_labelName addObject:[NSString stringWithString:@"个人信息"]];
+        [_labelName addObject:[NSString stringWithString:@"信息"]];
         [_labelName addObject:[NSString stringWithString:@"微博"]];
         [_labelName addObject:[NSString stringWithString:@"关注"]];
         [_labelName addObject:[NSString stringWithString:@"粉丝"]];
@@ -39,9 +39,10 @@
 - (void)loadView 
 {
     [super loadView];
-    self.view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 35)] autorelease];
+    self.view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
+    self.view.backgroundColor = [UIColor colorWithRed:0.282 green:0.282 blue:0.282 alpha:1.0];
     
-    self.tableView = [[[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 35) style:UITableViewStylePlain] autorelease];
+    self.tableView = [[[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 40) style:UITableViewStylePlain] autorelease];
     [self.view addSubview:self.tableView];
 }
 
@@ -58,6 +59,11 @@
     self.tableView.delegate = self;
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 6)] autorelease];
+    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 6)] autorelease];
+    [self.tableView setTableHeaderView:headerView];
+    [self.tableView setTableFooterView:footerView];
 }
 
 - (void)viewDidUnload
@@ -71,7 +77,7 @@
 
 #pragma mark - UITableView Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
+    return 78;
 }
 
 #pragma mark - UITableView DataSource

@@ -312,7 +312,7 @@
 							<reference ref="444074171"/>
 						</object>
 						<reference key="parent" ref="0"/>
-						<string key="objectName">Friend Profile Tabel View Cell - FriendProfileTableViewCell</string>
+						<string key="objectName">Friend Profile Table View Cell - FriendProfileTableViewCell</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
@@ -368,7 +368,7 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>FriendProfileTabelViewCell</string>
+					<string>FriendProfileTableViewCell</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -422,7 +422,15 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">FriendProfileTabelViewCell</string>
+					<string key="className">EGOTableViewController</string>
+					<string key="superclassName">CoreDataTableViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/EGOTableViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FriendProfileTableViewCell</string>
 					<string key="superclassName">UITableViewCell</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -479,12 +487,12 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FriendProfileTabelViewCell.h</string>
+						<string key="minorKey">./Classes/FriendProfileTableViewCell.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">FriendProfileViewController</string>
-					<string key="superclassName">CoreDataTableViewController</string>
+					<string key="superclassName">EGOTableViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">backButtonPressed:</string>
 						<string key="NS.object.0">id</string>

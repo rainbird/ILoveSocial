@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NavigationToolBar : UIToolbar
+@interface NavigationToolBar : UIToolbar {
+    UIView *_respondView;
+}
 
 @property (nonatomic, assign) UIView *respondView;
 

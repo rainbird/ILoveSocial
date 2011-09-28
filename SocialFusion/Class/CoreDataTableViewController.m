@@ -106,14 +106,12 @@
         if (name) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:[self customCellClassName] owner:self options:nil];
             cell = [nib lastObject];
-            //NSLog(@"Customer Cell");
         }
         else {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             [cell autorelease];
         }
     }
-    
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -165,7 +163,6 @@
 
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    //NSLog(@"change");
     if(_firstLoadFlag)
         [self.tableView reloadData];
     else

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "EGOTableViewController.h"
-#import "User.h"
 
 typedef enum {
     RelationshipViewTypeWeiboFriends,
@@ -18,7 +17,7 @@ typedef enum {
 
 @interface FriendProfileViewController : EGOTableViewController {
     UIImageView *_topShadowImageView;
-    UIImageView *_buttomShadowImageView;
+    UIImageView *_bottomShadowImageView;
     
     int _nextCursor;
     RelationshipViewType _type;

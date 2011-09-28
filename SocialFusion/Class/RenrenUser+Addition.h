@@ -18,6 +18,6 @@
 + (void)deleteAllObjectsInManagedObjectContext:(NSManagedObjectContext *)context;
 - (BOOL)isEqualToUser:(RenrenUser *)user;
 + (NSArray *)allUsersInManagedObjectContext:(NSManagedObjectContext *)context;
-+ (NSArray *)allFriendsInManagedObjectContext:(NSManagedObjectContext *)context;
++ (NSArray *)getAllFriendsOfUser:(RenrenUser *)user inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

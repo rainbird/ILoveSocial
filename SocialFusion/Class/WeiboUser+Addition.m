@@ -14,7 +14,6 @@
 
 + (WeiboUser *)insertUser:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    NSLog(@"dict:%@",dict);
     NSString *userID = [[dict objectForKey:@"id"] stringValue];
     
     if (!userID || [userID isEqualToString:@""]) {
@@ -33,7 +32,6 @@
     result.pinyinName = [result.name pinyinFirstLetterArray];
     NSDictionary *statusDict = [dict objectForKey:@"status"];
     result.latestStatus = [statusDict objectForKey:@"text"];
-    NSLog(@"status:%@", result.latestStatus);
     
     //NSString *dateString = [dict objectForKey:@"created_at"];
     //result.createdAt = [NSDate dateFromStringRepresentation:dateString];

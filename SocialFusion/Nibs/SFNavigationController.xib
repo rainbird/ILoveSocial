@@ -67,6 +67,7 @@
 						<bytes key="NSWhite">MCAwAA</bytes>
 					</object>
 					<bool key="IBUIOpaque">NO</bool>
+					<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 					<int key="IBUIContentMode">4</int>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					<object class="NSMutableArray" key="IBUIItems">

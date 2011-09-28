@@ -15,7 +15,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
-- (void)configToolbar {
+- (void)configureToolbar {
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
     [backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configToolbar];
+    [self configureToolbar];
     self.lableViewController = [[[LabelViewController alloc] init] autorelease];
     [self.view addSubview:self.lableViewController.view];
 }
@@ -46,7 +46,7 @@
 - (IBAction)backButtonPressed:(id)sender {
     UINavigationController *nav = self.navigationController;
     [self.navigationController popViewControllerAnimated:YES];
-    [nav.topViewController performSelector:@selector(configToolbar)];
+    [nav.topViewController performSelector:@selector(configureToolbar)];
 }
 
 @end

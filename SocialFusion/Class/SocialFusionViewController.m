@@ -123,8 +123,8 @@
 {
     if(![RenrenClient authorized] && ![WeiboClient authorized])
         return;
-    //FriendProfileViewController *vc = [[FriendProfileViewController alloc] initWithType:RelationshipViewTypeWeiboFriends];
-    FriendProfileViewController *vc = [[FriendProfileViewController alloc] initWithType:RelationshipViewTypeRenrenFriends];
+    FriendProfileViewController *vc = [[FriendProfileViewController alloc] initWithType:RelationshipViewTypeWeiboFriends];
+    //FriendProfileViewController *vc = [[FriendProfileViewController alloc] initWithType:RelationshipViewTypeRenrenFriends];
     vc.currentRenrenUser = self.currentRenrenUser;
     vc.currentWeiboUser  = self.currentWeiboUser;
     vc.toolbarItems = self.toolbarItems;

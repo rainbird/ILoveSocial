@@ -29,17 +29,13 @@
     if(highlighted == NO && self.selected == YES)
         return;
     self.labelName.highlighted = highlighted;
-    self.highlightLabelImage.hidden = !highlighted;
-    if(highlighted)
-        [self setNeedsLayout];
+    self.imageView.highlighted = highlighted;
 }   
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     self.labelName.highlighted = selected;
-    self.highlightLabelImage.hidden = !selected;
-    if(selected)
-        [self setNeedsLayout];
+    self.imageView.highlighted = selected;
 }
 
 @end

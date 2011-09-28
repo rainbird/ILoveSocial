@@ -19,7 +19,7 @@
 
 + (UINavigationController*)SFNavigationController
 {
-    UINavigationController *nav = [[[NSBundle mainBundle] loadNibNamed:@"SFNavigationController" owner:self options:nil] objectAtIndex:0];
+    UINavigationController *nav = [[[NSBundle mainBundle] loadNibNamed:@"SFNavigationController" owner:self options:nil] lastObject];
     nav.toolbar.frame = CGRectMake(0, 405, 320, 55);
     return nav;
 }
