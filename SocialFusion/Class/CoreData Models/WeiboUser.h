@@ -2,7 +2,7 @@
 //  WeiboUser.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-9-17.
+//  Created by Blue Bitch on 11-9-28.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "User.h"
 
-@class WeiboStatus;
+@class WeiboStatus, WeiboUser;
 
 @interface WeiboUser : User {
 @private
@@ -31,6 +31,8 @@
 @property (nonatomic, retain) NSString * statusesCount;
 @property (nonatomic, retain) NSNumber * verified;
 @property (nonatomic, retain) NSSet *favorites;
+@property (nonatomic, retain) NSSet *followers;
+@property (nonatomic, retain) NSSet *friends;
 @property (nonatomic, retain) NSSet *friendsStatuses;
 @end
 
@@ -39,6 +41,14 @@
 - (void)removeFavoritesObject:(WeiboStatus *)value;
 - (void)addFavorites:(NSSet *)value;
 - (void)removeFavorites:(NSSet *)value;
+- (void)addFollowersObject:(WeiboUser *)value;
+- (void)removeFollowersObject:(WeiboUser *)value;
+- (void)addFollowers:(NSSet *)value;
+- (void)removeFollowers:(NSSet *)value;
+- (void)addFriendsObject:(WeiboUser *)value;
+- (void)removeFriendsObject:(WeiboUser *)value;
+- (void)addFriends:(NSSet *)value;
+- (void)removeFriends:(NSSet *)value;
 - (void)addFriendsStatusesObject:(WeiboStatus *)value;
 - (void)removeFriendsStatusesObject:(WeiboStatus *)value;
 - (void)addFriendsStatuses:(NSSet *)value;

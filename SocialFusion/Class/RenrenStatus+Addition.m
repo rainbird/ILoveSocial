@@ -37,24 +37,22 @@
 + (RenrenStatus *)statusWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    
     [request setEntity:[NSEntityDescription entityForName:@"RenrenStatus" inManagedObjectContext:context]];
     [request setPredicate:[NSPredicate predicateWithFormat:@"statusID == %@", statusID]];
-    
     RenrenStatus *res = [[context executeFetchRequest:request error:NULL] lastObject];
-    
     [request release];
-    
     return res;
 }
 
-+ (void)loadStatus:(RenrenUser *)user inManagedObjectContext:(NSManagedObjectContext *)context{
-    NSString *userID = user.userID;
++ (void)loadLatestStatus:(User *)usr inManagedObjectContext:(NSManagedObjectContext *)context{
+    NSString *userID = usr.userID;
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if(!client.hasError) {
             NSDictionary *dict = client.responseJSONObject;
-            [RenrenStatus insertStatus:dict inManagedObjectContext:context];
+            RenrenStatus *status = [RenrenStatus insertStatus:dict inManagedObjectContext:context];
+            User *author = status.author;
+            author.latestStatus = status.text;
             // 这里不需要将status添加到对应的user中 因为已经在insertStatus时执行过
         }
     }];

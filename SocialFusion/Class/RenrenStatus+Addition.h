@@ -13,6 +13,6 @@
 
 + (RenrenStatus *)insertStatus:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 + (RenrenStatus *)statusWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
-+ (void)loadStatus:(RenrenUser *)user inManagedObjectContext:(NSManagedObjectContext *)context;
++ (void)loadLatestStatus:(User *)usr inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

@@ -7,28 +7,44 @@
 //
 
 #import "FriendProfileViewController.h"
-#import "RenrenFreindProfileTabelViewCell.h"
+#import "FriendProfileTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+DispatchLoad.h"
 #import "RenrenUser+Addition.h"
 #import "RenrenStatus+Addition.h"
+#import "WeiboUser+Addition.h"
 #import "Image+Addition.h"
 #import "User+Addition.h"
 #import "RenrenClient.h"
+#import "WeiboClient.h"
 #import "NavigationToolBar.h"
+#import "MainPageViewController.h"
 
-#define kCustomRowCount     8
+#define kCustomRowCount 8
 
 @interface FriendProfileViewController()
 - (void)clearData;
-- (void)loadFriends;
 @end
 
 @implementation FriendProfileViewController
 
-@synthesize backButton = _backButton;
+- (id)initWithType:(RelationshipViewType)type
+{
+    self = [super init];
+    if(self) {
+        _type = type;
+    }
+    return self;
+}
 
-- (void)configToolbar {
+#pragma mark - EGORefresh Method
+- (void)refresh {
+    [self hideLoadMoreDataButton];
+    [self clearData];
+    [self loadMoreData];
+}
+
+- (void)configureToolbar {
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
     [backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
@@ -39,23 +55,25 @@
     [toolBarItems addObject:backButtonItem];
     self.toolbarItems = nil;
     self.toolbarItems = toolBarItems;
+    ((NavigationToolBar *)self.navigationController.toolbar).respondView = self.tableView;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self configToolbar];
+    [self configureToolbar];
     NSLog(@"friend profile view did load");
     self.navigationController.toolbarHidden = NO;
     _topShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellTopShadow.png"]];
     _topShadowImageView.frame = CGRectMake(0, -20, 320, 20);
     [self.view addSubview:_topShadowImageView];
-    _buttomShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellBottomShadow.png"]];
-    _buttomShadowImageView.frame = CGRectMake(0, 460, 320, 20);
-    [self.view addSubview:_buttomShadowImageView];
-    [self.backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
-    if(self.currentRenrenUser.friends.count == 0)
-        [self loadFriends];
+    _bottomShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellBottomShadow.png"]];
+    _bottomShadowImageView.frame = CGRectMake(0, 460, 320, 20);
+    [self.view addSubview:_bottomShadowImageView];
+    
+    if(_type == RelationshipViewTypeRenrenFriends && self.currentRenrenUser.friends.count > 0)
+        return;
+    [self refresh];
 }
 
 - (void)viewDidUnload
@@ -77,38 +95,47 @@
 }
 
 - (void)dealloc {
-    [_backButton release];
     [_topShadowImageView release];
-    [_buttomShadowImageView release];
+    [_bottomShadowImageView release];
     [super dealloc];
 }
 
 - (void)configureRequest:(NSFetchRequest *)request
 {
-    [request setEntity:[NSEntityDescription entityForName:@"RenrenUser" inManagedObjectContext:self.managedObjectContext]];
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"pinyinName" 
-                                                         ascending:YES]; 
+    [request setEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext]];
+    NSPredicate *predicate;
+    NSSortDescriptor *sort;
+    if(_type == RelationshipViewTypeRenrenFriends) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.currentRenrenUser.friends];
+        sort = [[NSSortDescriptor alloc] initWithKey:@"pinyinName" ascending:YES];
+    }
+    else if(_type == RelationshipViewTypeWeiboFriends) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.currentWeiboUser.friends];
+        sort = [[NSSortDescriptor alloc] initWithKey:@"updateDate" ascending:YES];
+    }
+    else if(_type == RelationshipViewTypeWeiboFollowers) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.currentWeiboUser.followers];
+        sort = [[NSSortDescriptor alloc] initWithKey:@"updateDate" ascending:YES];
+    }
+    [request setPredicate:predicate];
     NSArray *descriptors = [NSArray arrayWithObject:sort]; 
     [request setSortDescriptors:descriptors]; 
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.currentRenrenUser.friends];
-    [request setPredicate:predicate];
-    
-    [request setFetchBatchSize:kCustomRowCount * 3];
+    [sort release];
+    [request setFetchBatchSize:kCustomRowCount * 4];
 }
 
 - (void)showHeadImageAnimation:(UIImageView *)imageView {
     imageView.alpha = 0;
-    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
+    [UIView animateWithDuration:.3 animations:^(void) {
         imageView.alpha = 1;
     } completion:nil];
 }
 
-- (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    RenrenFreindProfileTabelViewCell *relationshipCell = (RenrenFreindProfileTabelViewCell *)cell;
-    RenrenUser *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    if(![relationshipCell.latestStatus.text isEqualToString:[usr latestStatus].text]) {
-        relationshipCell.latestStatus.text = [usr latestStatus].text;
+- (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {    
+    FriendProfileTableViewCell *relationshipCell = (FriendProfileTableViewCell *)cell;
+    User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if(![relationshipCell.latestStatus.text isEqualToString:usr.latestStatus]) {
+        relationshipCell.latestStatus.text = usr.latestStatus;
         relationshipCell.latestStatus.alpha = 0.3f;
         [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
             relationshipCell.latestStatus.alpha = 1;
@@ -118,25 +145,32 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    RenrenFreindProfileTabelViewCell *relationshipCell = (RenrenFreindProfileTabelViewCell *)cell;
-    RenrenUser *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    FriendProfileTableViewCell *relationshipCell = (FriendProfileTableViewCell *)cell;
+    relationshipCell.headImageView.image = nil;
+    relationshipCell.latestStatus.text = nil;
+    User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     relationshipCell.userName.text = usr.name;
-    if(![usr latestStatus]) {
-        if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
-            if(indexPath.row < kCustomRowCount)
-                [RenrenStatus loadStatus:usr inManagedObjectContext:self.managedObjectContext];
+    if(_type == RelationshipViewTypeRenrenFriends && !usr.latestStatus) {
+        if (self.tableView.dragging == NO && self.tableView.decelerating == NO) {
+            if(indexPath.row < kCustomRowCount) {
+                [RenrenStatus loadLatestStatus:usr inManagedObjectContext:self.managedObjectContext];
+            }
+        }
     }
-    relationshipCell.latestStatus.text = [usr latestStatus].text;
+    else {
+        relationshipCell.latestStatus.text = usr.latestStatus;
+    }
     
     NSData *imageData = nil;
-    if([Image imageWithURL:usr.tinyURL inManagedObjectContext:self.managedObjectContext])
+    if([Image imageWithURL:usr.tinyURL inManagedObjectContext:self.managedObjectContext]) {
         imageData = [Image imageWithURL:usr.tinyURL inManagedObjectContext:self.managedObjectContext].data;
-    if(imageData == nil){
+    }
+    if(imageData == nil) {
         if (self.tableView.dragging == NO && self.tableView.decelerating == NO) {
             if(indexPath.row < kCustomRowCount) {
                 [relationshipCell.headImageView loadImageFromURL:usr.tinyURL completion:^{
                     [self showHeadImageAnimation:relationshipCell.headImageView];
-                }cacheInContext:self.managedObjectContext];
+                } cacheInContext:self.managedObjectContext];
             }
         }
     }
@@ -147,31 +181,81 @@
 
 - (NSString *)customCellClassName
 {
-    return @"RenrenFriendProfileTableViewCell";
+    return @"FriendProfileTableViewCell";
 }
 
 - (void)clearData
 {
-    [self.currentRenrenUser removeFriends:self.currentRenrenUser.friends];
+    if(_type == RelationshipViewTypeRenrenFriends) {
+        _firstLoadFlag = YES;
+        [self.currentRenrenUser removeFriends:self.currentRenrenUser.friends];
+    }
+    else if(_type == RelationshipViewTypeWeiboFriends) {
+        _nextCursor = -1;
+        [self.currentWeiboUser removeFriends:self.currentWeiboUser.friends];
+    }
+    else if(_type == RelationshipViewTypeWeiboFollowers) {
+        _nextCursor = -1;
+        [self.currentWeiboUser removeFollowers:self.currentWeiboUser.followers];
+    }
 }
 
-- (void)loadFriends {
-    RenrenClient *renren = [RenrenClient client];
-    [renren setCompletionBlock:^(RenrenClient *client) {
-        if(!client.hasError) {
-            NSArray *array = client.responseJSONObject;
-            NSMutableSet *friendSet = [NSMutableSet set];
-            for(NSDictionary *dict in array) {
-                NSLog(@"dict:%@",dict);
-                RenrenUser *friend = [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
-                [friendSet addObject:friend];
-                
+- (void)loadMoreData {
+    if(_loading)
+        return;
+    _loading = YES;
+    if(_type == RelationshipViewTypeRenrenFriends) {
+        RenrenClient *renren = [RenrenClient client];
+        [renren setCompletionBlock:^(RenrenClient *client) {
+            if(!client.hasError) {
+                NSArray *array = client.responseJSONObject;
+                NSMutableSet *friendSet = [NSMutableSet set];
+                for(NSDictionary *dict in array) {
+                    RenrenUser *friend = [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
+                    [friendSet addObject:friend];
+                    
+                }
+                [self.currentRenrenUser addFriends:friendSet];
+                NSLog(@"add finished");
             }
-            [self.currentRenrenUser addFriends:friendSet];
-            NSLog(@"add finished");
+            
+            [self doneLoadingTableViewData];
+            _loading = NO;
+        }];
+        [renren getFriendsProfile];
+    }
+    else {
+        WeiboClient *client = [WeiboClient client];
+        [client setCompletionBlock:^(WeiboClient *client) {
+            if (!client.hasError) {
+                NSArray *dictArray = [client.responseJSONObject objectForKey:@"users"];
+                for (NSDictionary *dict in dictArray) {
+                    WeiboUser *usr = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
+                    if (_type == RelationshipViewTypeWeiboFollowers) {
+                        [self.currentWeiboUser addFollowersObject:usr];
+                    }
+                    else if (_type == RelationshipViewTypeWeiboFriends) {
+                        [self.currentWeiboUser addFriendsObject:usr];
+                    }
+                }
+                _nextCursor = [[client.responseJSONObject objectForKey:@"next_cursor"] intValue];
+                if (_nextCursor == 0) {
+                    [self hideLoadMoreDataButton];
+                }
+                else {
+                    [self showLoadMoreDataButton];
+                }
+                [self doneLoadingTableViewData];
+                _loading = NO;
+            }
+        }];
+        if (_type == RelationshipViewTypeWeiboFriends) {
+            [client getFriendsOfUser:self.currentWeiboUser.userID cursor:_nextCursor count:20];
         }
-    }];
-    [renren getFriendsProfile];
+        else if(_type == RelationshipViewTypeWeiboFollowers) {
+            [client getFollowersOfUser:self.currentWeiboUser.userID cursor:_nextCursor count:20];
+        }
+    }
 }
 
 
@@ -180,30 +264,37 @@
     NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
     for (NSIndexPath *indexPath in visiblePaths)
     {
-        RenrenUser *friend = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        Image *image = [Image imageWithURL:friend.tinyURL inManagedObjectContext:self.managedObjectContext];
+        User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        Image *image = [Image imageWithURL:usr.tinyURL inManagedObjectContext:self.managedObjectContext];
         if (!image.data)
         {
-            RenrenFreindProfileTabelViewCell *relationshipCell = (RenrenFreindProfileTabelViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-            [relationshipCell.headImageView loadImageFromURL:friend.tinyURL completion:^{
+            FriendProfileTableViewCell *relationshipCell = (FriendProfileTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            [relationshipCell.headImageView loadImageFromURL:usr.tinyURL completion:^{
                 [self showHeadImageAnimation:relationshipCell.headImageView];
-            }cacheInContext:self.managedObjectContext];
+            } cacheInContext:self.managedObjectContext];
         }
-        if(![friend latestStatus]) 
-        {
-            [RenrenStatus loadStatus:friend inManagedObjectContext:self.managedObjectContext];
+        if(_type == RelationshipViewTypeRenrenFriends && !usr.latestStatus) {
+            [RenrenStatus loadLatestStatus:usr inManagedObjectContext:self.managedObjectContext];
         }
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //RenrenFreindProfileTabelViewCell *relationshipCell = (RenrenFreindProfileTabelViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.selected = NO;
+    cell.highlighted = NO;
+    [self.tableView reloadData];
+    MainPageViewController *vc = [[[MainPageViewController alloc] init] autorelease];
+    vc.toolbarItems = self.toolbarItems;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Deferred image loading (UIScrollViewDelegate)
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+    //NSLog(@"scrollViewDidEndDragging");
+    [super scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
     if (!decelerate)
 	{
         [self loadExtraDataForOnscreenRows];
@@ -212,29 +303,44 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    //NSLog(@"scrollViewDidEndDecelerating");
     [self loadExtraDataForOnscreenRows];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     // 控制shadow显示
     NSLog(@"offset:%f, height:%f", scrollView.contentOffset.y, scrollView.contentSize.height);
-    if(scrollView.contentOffset.y < 0 && scrollView.contentSize.height > 0) {
+    [super scrollViewDidScroll:scrollView];
+    if(scrollView.contentOffset.y < 0 && scrollView.contentSize.height > 0 && !_reloading) {
         _topShadowImageView.alpha = 1;
+        NSLog(@"top!!!!!");
         _topShadowImageView.frame = CGRectMake(0, - scrollView.contentOffset.y - 20, 320, 20);
     }
     else {
-         _topShadowImageView.alpha = 0;
+        _topShadowImageView.alpha = 0;
     }
-    if(scrollView.contentOffset.y > scrollView.contentSize.height - 460 && scrollView.contentSize.height > 0) {
-        _buttomShadowImageView.alpha = 1;
-        _buttomShadowImageView.frame = CGRectMake(0, scrollView.contentSize.height - scrollView.contentOffset.y, 320, 20);
+    if(scrollView.contentOffset.y >= scrollView.contentSize.height - 460 && scrollView.contentSize.height > 0 && !_reloading) {
+        _bottomShadowImageView.alpha = 1;
+        NSLog(@"bottom!!!!!");
+        _bottomShadowImageView.frame = CGRectMake(0, scrollView.contentSize.height - scrollView.contentOffset.y, 320, 20);
+        if(self.tableView.tableFooterView != nil) {
+            ((NavigationToolBar *)self.navigationController.toolbar).respondView = self.tableView.tableFooterView;
+        }
     }
     else {
-        _buttomShadowImageView.alpha = 0;
+        if(scrollView.contentOffset.y < scrollView.contentSize.height - 460 - 60) {
+            ((NavigationToolBar *)self.navigationController.toolbar).respondView = self.tableView;
+        }
+        _bottomShadowImageView.alpha = 0;
+    }
+    if(_reloading) {
+        NSLog(@"set alpha 0");
+        _topShadowImageView.alpha = 0;
+        _bottomShadowImageView.alpha = 0;
     }
 }
 
-// IBAction
+#pragma mark - IBAction
 - (IBAction)backButtonPressed:(id)sender {
     self.navigationController.toolbarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];

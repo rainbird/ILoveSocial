@@ -11,26 +11,6 @@
 
 @implementation User (Addition)
 
-+ (User *)insertRenrenFriend:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
-    NSString *userID = [[dict objectForKey:@"id"] stringValue];
-    if (!userID || [userID isEqualToString:@""]) {
-        return nil;
-    }
-    
-    User *result = [User userWithID:userID inManagedObjectContext:context];
-    if (!result) {
-        result = [NSEntityDescription insertNewObjectForEntityForName:@"RenrenUser" inManagedObjectContext:context];
-    }
-    
-    
-    result.userID = userID;
-    
-    result.name = [NSString stringWithFormat:@"%@", [dict objectForKey:@"name"]];
-    result.pinyinName = [result.name pinyinFirstLetterArray];
-    result.tinyURL = [dict objectForKey:@"tinyurl"];    
-    return result;
-}
-
 + (User *)userWithID:(NSString *)userID inManagedObjectContext:(NSManagedObjectContext *)context
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];

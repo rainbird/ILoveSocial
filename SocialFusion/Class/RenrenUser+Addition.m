@@ -114,30 +114,14 @@
     return [self.userID isEqualToString:user.userID];
 }
 
-+ (NSArray *)allFriendsInManagedObjectContext:(NSManagedObjectContext *)context {
++ (NSArray *)getAllFriendsOfUser:(RenrenUser *)user inManagedObjectContext:(NSManagedObjectContext *)context {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    
     [request setEntity:[NSEntityDescription entityForName:@"RenrenUser" inManagedObjectContext:context]];
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"pinyinName" 
-                                                      ascending:YES]; 
-    NSArray *descriptors = [NSArray arrayWithObject:sort]; 
-    [request setSortDescriptors:descriptors]; 
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    NSString *currentUserID = [ud objectForKey:@"renren_ID"];
-    NSLog(@"current user id:%@", currentUserID);
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID <> '%@'", currentUserID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", user.friends];
     [request setPredicate:predicate];
     NSArray *res = [context executeFetchRequest:request error:NULL];
     [request release];
-    
     return res;
-}
-
-- (RenrenStatus *)latestStatus {
-    // just for test
-    NSSortDescriptor *sortByDate = [NSSortDescriptor sortDescriptorWithKey:@"userID" ascending:YES];
-    NSArray * array = [self.statuses sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortByDate]];
-    return [array lastObject];
 }
 
 @end

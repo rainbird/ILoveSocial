@@ -7,65 +7,46 @@
 //
 
 #import "MainPageViewController.h"
+#import "NavigationToolBar.h"
 
 @implementation MainPageViewController
-
-@synthesize university, name, gender, hometown;
-@synthesize userInfo;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
-}
+@synthesize lableViewController = _lableViewController;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
-- (void)loadView {
-    [super loadView];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
-    self.view = view;
-    
-    self.name = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 100, 30)];
-    self.name.text = userInfo.name;
-    self.gender = [[UILabel alloc] initWithFrame:CGRectMake(100, 20, 100, 30)];
-    self.gender.text = userInfo.gender;
-    self.university = [[UILabel alloc] initWithFrame:CGRectMake(20, 80, 300, 100)];
-    self.university.text = userInfo.universityHistory;
-    self.hometown = [[UILabel alloc] initWithFrame:CGRectMake(20, 200, 300, 100)];
-    self.hometown.text = userInfo.hometownLocation;
-    
-    [self.view addSubview:self.name];
-    [self.view addSubview:self.gender];
-    [self.view addSubview:self.university];
-    [self.view addSubview:self.hometown];
+- (void)configureToolbar {
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
+    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    backButton.frame = CGRectMake(12, 12, 31, 34);
+    UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
+    NSMutableArray *toolBarItems = [NSMutableArray array];
+    [toolBarItems addObject:backButtonItem];
+    self.toolbarItems = nil;
+    self.toolbarItems = toolBarItems;
+    ((NavigationToolBar *)self.navigationController.toolbar).respondView = self.view;
 }
 
-
-- (void)createModel {
-    NSLog(@"create model");
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configureToolbar];
+    self.lableViewController = [[[LabelViewController alloc] init] autorelease];
+    [self.view addSubview:self.lableViewController.view];
 }
-
-//- (TTTableViewDragRefreshDelegate *)createDelegate {
-//    
-//    TTTableViewDragRefreshDelegate *delegate = [[TTTableViewDragRefreshDelegate alloc] initWithController:self];
-//    return [delegate autorelease];
-//}
-
 
 - (void)dealloc {
-    [super dealloc];
     NSLog(@"main page dealloc");
-    self.name = nil;
-    self.gender = nil;
-    self.university = nil;
-    self.hometown = nil;
-    self.userInfo = nil;
+    [_lableViewController release];
+    [super dealloc];
+}
+
+// IBAction
+- (IBAction)backButtonPressed:(id)sender {
+    UINavigationController *nav = self.navigationController;
+    [self.navigationController popViewControllerAnimated:YES];
+    [nav.topViewController performSelector:@selector(configureToolbar)];
 }
 
 @end

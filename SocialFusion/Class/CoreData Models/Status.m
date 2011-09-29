@@ -2,7 +2,7 @@
 //  Status.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-9-17.
+//  Created by Blue Bitch on 11-9-28.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -11,9 +11,9 @@
 
 
 @implementation Status
-@dynamic text;
 @dynamic createdAt;
 @dynamic statusID;
+@dynamic text;
 @dynamic author;
 
 @end

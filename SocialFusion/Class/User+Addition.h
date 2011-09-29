@@ -10,7 +10,6 @@
 
 @interface User (Addition)
 
-+ (User *)insertRenrenFriend:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 + (User *)userWithID:(NSString *)userID inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

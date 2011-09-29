@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RenrenFreindProfileTabelViewCell : UITableViewCell {
+@interface FriendProfileTableViewCell : UITableViewCell {
+    UIImageView *_defaultHeadImageView;
     UIImageView *_headImageView;
     UILabel *_userName;
     UILabel *_latestStatus;

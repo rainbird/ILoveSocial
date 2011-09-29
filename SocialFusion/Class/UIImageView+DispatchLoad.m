@@ -37,6 +37,7 @@
             NSLog(@"download failed: %@", urlString);
         }
     });   
+    dispatch_release(downloadQueue);
 }
 
 - (void)loadImageFromURL:(NSString *)urlString 
@@ -57,12 +58,10 @@
         return;
     }
 	
-    NSURL *url = [NSURL URLWithString:urlString];
-    
+    NSURL *url = [NSURL URLWithString:urlString];    
     dispatch_queue_t downloadQueue = dispatch_queue_create("downloadImageQueue", NULL);
-    
     dispatch_async(downloadQueue, ^{ 
-        NSLog(@"download image:%@", urlString);
+        //NSLog(@"download image:%@", urlString);
         NSData *imageData = [NSData dataWithContentsOfURL:url];
         if(!imageData) {
             NSLog(@"download image failed:%@", urlString);
@@ -80,8 +79,7 @@
             }
         });
     });
-    
     dispatch_release(downloadQueue);
-	
 }
+
 @end

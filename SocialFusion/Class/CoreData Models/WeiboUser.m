@@ -2,7 +2,7 @@
 //  WeiboUser.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-9-17.
+//  Created by Blue Bitch on 11-9-28.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -27,6 +27,8 @@
 @dynamic statusesCount;
 @dynamic verified;
 @dynamic favorites;
+@dynamic followers;
+@dynamic friends;
 @dynamic friendsStatuses;
 
 @end

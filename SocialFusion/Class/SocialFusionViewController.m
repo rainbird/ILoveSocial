@@ -83,8 +83,8 @@
 {
     [super viewDidLoad];    
     [self configToolbar];    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	if ([RenrenClient authorized]) {
-        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
         NSString *renrenID = [ud objectForKey:@"renren_ID"];
         self.currentRenrenUser = [RenrenUser userWithID:renrenID inManagedObjectContext:self.managedObjectContext];
         if(self.currentRenrenUser == nil) {
@@ -98,8 +98,14 @@
 	}
     
 	if ([WeiboClient authorized]) {
-        NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
-		[_weiboStatusLabel setText:[info stringForKey:@"weibo_Name"]];
+        NSString *weiboID = [ud objectForKey:@"weibo_ID"];
+        self.currentWeiboUser = [WeiboUser userWithID:weiboID inManagedObjectContext:self.managedObjectContext];
+        if(self.currentWeiboUser == nil) {
+            [self wbDidLogin];
+        }
+        else {
+            [_weiboStatusLabel setText:[ud stringForKey:@"weibo_Name"]];
+        }
 	} else {
 		[_weiboStatusLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
 	}
@@ -117,8 +123,10 @@
 {
     if(![RenrenClient authorized] && ![WeiboClient authorized])
         return;
-    FriendProfileViewController *vc = [[FriendProfileViewController alloc] init];
+    FriendProfileViewController *vc = [[FriendProfileViewController alloc] initWithType:RelationshipViewTypeWeiboFriends];
+    //FriendProfileViewController *vc = [[FriendProfileViewController alloc] initWithType:RelationshipViewTypeRenrenFriends];
     vc.currentRenrenUser = self.currentRenrenUser;
+    vc.currentWeiboUser  = self.currentWeiboUser;
     vc.toolbarItems = self.toolbarItems;
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
@@ -177,8 +185,8 @@
     // get user info
     WeiboClient *weibo = [WeiboClient client];
     [weibo setCompletionBlock:^(WeiboClient *client) {
-        NSLog(@"weibo did get user info");
         if (!weibo.hasError) {
+            NSLog(@"weibo did get user info");
             NSDictionary *dict = client.responseJSONObject;
             NSLog(@"weibo user info:%@", dict);
             NSString *weiboName = [NSString stringWithFormat:@"%@",[dict objectForKey:@"screen_name"]];
@@ -188,7 +196,7 @@
             [ud setValue:weiboID forKey:@"weibo_ID"];
             [ud synchronize];
             [_weiboStatusLabel setText:weiboName];
-            [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
+            self.currentWeiboUser = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
             [self.managedObjectContext processPendingChanges];
         }
     }];
