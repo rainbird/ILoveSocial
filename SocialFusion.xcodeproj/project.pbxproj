@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		736A9632143567A900681180 /* SocialFusion.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 736A9630143567A900681180 /* SocialFusion.xcdatamodeld */; };
+		73E455041435658200B681F3 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E455031435658200B681F3 /* libz.1.2.3.dylib */; };
 		E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1247266142A58090086AC61 /* MainPageViewController.xib */; };
 		E14D17C8142771AD006B675E /* backButton-highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C6142771AD006B675E /* backButton-highlight@2x.png */; };
 		E14D17C9142771AD006B675E /* backButton-highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C7142771AD006B675E /* backButton-highlight.png */; };
@@ -75,12 +77,10 @@
 		E1ABA4B7141FA883002CD0A6 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA481141FA882002CD0A6 /* NSString+URLEncoding.m */; };
 		E1ABA4B8141FA883002CD0A6 /* OAuthHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA483141FA882002CD0A6 /* OAuthHTTPRequest.m */; };
 		E1ABA4B9141FA883002CD0A6 /* WeiboClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA485141FA882002CD0A6 /* WeiboClient.m */; };
-		E1ABA4BC141FA8C0002CD0A6 /* SocialFusion.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA4BA141FA8C0002CD0A6 /* SocialFusion.xcdatamodeld */; };
 		E1ABA4C4141FA97F002CD0A6 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA4C3141FA97F002CD0A6 /* Icon.png */; };
 		E1ABA4C6141FA9A8002CD0A6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA4C5141FA9A8002CD0A6 /* Default.png */; };
 		E1ABA4C8141FA9B1002CD0A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA4C7141FA9B1002CD0A6 /* Default@2x.png */; };
 		E1ABA4CA141FAACA002CD0A6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA4C9141FAACA002CD0A6 /* MessageUI.framework */; };
-		E1ABA4CC141FAB02002CD0A6 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA4CB141FAB02002CD0A6 /* libz.1.2.5.dylib */; };
 		E1ABA4CE141FAB0F002CD0A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA4CD141FAB0F002CD0A6 /* QuartzCore.framework */; };
 		E1ABA4D0141FAB16002CD0A6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA4CF141FAB16002CD0A6 /* CFNetwork.framework */; };
 		E1ABA4D2141FAB23002CD0A6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA4D1141FAB23002CD0A6 /* SystemConfiguration.framework */; };
@@ -130,6 +130,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		736A9631143567A900681180 /* SocialFusion.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SocialFusion.xcdatamodel; sourceTree = "<group>"; };
+		73E455031435658200B681F3 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		E1247266142A58090086AC61 /* MainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageViewController.xib; sourceTree = "<group>"; };
 		E14D17C6142771AD006B675E /* backButton-highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight@2x.png"; sourceTree = "<group>"; };
 		E14D17C7142771AD006B675E /* backButton-highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight.png"; sourceTree = "<group>"; };
@@ -238,12 +240,10 @@
 		E1ABA483141FA882002CD0A6 /* OAuthHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthHTTPRequest.m; sourceTree = "<group>"; };
 		E1ABA484141FA882002CD0A6 /* WeiboClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboClient.h; sourceTree = "<group>"; };
 		E1ABA485141FA882002CD0A6 /* WeiboClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboClient.m; sourceTree = "<group>"; };
-		E1ABA4BB141FA8C0002CD0A6 /* SocialFusionDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SocialFusionDataModel.xcdatamodel; sourceTree = "<group>"; };
 		E1ABA4C3141FA97F002CD0A6 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../../Icon.png; sourceTree = "<group>"; };
 		E1ABA4C5141FA9A8002CD0A6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../Default.png; sourceTree = "<group>"; };
 		E1ABA4C7141FA9B1002CD0A6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../Default@2x.png"; sourceTree = "<group>"; };
 		E1ABA4C9141FAACA002CD0A6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		E1ABA4CB141FAB02002CD0A6 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		E1ABA4CD141FAB0F002CD0A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E1ABA4CF141FAB16002CD0A6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E1ABA4D1141FAB23002CD0A6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -317,11 +317,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E455041435658200B681F3 /* libz.1.2.3.dylib in Frameworks */,
 				E1ABA4D4141FAB2F002CD0A6 /* MobileCoreServices.framework in Frameworks */,
 				E1ABA4D2141FAB23002CD0A6 /* SystemConfiguration.framework in Frameworks */,
 				E1ABA4D0141FAB16002CD0A6 /* CFNetwork.framework in Frameworks */,
 				E1ABA4CE141FAB0F002CD0A6 /* QuartzCore.framework in Frameworks */,
-				E1ABA4CC141FAB02002CD0A6 /* libz.1.2.5.dylib in Frameworks */,
 				E1ABA4CA141FAACA002CD0A6 /* MessageUI.framework in Frameworks */,
 				E1ABA401141FA6E1002CD0A6 /* UIKit.framework in Frameworks */,
 				E1ABA403141FA6E1002CD0A6 /* Foundation.framework in Frameworks */,
@@ -411,6 +411,7 @@
 		E1ABA3F1141FA6E1002CD0A6 = {
 			isa = PBXGroup;
 			children = (
+				73E455031435658200B681F3 /* libz.1.2.3.dylib */,
 				E1ABA4D7141FAC8C002CD0A6 /* Nibs */,
 				E19A2D0C1420927400BE491A /* Classes */,
 				E1ABA443141FA882002CD0A6 /* SDK */,
@@ -436,7 +437,6 @@
 				E1ABA4D1141FAB23002CD0A6 /* SystemConfiguration.framework */,
 				E1ABA4CF141FAB16002CD0A6 /* CFNetwork.framework */,
 				E1ABA4CD141FAB0F002CD0A6 /* QuartzCore.framework */,
-				E1ABA4CB141FAB02002CD0A6 /* libz.1.2.5.dylib */,
 				E1ABA4C9141FAACA002CD0A6 /* MessageUI.framework */,
 				E1ABA400141FA6E1002CD0A6 /* UIKit.framework */,
 				E1ABA402141FA6E1002CD0A6 /* Foundation.framework */,
@@ -449,7 +449,7 @@
 		E1ABA408141FA6E1002CD0A6 /* SocialFusion */ = {
 			isa = PBXGroup;
 			children = (
-				E1ABA4BA141FA8C0002CD0A6 /* SocialFusion.xcdatamodeld */,
+				736A9630143567A900681180 /* SocialFusion.xcdatamodeld */,
 				E1ABA411141FA6E1002CD0A6 /* SocialFusionAppDelegate.h */,
 				E1ABA412141FA6E2002CD0A6 /* SocialFusionAppDelegate.m */,
 				E1ABA409141FA6E1002CD0A6 /* Supporting Files */,
@@ -803,7 +803,6 @@
 				E1ABA4B7141FA883002CD0A6 /* NSString+URLEncoding.m in Sources */,
 				E1ABA4B8141FA883002CD0A6 /* OAuthHTTPRequest.m in Sources */,
 				E1ABA4B9141FA883002CD0A6 /* WeiboClient.m in Sources */,
-				E1ABA4BC141FA8C0002CD0A6 /* SocialFusion.xcdatamodeld in Sources */,
 				E1FB624114247EA000828E24 /* CoreDataTableViewController.m in Sources */,
 				E1FB624214247EA000828E24 /* CoreDataViewController.m in Sources */,
 				E1FB62621424812C00828E24 /* Image+Addition.m in Sources */,
@@ -824,6 +823,7 @@
 				E1D3B16D1432339700443B79 /* RenrenUser.m in Sources */,
 				E1D3B182143244CA00443B79 /* EGORefreshTableHeaderView.m in Sources */,
 				E1D3B183143244CA00443B79 /* EGOTableViewController.m in Sources */,
+				736A9632143567A900681180 /* SocialFusion.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,12 +950,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E1ABA4BA141FA8C0002CD0A6 /* SocialFusion.xcdatamodeld */ = {
+		736A9630143567A900681180 /* SocialFusion.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				E1ABA4BB141FA8C0002CD0A6 /* SocialFusionDataModel.xcdatamodel */,
+				736A9631143567A900681180 /* SocialFusion.xcdatamodel */,
 			);
-			currentVersion = E1ABA4BB141FA8C0002CD0A6 /* SocialFusionDataModel.xcdatamodel */;
+			currentVersion = 736A9631143567A900681180 /* SocialFusion.xcdatamodel */;
 			path = SocialFusion.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
