@@ -2,7 +2,7 @@
 //  Status.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-9-28.
+//  Created by He Ruoyun on 11-10-4.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -15,5 +15,6 @@
 @dynamic statusID;
 @dynamic text;
 @dynamic author;
+
 
 @end

@@ -13,7 +13,8 @@
 @implementation RenrenStatus (Addition)
 
 + (RenrenStatus *)insertStatus:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
-    NSString *statusID = [[dict objectForKey:@"status_id"] stringValue];
+    NSString *statusID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"status_id"]];
+
     if (!statusID || [statusID isEqualToString:@""]) {
         return nil;
     }
@@ -28,7 +29,7 @@
     result.text = [NSString stringWithFormat:@"%@",[dict objectForKey:@"message"]];
     
     // 将自己添加到对应user的statuses里
-    NSString *authorID = [[dict objectForKey:@"uid"] stringValue];
+    NSString *authorID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"uid"]];
     result.author = [RenrenUser userWithID:authorID inManagedObjectContext:context];
     
     return result;
