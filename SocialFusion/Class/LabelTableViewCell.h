@@ -14,3 +14,4 @@
 @property (nonatomic, retain) IBOutlet UIImageView *highlightLabelImage;
 
 @end
+

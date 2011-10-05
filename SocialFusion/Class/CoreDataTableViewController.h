@@ -14,6 +14,7 @@ UITableViewDelegate, UITableViewDataSource> {
     UITableView *_tableView;
     NSInteger _playingAnimationCount;
     BOOL _firstLoadFlag;
+    BOOL _noAnimationFlag;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;

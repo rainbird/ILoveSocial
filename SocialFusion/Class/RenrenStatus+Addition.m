@@ -14,7 +14,6 @@
 
 + (RenrenStatus *)insertStatus:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
     NSString *statusID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"status_id"]];
-
     if (!statusID || [statusID isEqualToString:@""]) {
         return nil;
     }

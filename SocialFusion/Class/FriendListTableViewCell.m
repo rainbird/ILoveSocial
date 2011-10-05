@@ -6,11 +6,11 @@
 //  Copyright 2011年 TJU. All rights reserved.
 //
 
-#import "FriendProfileTableViewCell.h"
+#import "FriendListTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 
-@implementation FriendProfileTableViewCell
+@implementation FriendListTableViewCell
 @synthesize defaultHeadImageView = _defaultHeadImageView;
 @synthesize headImageView = _headImageView;
 @synthesize userName = _userName;
@@ -28,7 +28,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"Friend Profile Cell Dealloc");
+    NSLog(@"Friend List Cell Dealloc");
     [_defaultHeadImageView release];
     [_headImageView release];
     [_userName release];

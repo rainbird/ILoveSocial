@@ -7,6 +7,7 @@
 //
 
 #import "Image.h"
+#import "ImageData.h"
 
 @interface Image (Addition)
 

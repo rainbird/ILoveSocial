@@ -16,14 +16,14 @@ typedef enum {
 } RelationshipViewType;
 
 @interface FriendProfileViewController : EGOTableViewController {
-    UIImageView *_topShadowImageView;
-    UIImageView *_bottomShadowImageView;
-    
     int _nextCursor;
     RelationshipViewType _type;
 }
 
-- (IBAction)backButtonPressed:(id)sender;
+@property (nonatomic, retain) IBOutlet UIImageView *tableViewBackground;
+
 - (id)initWithType:(RelationshipViewType)type;
+- (void)showHeadImageAnimation:(UIImageView *)imageView;
+- (void)loadExtraDataForOnscreenRowsHelp:(NSIndexPath *)indexPath;
 
 @end

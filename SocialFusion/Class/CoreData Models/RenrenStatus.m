@@ -2,7 +2,7 @@
 //  RenrenStatus.m
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-10-4.
+//  Created by Blue Bitch on 11-10-5.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -11,14 +11,11 @@
 
 @implementation RenrenStatus
 @dynamic rootStatusID;
-@dynamic prefix;
-@dynamic rootUserID;
 @dynamic rootText;
+@dynamic rootUserID;
 @dynamic forwardMessage;
 @dynamic commentsCount;
 @dynamic rootUserName;
-@dynamic likeCount;
-@dynamic feedType;
 @dynamic url;
 
 @end

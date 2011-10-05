@@ -2,7 +2,7 @@
 //  Status.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-10-4.
+//  Created by Blue Bitch on 11-10-5.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -17,6 +17,6 @@
 @property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) NSString * statusID;
 @property (nonatomic, retain) NSString * text;
-@property (nonatomic, retain) User * author;
+@property (nonatomic, retain) User *author;
 
 @end

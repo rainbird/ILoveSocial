@@ -9,6 +9,7 @@
 #import "RenrenUser+Addition.h"
 #import "NSString+Pinyin.h"
 #import "RenrenStatus+Addition.h"
+#import "RenrenDetail+Addition.h"
 
 @implementation RenrenUser (Addition)
 
@@ -16,46 +17,18 @@
     if (!userID || [userID isEqualToString:@""]) {
         return nil;
     }
-    
     RenrenUser *result = [RenrenUser userWithID:userID inManagedObjectContext:context];
     if (!result) {
         result = [NSEntityDescription insertNewObjectForEntityForName:@"RenrenUser" inManagedObjectContext:context];
     }
     
-    
     result.userID = userID;
-    
-    NSString *sex = [dict objectForKey:@"sex"];
-    if(sex) {
-        bool isMan = [sex boolValue];
-        if(isMan)
-            result.gender = [NSString stringWithString:@"男"];
-        else
-            result.gender = [NSString stringWithString:@"女"];
-    }
     result.name = [NSString stringWithFormat:@"%@", [dict objectForKey:@"name"]];
     result.pinyinName = [result.name pinyinFirstLetterArray];
-    //NSLog(@"name:%@, pinyin:%@", result.name, result.pinyinName);
-    result.birthday = [dict objectForKey:@"birthday"];
-    
     result.tinyURL = [dict objectForKey:@"tinyurl"];
-    result.headURL = [dict objectForKey:@"headurl"];
-    result.mainURL = [dict objectForKey:@"mainurl"];
     
-    NSDictionary *hometown = [dict objectForKey:@"hometown_location"];
-    NSString *province = [hometown objectForKey:@"province"];
-    NSString *city = [hometown objectForKey:@"city"];
-    NSString *hometownLocation = [NSString stringWithFormat:@"%@ %@", province, city];
-    result.hometownLocation = hometownLocation;
-    
-    NSDictionary *university = [[dict objectForKey:@"university_history"] lastObject];
-    if(university) {
-        NSString *department = [university objectForKey:@"department"];
-        NSString *name = [university objectForKey:@"name"];
-        NSString *year = [university objectForKey:@"year"];
-        NSString *universityInfo = [NSString stringWithFormat:@"%@, %@, %@", name, department, year];
-        result.universityHistory = universityInfo;
-    }
+    RenrenDetail *detail = [RenrenDetail insertDetailInformation:dict userID:userID inManagedObjectContext:context];
+    result.detailInformation = detail;
     
     return result;
 }

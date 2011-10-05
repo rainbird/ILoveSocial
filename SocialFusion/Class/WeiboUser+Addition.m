@@ -8,6 +8,7 @@
 
 #import "WeiboUser+Addition.h"
 #import "NSString+Pinyin.h"
+#import "WeiboDetail+Addition.h"
 
 
 @implementation WeiboUser (Addition)
@@ -38,22 +39,8 @@
     
     //result.profileImageURL = [dict objectForKey:@"profile_image_url"];
     result.tinyURL = [dict objectForKey:@"profile_image_url"];
-    result.gender = [dict objectForKey:@"gender"];
-    result.selfDescription = [dict objectForKey:@"description"];
-    result.location = [dict objectForKey:@"location"];
-    result.verified = [NSNumber numberWithBool:[[dict objectForKey:@"verified"] boolValue]];
-    
-    result.domainURL = [dict objectForKey:@"domain"];
-    result.blogURL = [dict objectForKey:@"url"];
-    
-    result.friendsCount = [[dict objectForKey:@"friends_count"] stringValue];
-    result.followersCount = [[dict objectForKey:@"followers_count"] stringValue];
-    result.statusesCount = [[dict objectForKey:@"statuses_count"] stringValue];
-    result.favouritesCount = [[dict objectForKey:@"favourites_count"] stringValue];
-    
-    BOOL following = [[dict objectForKey:@"following"] boolValue];
-    
-    result.following = [NSNumber numberWithBool:following];
+    WeiboDetail *detail = [WeiboDetail insertDetailInformation:dict inManagedObjectContext:context];
+    result.detailInformation = detail;
     
     return result;
 }

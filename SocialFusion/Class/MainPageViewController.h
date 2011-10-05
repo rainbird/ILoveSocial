@@ -6,11 +6,14 @@
 //  Copyright 2011年 TJU. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "LabelViewController.h"
+#import "CoreDataViewController.h"
 
-@interface MainPageViewController : UIViewController
+@interface MainPageViewController : CoreDataViewController<LableViewControllerDelegate> {
+    BOOL _firstLoad;
+}
 
 @property (nonatomic, retain) LabelViewController *lableViewController;
+@property (nonatomic, retain) NSMutableArray *viewControllers;
 
 @end

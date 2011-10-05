@@ -2,7 +2,7 @@
 //  WeiboStatus.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-10-4.
+//  Created by Blue Bitch on 11-10-5.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -23,9 +23,15 @@
 @property (nonatomic, retain) NSNumber * favorited;
 @property (nonatomic, retain) NSString * commentsCount;
 @property (nonatomic, retain) NSString * originalPicURL;
-@property (nonatomic, retain) WeiboUser * isFriendStatuesOf;
-@property (nonatomic, retain) WeiboUser * favoritedBy;
-@property (nonatomic, retain) NSSet* repostBy;
-@property (nonatomic, retain) WeiboStatus * repostStatus;
+@property (nonatomic, retain) WeiboUser *favoritedBy;
+@property (nonatomic, retain) NSSet *repostBy;
+@property (nonatomic, retain) WeiboStatus *repostStatus;
+@end
+
+@interface WeiboStatus (CoreDataGeneratedAccessors)
+- (void)addRepostByObject:(WeiboStatus *)value;
+- (void)removeRepostByObject:(WeiboStatus *)value;
+- (void)addRepostBy:(NSSet *)value;
+- (void)removeRepostBy:(NSSet *)value;
 
 @end

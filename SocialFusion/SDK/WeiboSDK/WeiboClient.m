@@ -150,7 +150,7 @@ typedef enum {
     if (_preCompletionBlock) {
         _preCompletionBlock(self);
     }
-    NSLog(@"%d", [_completionBlock retainCount]);
+    //NSLog(@"completion block retain count:%d", [_completionBlock retainCount]);
     if (_completionBlock) {
         _completionBlock(self);
     }

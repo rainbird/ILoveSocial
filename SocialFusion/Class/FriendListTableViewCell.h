@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FriendProfileTableViewCell : UITableViewCell {
+@interface FriendListTableViewCell : UITableViewCell {
     UIImageView *_defaultHeadImageView;
     UIImageView *_headImageView;
     UILabel *_userName;

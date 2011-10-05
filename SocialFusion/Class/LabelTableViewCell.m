@@ -14,7 +14,7 @@
 
 - (void)awakeFromNib
 {
-    NSLog(@"LabelTableViewCell awakeFromNib");
+    //NSLog(@"LabelTableViewCell awakeFromNib");
     self.transform = CGAffineTransformRotate(self.transform, M_PI_2);
 }
 

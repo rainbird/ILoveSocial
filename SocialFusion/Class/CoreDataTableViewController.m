@@ -87,11 +87,11 @@
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     NSInteger count = [sectionInfo numberOfObjects];
+    NSLog(@"row count:%d", count);
     if(count == 0)
         _firstLoadFlag = YES;
     else
         _firstLoadFlag = NO;
-    //NSLog(@"cell count:%d", count);
     return count;
 }
 
@@ -105,7 +105,7 @@
     if (cell == nil) {
         if (name) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:[self customCellClassName] owner:self options:nil];
-            cell = [nib lastObject];
+            cell = [nib objectAtIndex:0];
         }
         else {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -121,15 +121,15 @@
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    if(!_firstLoadFlag)
-     [self.tableView beginUpdates];
+    if(!_firstLoadFlag && !_noAnimationFlag)
+        [self.tableView beginUpdates];
 }
 
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
-    if(_firstLoadFlag)
+    if(_firstLoadFlag || _noAnimationFlag)
         return;
     
     UITableView *tableView = self.tableView;
@@ -163,10 +163,10 @@
 
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    if(_firstLoadFlag)
+    if(_firstLoadFlag || _noAnimationFlag)
         [self.tableView reloadData];
     else
-     [self.tableView endUpdates];
+        [self.tableView endUpdates];
     
 }
 

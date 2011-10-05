@@ -9,8 +9,8 @@
 #import "SocialFusionViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "FriendProfileViewController.h"
-#import "MainPageViewController.h"
+#import "FriendListViewController.h"
+#import "FriendHeadViewController.h"
 
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
@@ -123,8 +123,9 @@
 {
     if(![RenrenClient authorized] && ![WeiboClient authorized])
         return;
-    //FriendProfileViewController *vc = [[FriendProfileViewController alloc] initWithType:RelationshipViewTypeWeiboFriends];
-    FriendProfileViewController *vc = [[FriendProfileViewController alloc] initWithType:RelationshipViewTypeRenrenFriends];
+    //FriendListViewController *vc = [[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers];
+    FriendListViewController *vc = [[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends];
+    //FriendHeadViewController *vc = [[FriendHeadViewController alloc] initWithType:RelationshipViewTypeWeiboFriends];
     vc.currentRenrenUser = self.currentRenrenUser;
     vc.currentWeiboUser  = self.currentWeiboUser;
     vc.toolbarItems = self.toolbarItems;

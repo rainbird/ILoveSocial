@@ -38,6 +38,7 @@
 @implementation EGORefreshTableHeaderView
 
 @synthesize delegate=_delegate;
+@synthesize textColor = _textColor;
 
 
 - (id)initWithFrame:(CGRect)frame {
@@ -49,9 +50,8 @@
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
 		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		label.font = [UIFont systemFontOfSize:14.0f];
-		label.textColor = TEXT_COLOR;
-		label.shadowColor = [UIColor colorWithWhite:0.1f alpha:0.8f];
-		label.shadowOffset = CGSizeMake(0.0f, 1.0f);
+		//label.shadowColor = [UIColor colorWithWhite:0.1f alpha:0.8f];
+		//label.shadowOffset = CGSizeMake(0.0f, 1.0f);
 		label.backgroundColor = [UIColor clearColor];
 		label.textAlignment = UITextAlignmentCenter;
 		[self addSubview:label];
@@ -61,9 +61,8 @@
 		label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 60.0f, self.frame.size.width, 60.0f)];
 		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		label.font = [UIFont boldSystemFontOfSize:13.0f];
-		label.textColor = TEXT_COLOR;
-		label.shadowColor = [UIColor colorWithWhite:0.1f alpha:0.8f];
-		label.shadowOffset = CGSizeMake(0.0f, 1.0f);
+		//label.shadowColor = [UIColor colorWithWhite:0.1f alpha:0.8f];
+		//label.shadowOffset = CGSizeMake(0.0f, 1.0f);
 		label.backgroundColor = [UIColor clearColor];
 		label.textAlignment = UITextAlignmentCenter;
 		[self addSubview:label];
@@ -94,9 +93,16 @@
 		[self setState:EGOOPullRefreshNormal];
 		
     }
-	
     return self;
-	
+}
+
+- (void)setTextColor:(UIColor *)textColor {
+    if(![textColor isEqual:_textColor]) {
+        [_textColor release];
+        _textColor = [textColor retain];
+        _statusLabel.textColor = _textColor;
+        _lastUpdatedLabel.textColor = _textColor;
+    }
 }
 
 
@@ -234,11 +240,12 @@
 
 - (void)dealloc {
 	
-	_delegate=nil;
+	_delegate = nil;
 	_activityView = nil;
 	_statusLabel = nil;
 	//_arrowImage = nil;
 	_lastUpdatedLabel = nil;
+    [_textColor release];
     [super dealloc];
 }
 

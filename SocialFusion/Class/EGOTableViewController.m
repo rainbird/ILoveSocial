@@ -111,7 +111,6 @@
 }
 
 - (void)doneLoadingTableViewData {
-    NSLog(@"done!!!!!");
     [UIView animateWithDuration:.2 animations:^(void) {
         [self.tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
     } completion:^(BOOL finished) {

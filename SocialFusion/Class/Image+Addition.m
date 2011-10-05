@@ -7,6 +7,7 @@
 //
 
 #import "Image+Addition.h"
+#import "ImageData.h"
 
 @implementation Image (Addition)
 
@@ -35,9 +36,11 @@
     
     if (!image) {
         image = [NSEntityDescription insertNewObjectForEntityForName:@"Image" inManagedObjectContext:context];
+        ImageData *imageData = [NSEntityDescription insertNewObjectForEntityForName:@"ImageData" inManagedObjectContext:context];
+        image.imageData = imageData;
     }
     
-    image.data = data;
+    image.imageData.data = data;
     image.url = url;
     image.updateDate = [NSDate date];
     
@@ -59,8 +62,10 @@
     
     if (resultArray.count > 40) {
         [resultArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSLog(@"date:%@", ((Image *)obj).updateDate);
-            [context deleteObject:obj];
+            //NSLog(@"date:%@", ((Image *)obj).updateDate);
+            Image *image = (Image *)obj;
+            [context deleteObject:image.imageData];
+            [context deleteObject:image];
             if (idx > 30) {
                 *stop = YES;
             }
@@ -76,7 +81,9 @@
     NSArray *resultArray = [context executeFetchRequest:request error:NULL];
     
     [resultArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [context deleteObject:obj];
+        Image *image = (Image *)obj;
+        [context deleteObject:image.imageData];
+        [context deleteObject:image];
     }];
     [request release];
 }

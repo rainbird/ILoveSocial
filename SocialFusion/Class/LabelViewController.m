@@ -12,6 +12,7 @@
 
 @implementation LabelViewController
 @synthesize tableView = _tableView;
+@synthesize delegate = _delegate;
 
 - (id)init {
     self = [super init];
@@ -21,16 +22,17 @@
         [_labelName addObject:[NSString stringWithString:@"微博"]];
         [_labelName addObject:[NSString stringWithString:@"关注"]];
         [_labelName addObject:[NSString stringWithString:@"粉丝"]];
-        [_labelName addObject:[NSString stringWithString:@"收藏"]];
+        //[_labelName addObject:[NSString stringWithString:@"收藏"]];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    NSLog(@"label view controller dealloc");
+    //NSLog(@"label view controller dealloc");
     [_tableView release];
     [_labelName release];
+    _delegate = nil;
     [super dealloc];
 }
 
@@ -78,6 +80,13 @@
 #pragma mark - UITableView Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 78;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.delegate respondsToSelector:@selector(didSelectLabelAtIndexPath:)]) {
+        [self.delegate didSelectLabelAtIndexPath:indexPath];
+    }
 }
 
 #pragma mark - UITableView DataSource

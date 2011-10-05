@@ -40,23 +40,21 @@
     dispatch_release(downloadQueue);
 }
 
+
 - (void)loadImageFromURL:(NSString *)urlString 
               completion:(void (^)())completion 
           cacheInContext:(NSManagedObjectContext *)context
 {
-	
-	self.backgroundColor = [UIColor clearColor];
-    
-    Image *imageObject = [Image imageWithURL:urlString inManagedObjectContext:context];
+	/*Image *imageObject = [Image imageWithURL:urlString inManagedObjectContext:context];
     if (imageObject) {
-        NSData *imageData = imageObject.data;
+        NSData *imageData = imageObject.imageData.data;
         UIImage *img = [UIImage imageWithData:imageData];
         self.image = img;
         if (completion) {
             completion();
         }
         return;
-    }
+    }*/
 	
     NSURL *url = [NSURL URLWithString:urlString];    
     dispatch_queue_t downloadQueue = dispatch_queue_create("downloadImageQueue", NULL);

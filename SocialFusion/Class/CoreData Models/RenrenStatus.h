@@ -2,7 +2,7 @@
 //  RenrenStatus.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-10-4.
+//  Created by Blue Bitch on 11-10-5.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -15,14 +15,11 @@
 @private
 }
 @property (nonatomic, retain) NSString * rootStatusID;
-@property (nonatomic, retain) NSString * prefix;
-@property (nonatomic, retain) NSString * rootUserID;
 @property (nonatomic, retain) NSString * rootText;
+@property (nonatomic, retain) NSString * rootUserID;
 @property (nonatomic, retain) NSString * forwardMessage;
 @property (nonatomic, retain) NSString * commentsCount;
 @property (nonatomic, retain) NSString * rootUserName;
-@property (nonatomic, retain) NSString * likeCount;
-@property (nonatomic, retain) NSString * feedType;
 @property (nonatomic, retain) NSString * url;
 
 @end
