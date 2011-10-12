@@ -429,6 +429,7 @@
     cell.frame=CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, labelSize.height+10);
     }
     
+    /*
     NSData *imageData = nil;
 
     if(imageData == nil) {
@@ -440,6 +441,12 @@
             }
         }
     }
+    else {
+        cell.headImageView.image = [UIImage imageWithData:imageData];
+    }
+    
+    */
+ 
 
     
    //cell.status.frame = [cell.status textRectForBounds:cell.status.frame limitedToNumberOfLines:10];
@@ -448,6 +455,41 @@
 // Configure the cell...
     
     return cell;
+}
+
+
+- (void)updateImageForCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSURL *url = [NSURL URLWithString: [[_feedArray objectAtIndex:indexPath.row] getHeadURL]];
+
+    UIImage *image =[UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+    NewFeedStatusCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    [cell.headImageView performSelectorOnMainThread:@selector(setImage:) withObject:image waitUntilDone:NO];
+    [pool release];
+}
+
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+     [NSThread detachNewThreadSelector:@selector(updateImageForCellAtIndexPath:) toTarget:self withObject:indexPath];
+/*
+    NewFeedStatusCell* tempcell=cell;
+ 
+    CATransition *animation = [CATransition animation];
+    animation.delegate = self;
+    animation.duration = 0.5f;
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.fillMode = kCAFillModeForwards;
+    animation.removedOnCompletion = NO;
+    [animation setType:@"kCATransitionFade"];
+    //    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
+    
+    NSURL *url = [NSURL URLWithString: [[_feedArray objectAtIndex:indexPath.row] getHeadURL]];
+    [tempcell.headImageView setImage:[UIImage imageWithData: [NSData dataWithContentsOfURL:url]]];
+  */  
 }
 
 
