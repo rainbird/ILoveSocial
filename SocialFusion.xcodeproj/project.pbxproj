@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73906650143EE95600835332 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7390664F143EE95600835332 /* libz.1.2.3.dylib */; };
+		7390665C143F095E00835332 /* NewFeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7390665A143F095C00835332 /* NewFeedListController.m */; };
+		7390665D143F095E00835332 /* NewFeedListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7390665B143F095D00835332 /* NewFeedListController.xib */; };
+		73ABE306144145C70067B45F /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE305144145C70067B45F /* NewFeedData.m */; };
+		73ABE38114416E740067B45F /* NewFeedStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE37F14416E730067B45F /* NewFeedStatusCell.m */; };
+		73ABE38214416E740067B45F /* NewFeedStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73ABE38014416E730067B45F /* NewFeedStatusCell.xib */; };
 		E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1247266142A58090086AC61 /* MainPageViewController.xib */; };
 		E14D17C8142771AD006B675E /* backButton-highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C6142771AD006B675E /* backButton-highlight@2x.png */; };
 		E14D17C9142771AD006B675E /* backButton-highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C7142771AD006B675E /* backButton-highlight.png */; };
@@ -14,7 +20,6 @@
 		E14D17CF142855B3006B675E /* bottomGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17CD142855B3006B675E /* bottomGradient.png */; };
 		E14D17D0142855B3006B675E /* bottomGradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17CE142855B3006B675E /* bottomGradient@2x.png */; };
 		E1777D2A1430475900A8D1BA /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E1777D291430475900A8D1BA /* blueArrow.png */; };
-		E19A10571435EB49001EACC9 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E19A10561435EB49001EACC9 /* libz.1.2.5.dylib */; };
 		E19A2CEC141FBD5300BE491A /* SocialFusion-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA40A141FA6E1002CD0A6 /* SocialFusion-Info.plist */; };
 		E19A2CFC141FC2D700BE491A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E19A2CFE141FC2D700BE491A /* Localizable.strings */; };
 		E19A2D06141FC3B300BE491A /* homeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D00141FC3B300BE491A /* homeButton.png */; };
@@ -144,6 +149,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7390664F143EE95600835332 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
+		73906659143F095C00835332 /* NewFeedListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedListController.h; sourceTree = "<group>"; };
+		7390665A143F095C00835332 /* NewFeedListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedListController.m; sourceTree = "<group>"; };
+		7390665B143F095D00835332 /* NewFeedListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedListController.xib; sourceTree = "<group>"; };
+		73ABE304144145C70067B45F /* NewFeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedData.h; sourceTree = "<group>"; };
+		73ABE305144145C70067B45F /* NewFeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedData.m; sourceTree = "<group>"; };
+		73ABE37E14416E730067B45F /* NewFeedStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedStatusCell.h; sourceTree = "<group>"; };
+		73ABE37F14416E730067B45F /* NewFeedStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedStatusCell.m; sourceTree = "<group>"; };
+		73ABE38014416E730067B45F /* NewFeedStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedStatusCell.xib; sourceTree = "<group>"; };
 		E1247266142A58090086AC61 /* MainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageViewController.xib; sourceTree = "<group>"; };
 		E14D17C6142771AD006B675E /* backButton-highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight@2x.png"; sourceTree = "<group>"; };
 		E14D17C7142771AD006B675E /* backButton-highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight.png"; sourceTree = "<group>"; };
@@ -151,7 +165,6 @@
 		E14D17CD142855B3006B675E /* bottomGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomGradient.png; sourceTree = "<group>"; };
 		E14D17CE142855B3006B675E /* bottomGradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottomGradient@2x.png"; sourceTree = "<group>"; };
 		E1777D291430475900A8D1BA /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
-		E19A10561435EB49001EACC9 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		E19A2CFD141FC2D700BE491A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E19A2CFF141FC2DE00BE491A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E19A2D00141FC3B300BE491A /* homeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeButton.png; sourceTree = "<group>"; };
@@ -355,7 +368,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E19A10571435EB49001EACC9 /* libz.1.2.5.dylib in Frameworks */,
+				73906650143EE95600835332 /* libz.1.2.3.dylib in Frameworks */,
 				E1ABA4D4141FAB2F002CD0A6 /* MobileCoreServices.framework in Frameworks */,
 				E1ABA4D2141FAB23002CD0A6 /* SystemConfiguration.framework in Frameworks */,
 				E1ABA4D0141FAB16002CD0A6 /* CFNetwork.framework in Frameworks */,
@@ -461,7 +474,7 @@
 		E1ABA3F1141FA6E1002CD0A6 = {
 			isa = PBXGroup;
 			children = (
-				E19A10561435EB49001EACC9 /* libz.1.2.5.dylib */,
+				7390664F143EE95600835332 /* libz.1.2.3.dylib */,
 				E1ABA4D7141FAC8C002CD0A6 /* Nibs */,
 				E19A2D0C1420927400BE491A /* Classes */,
 				E1ABA443141FA882002CD0A6 /* SDK */,
@@ -541,6 +554,14 @@
 				E1E5DF4E143B29540098BBD3 /* FriendHeadViewController.m */,
 				E1E5DF50143B365F0098BBD3 /* FriendListViewController.h */,
 				E1E5DF51143B36600098BBD3 /* FriendListViewController.m */,
+				73906659143F095C00835332 /* NewFeedListController.h */,
+				7390665A143F095C00835332 /* NewFeedListController.m */,
+				7390665B143F095D00835332 /* NewFeedListController.xib */,
+				73ABE304144145C70067B45F /* NewFeedData.h */,
+				73ABE305144145C70067B45F /* NewFeedData.m */,
+				73ABE37E14416E730067B45F /* NewFeedStatusCell.h */,
+				73ABE37F14416E730067B45F /* NewFeedStatusCell.m */,
+				73ABE38014416E730067B45F /* NewFeedStatusCell.xib */,
 			);
 			name = ViewContrlloers;
 			path = SocialFusion/Class;
@@ -827,6 +848,8 @@
 				E1E5DF5D143B44A60098BBD3 /* tableviewBackgroundWhite.png in Resources */,
 				E1E5DF5E143B44A60098BBD3 /* tableviewBackgroundWhite@2x.png in Resources */,
 				E1E5DF60143B47900098BBD3 /* FriendListViewController.xib in Resources */,
+				7390665D143F095E00835332 /* NewFeedListController.xib in Resources */,
+				73ABE38214416E740067B45F /* NewFeedStatusCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -900,6 +923,9 @@
 				E1E5DF9D143C7D960098BBD3 /* ImageData.m in Sources */,
 				E1E5DFA0143C7D9A0098BBD3 /* Image.m in Sources */,
 				E1E5DFAF143CB4110098BBD3 /* SocialFusion.xcdatamodeld in Sources */,
+				7390665C143F095E00835332 /* NewFeedListController.m in Sources */,
+				73ABE306144145C70067B45F /* NewFeedData.m in Sources */,
+				73ABE38114416E740067B45F /* NewFeedStatusCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
