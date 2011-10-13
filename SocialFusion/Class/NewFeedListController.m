@@ -362,14 +362,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
     return [_feedArray count];
 }
@@ -382,14 +382,14 @@
     
     NSString* tempString=[[_feedArray objectAtIndex:indexPath.row] getName];
     CGSize size = CGSizeMake(212, 1000);
-    CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12]
+    CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14]
                                     constrainedToSize:size];
     
-    if (labelSize.height<50)
+    if (labelSize.height<60)
     {
-        return 60;
+        return 70;
     }
-    return labelSize.height+10;
+    return labelSize.height+20;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -424,11 +424,45 @@
     cell.status.lineBreakMode = UILineBreakModeWordWrap;
     cell.status.numberOfLines = 0;
     
-    if (cell.frame.size.height<60)
+    if (cell.frame.size.height<70)
     {
-    cell.frame=CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, labelSize.height+10);
+    cell.frame=CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, labelSize.height+20);
     }
     
+    
+    NSDate* FeedDate=[[_feedArray objectAtIndex:indexPath.row] getDate];
+    
+    //NSLog(@"%@",FeedDate);
+    int time=-[FeedDate timeIntervalSinceNow];
+ 
+    NSString* tempString;
+    if (time<0)
+    {
+          tempString=[[NSString alloc] initWithFormat:@"0秒前"];
+    }
+    else if (time<60)
+    {
+        tempString=[[NSString alloc] initWithFormat:@"%d秒前",time];
+    }
+    else if (time<3600)
+    {
+              tempString=[[NSString alloc]  initWithFormat:@"%d分钟前",time/60];
+    }
+    else if (time<(3600*24))
+    {
+             tempString= [[NSString alloc]  initWithFormat:@"%d小时前",time/3600];
+    }
+    else
+    {
+             tempString= [[NSString alloc]  initWithFormat:@"%d小时前",time/(3600*24)];
+    }
+    
+    //NSLog(@"%@",tempString);
+    
+    cell.time.frame = CGRectMake(cell.status.frame.origin.x, cell.status.frame.origin.y+cell.status.frame.size.height,
+                                   cell.time.frame.size.width,cell.time.frame.size.height); 
+    cell.time.text=[tempString retain] ;
+   [tempString release];
     /*
     NSData *imageData = nil;
 
@@ -464,7 +498,7 @@
     NSURL *url = [NSURL URLWithString: [[_feedArray objectAtIndex:indexPath.row] getHeadURL]];
 
     UIImage *image =[UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
-    NewFeedStatusCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    NewFeedStatusCell *cell = (NewFeedStatusCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
     [cell.headImageView performSelectorOnMainThread:@selector(setImage:) withObject:image waitUntilDone:NO];
     [pool release];

@@ -15,7 +15,7 @@
 @synthesize headImageView = _headImageView;
 @synthesize userName = _userName;
 @synthesize status = _status;
-
+@synthesize time = _Time;
 
 
 - (void)awakeFromNib

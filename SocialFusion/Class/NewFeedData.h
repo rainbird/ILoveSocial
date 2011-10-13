@@ -28,6 +28,8 @@
 
 -(id)initWithDictionary:(NSDictionary*)feedDic;
 
+
+-(NSDate*)getDate;
 -(NSString*)getName;
 -(NSString*)getFeedName;
 -(NSString*)getHeadURL;

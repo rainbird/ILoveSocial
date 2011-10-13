@@ -77,14 +77,16 @@
     
     
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
-    [form setDateFormat:@"yyyy - MM - ddHH : mm"];
-	
-	update_Time=[form dateFromString: [feedDic objectForKey:@"update_time"]];
+    [form setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+
+    
+    NSString* dateString=[feedDic objectForKey:@"update_time"];
+	update_Time=[[form dateFromString: dateString] retain];
     
     
 	
     //  NSDate* TempDate=[NSDate dateWithString:@"2011-08-03 21:01:00 +0900"];
-    
+   // NSLog(@"%@",update_Time);
     
     // NSDate*         update_Time;
     
@@ -96,6 +98,10 @@
 }
 
 
+-(NSDate*)getDate
+{
+    return update_Time;
+}
 
 
 @end

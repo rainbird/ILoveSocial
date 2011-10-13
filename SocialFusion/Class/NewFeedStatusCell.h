@@ -14,6 +14,7 @@
     UIImageView *_headImageView;
     UILabel *_Status;
 
+    UILabel *_Time;
     
     CGPoint _beginPoint;
     BOOL _buttonViewShowed;
@@ -28,6 +29,8 @@
 @property(nonatomic, retain) IBOutlet UIImageView* headImageView;
 @property(nonatomic, retain) IBOutlet UIButton* userName;
 @property(nonatomic, retain) IBOutlet UILabel* status;
+
+@property(nonatomic, retain) IBOutlet UILabel* time;
 
 
 - (IBAction)cancelButton:(id)sender;
