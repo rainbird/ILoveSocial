@@ -18,6 +18,7 @@
 #import "WeiboClient.h"
 #import "RenrenClient.h"
 
+#import "NewFeedListController.h"
 #define LOGOUT_RENREN NO
 #define LOGOUT_WEIBO YES
 
@@ -48,6 +49,7 @@
 
 - (void)dealloc
 {
+   
     [_managedObjectContext release];
     [_weiboStatusLabel release];
     [_renrenStatusLabel release];
@@ -121,6 +123,8 @@
 
 - (IBAction)gotoMain:(id)sender
 {
+
+    /*
     if(![RenrenClient authorized] && ![WeiboClient authorized])
         return;
     //FriendListViewController *vc = [[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers];
@@ -131,6 +135,18 @@
     vc.toolbarItems = self.toolbarItems;
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
+     
+  
+    */
+    
+    
+    NewFeedListController *vc = [[NewFeedListController alloc] init];
+    vc.currentRenrenUser = self.currentRenrenUser;
+    vc.toolbarItems=self.toolbarItems;
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
+    
+     
 }
 
 - (void)showHasLoggedInAlert:(BOOL)whoCalled {

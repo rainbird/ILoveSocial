@@ -55,6 +55,8 @@ static NSString* const AppID = @"157389";
     [_sessionKey release];
     [_secret release];
     [_accessToken release];
+ //  [self.responseJSONObject release];
+   //[_responseJSONObject release];
     [_expirationDate release];
     [_rrDialog release];
     [_request release];
@@ -365,4 +367,17 @@ static NSString* const AppID = @"157389";
 	[self requestWithParams:params andDelegate:self];
 }
 
+- (void)getNewFeed:(int)pageNumber
+{
+    
+    NSString* tempString=[[NSString alloc] initWithFormat:@"%d",pageNumber];
+    NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 @"feed.get",@"method",
+                                 @"10,20,21,30,32,33,34,50,51",@"type",
+                                 tempString,@"page",
+                                 @"30",@"count",
+                                 nil];
+    [tempString release];
+	[self requestWithParams:params andDelegate:self];
+}
 @end
