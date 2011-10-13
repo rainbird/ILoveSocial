@@ -12,8 +12,7 @@
 #import "WeiboUser+Addition.h"
 #import "NewFeedStatusCell.h"
 
-@interface NewFeedListController : UIViewController<EGORefreshTableHeaderDelegate,NSFetchedResultsControllerDelegate, 
-UITableViewDelegate, UITableViewDataSource> {
+@interface NewFeedListController : UIViewController<EGORefreshTableHeaderDelegate,NSFetchedResultsControllerDelegate> {
     EGORefreshTableHeaderView *_egoHeaderView;
     BOOL _reloading;
     BOOL _loading;
