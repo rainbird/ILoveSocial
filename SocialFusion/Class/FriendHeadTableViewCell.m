@@ -23,6 +23,8 @@
 }
 
 - (void)dealloc {
+    
+    NSLog(@"head deallooc");
     [_headGridArray release];
     [super dealloc];
 }
