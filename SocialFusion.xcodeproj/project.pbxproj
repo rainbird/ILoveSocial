@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		73906650143EE95600835332 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7390664F143EE95600835332 /* libz.1.2.3.dylib */; };
 		7390665C143F095E00835332 /* NewFeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7390665A143F095C00835332 /* NewFeedListController.m */; };
-		7390665D143F095E00835332 /* NewFeedListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7390665B143F095D00835332 /* NewFeedListController.xib */; };
 		73ABE306144145C70067B45F /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE305144145C70067B45F /* NewFeedData.m */; };
 		73ABE38114416E740067B45F /* NewFeedStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE37F14416E730067B45F /* NewFeedStatusCell.m */; };
-		73ABE38214416E740067B45F /* NewFeedStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73ABE38014416E730067B45F /* NewFeedStatusCell.xib */; };
+		73F3400F14467EC400F9EDBD /* NewFeedListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F3400D14467EC400F9EDBD /* NewFeedListController.xib */; };
+		73F3401014467EC400F9EDBD /* NewFeedStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */; };
 		E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1247266142A58090086AC61 /* MainPageViewController.xib */; };
 		E14D17C8142771AD006B675E /* backButton-highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C6142771AD006B675E /* backButton-highlight@2x.png */; };
 		E14D17C9142771AD006B675E /* backButton-highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C7142771AD006B675E /* backButton-highlight.png */; };
@@ -152,12 +152,12 @@
 		7390664F143EE95600835332 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		73906659143F095C00835332 /* NewFeedListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedListController.h; sourceTree = "<group>"; };
 		7390665A143F095C00835332 /* NewFeedListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedListController.m; sourceTree = "<group>"; };
-		7390665B143F095D00835332 /* NewFeedListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedListController.xib; sourceTree = "<group>"; };
 		73ABE304144145C70067B45F /* NewFeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedData.h; sourceTree = "<group>"; };
 		73ABE305144145C70067B45F /* NewFeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedData.m; sourceTree = "<group>"; };
 		73ABE37E14416E730067B45F /* NewFeedStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedStatusCell.h; sourceTree = "<group>"; };
 		73ABE37F14416E730067B45F /* NewFeedStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedStatusCell.m; sourceTree = "<group>"; };
-		73ABE38014416E730067B45F /* NewFeedStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedStatusCell.xib; sourceTree = "<group>"; };
+		73F3400D14467EC400F9EDBD /* NewFeedListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedListController.xib; sourceTree = "<group>"; };
+		73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedStatusCell.xib; sourceTree = "<group>"; };
 		E1247266142A58090086AC61 /* MainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageViewController.xib; sourceTree = "<group>"; };
 		E14D17C6142771AD006B675E /* backButton-highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight@2x.png"; sourceTree = "<group>"; };
 		E14D17C7142771AD006B675E /* backButton-highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight.png"; sourceTree = "<group>"; };
@@ -556,12 +556,10 @@
 				E1E5DF51143B36600098BBD3 /* FriendListViewController.m */,
 				73906659143F095C00835332 /* NewFeedListController.h */,
 				7390665A143F095C00835332 /* NewFeedListController.m */,
-				7390665B143F095D00835332 /* NewFeedListController.xib */,
 				73ABE304144145C70067B45F /* NewFeedData.h */,
 				73ABE305144145C70067B45F /* NewFeedData.m */,
 				73ABE37E14416E730067B45F /* NewFeedStatusCell.h */,
 				73ABE37F14416E730067B45F /* NewFeedStatusCell.m */,
-				73ABE38014416E730067B45F /* NewFeedStatusCell.xib */,
 			);
 			name = ViewContrlloers;
 			path = SocialFusion/Class;
@@ -727,6 +725,8 @@
 				E19A2D161420A06000BE491A /* FriendListTableViewCell.xib */,
 				E1E5DF49143B290C0098BBD3 /* FriendHeadTabelViewCell.xib */,
 				E1E5DF44143B26740098BBD3 /* FriendHeadGridViewController.xib */,
+				73F3400D14467EC400F9EDBD /* NewFeedListController.xib */,
+				73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */,
 				E1E5DF4A143B290C0098BBD3 /* LabelTableViewCell.xib */,
 				E1247266142A58090086AC61 /* MainPageViewController.xib */,
 				E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */,
@@ -848,8 +848,8 @@
 				E1E5DF5D143B44A60098BBD3 /* tableviewBackgroundWhite.png in Resources */,
 				E1E5DF5E143B44A60098BBD3 /* tableviewBackgroundWhite@2x.png in Resources */,
 				E1E5DF60143B47900098BBD3 /* FriendListViewController.xib in Resources */,
-				7390665D143F095E00835332 /* NewFeedListController.xib in Resources */,
-				73ABE38214416E740067B45F /* NewFeedStatusCell.xib in Resources */,
+				73F3400F14467EC400F9EDBD /* NewFeedListController.xib in Resources */,
+				73F3401014467EC400F9EDBD /* NewFeedStatusCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
