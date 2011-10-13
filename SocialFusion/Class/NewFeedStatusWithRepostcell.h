@@ -10,7 +10,17 @@
 #import "NewFeedStatusCell.h"
 
 @interface NewFeedStatusWithRepostcell : NewFeedStatusCell {
-    
+    UIButton* _repostUserName;
+    UILabel* _repostStatus;
+    UIButton* _repostAreaButton;
+    UIButton* _repostAreaButtonCursor;
 }
 
+@property(nonatomic, retain) IBOutlet UIButton* repostUserName;
+@property(nonatomic, retain) IBOutlet UILabel* repostStatus;
+@property(nonatomic, retain) IBOutlet UIButton* repostAreaButton;
+@property(nonatomic, retain) IBOutlet UIButton* repostAreaButtonCursor;
+
+
+@property(nonatomic, retain) IBOutlet UILabel* time;
 @end

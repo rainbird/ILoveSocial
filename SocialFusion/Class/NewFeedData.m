@@ -16,15 +16,48 @@
 {
     return owner_Name;
 }
+
+
+
+-(NSString*)getPostMessage
+{
+    NSString* tempString=@"";
+   
+    int nameLength=[post_Name length];
+    
+    for (int i=0;i<nameLength;i++)
+    {
+        
+        if ([post_Name characterAtIndex:i]<256)
+        {
+            tempString=[tempString stringByAppendingString:@"  "];
+        }
+        else
+        {
+            tempString=[tempString stringByAppendingString:@"    "];
+        }
+    }
+    
+    
+    
+    
+   // NSLog(@"%@",[tempString stringByAppendingFormat:@"%@",post_Status]);
+    return [tempString stringByAppendingFormat:@"%@",post_Status] ;
+    
+
+}
+
+
+-(NSString*)getPostName
+{
+    return post_Name;
+}
+
+
 -(NSString*)getName
 {
-    
-    if (prefix==nil)
-        prefix=@"";
-    if (title==nil)
-        title=@"";
-    if (message==nil)
-        message=@"";
+
+
     //if (description==nil)
     //description=@"";
     
@@ -35,14 +68,22 @@
     
     for (int i=0;i<nameLength;i++)
     {
+        
+        if ([owner_Name characterAtIndex:i]<256)
+        {
+              tempString=[tempString stringByAppendingString:@"  "];
+        }
+        else
+        {
             tempString=[tempString stringByAppendingString:@"    "];
+        }
     }
 
 
     
     
     
-    return [[[tempString stringByAppendingFormat:@"%@",prefix] stringByAppendingFormat:@"%@",title] stringByAppendingFormat:@"%@",message] ;
+    return [tempString stringByAppendingFormat:@"%@",message]  ;
     
 }
 -(NSString*)getHeadURL
@@ -51,19 +92,37 @@
 }
 -(id)initWithDictionary:(NSDictionary*)feedDic
 {
-    post_ID=[[feedDic objectForKey:@"post_id"] longLongValue];
     
-    actor_ID=[[feedDic objectForKey:@"actor_id"] longLongValue];
     
-    title=[feedDic objectForKey:@"title"];
+    NSArray* attachments=[feedDic objectForKey:@"attachment"];
+    if ([attachments count]!=0)
+    {
+        NSDictionary* attachment=[attachments objectAtIndex:0];
+        if ([attachment count]!=0)
+        {
+            post_ID=[[attachment objectForKey:@"owner_id"] retain];
+            
+            post_Name=[[attachment objectForKey:@"owner_name"] retain];
+            
+            
+            post_Status=[[attachment objectForKey:@"content"] retain];
+        }
+
+    }
     
-    [title retain];
+  //  NSLog(@"%@",feedDic);
+       
+    actor_ID=[[feedDic objectForKey:@"actor_id"] retain];
+    
+   // title=[feedDic objectForKey:@"title"];
+    
+   // [title retain];
     
    owner_Head= [[feedDic objectForKey:@"headurl"] retain];
  
     
-    prefix=[feedDic objectForKey:@"prefix"];
-    [prefix retain];
+   // prefix=[feedDic objectForKey:@"prefix"];
+   // [prefix retain];
     
     description=[feedDic objectForKey:@"description"];
     [description retain];

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		735210081446BC360010DCD4 /* NewFeedStatusWithRepostcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735210071446BC360010DCD4 /* NewFeedStatusWithRepostcell.xib */; };
+		7352100C1446C1550010DCD4 /* feedRepostCellRepostbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100A1446C1550010DCD4 /* feedRepostCellRepostbutton.png */; };
+		7352100D1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100B1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png */; };
+		735210101446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100E1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png */; };
+		735210111446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100F1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png */; };
 		73906650143EE95600835332 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7390664F143EE95600835332 /* libz.1.2.3.dylib */; };
 		7390665C143F095E00835332 /* NewFeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7390665A143F095C00835332 /* NewFeedListController.m */; };
 		73ABE306144145C70067B45F /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE305144145C70067B45F /* NewFeedData.m */; };
@@ -152,6 +156,10 @@
 
 /* Begin PBXFileReference section */
 		735210071446BC360010DCD4 /* NewFeedStatusWithRepostcell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedStatusWithRepostcell.xib; sourceTree = "<group>"; };
+		7352100A1446C1550010DCD4 /* feedRepostCellRepostbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedRepostCellRepostbutton.png; sourceTree = "<group>"; };
+		7352100B1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedRepostCellRepostbutton@2x.png"; sourceTree = "<group>"; };
+		7352100E1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedRepostCellRepostbuttonCusor.png; sourceTree = "<group>"; };
+		7352100F1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedRepostCellRepostbuttonCusor@2x.png"; sourceTree = "<group>"; };
 		7390664F143EE95600835332 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		73906659143F095C00835332 /* NewFeedListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedListController.h; sourceTree = "<group>"; };
 		7390665A143F095C00835332 /* NewFeedListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedListController.m; sourceTree = "<group>"; };
@@ -575,6 +583,8 @@
 		E1ABA433141FA882002CD0A6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				7352100A1446C1550010DCD4 /* feedRepostCellRepostbutton.png */,
+				7352100B1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png */,
 				E1E5DF57143B44A60098BBD3 /* tableviewBackgroundGray.png */,
 				E1E5DF58143B44A60098BBD3 /* tableviewBackgroundGray@2x.png */,
 				E1E5DF59143B44A60098BBD3 /* tableviewBackgroundWhite.png */,
@@ -623,6 +633,8 @@
 				E19A2D03141FC3B300BE491A /* renrenButtonPressed.png */,
 				E19A2D04141FC3B300BE491A /* sinawbButton.png */,
 				E19A2D05141FC3B300BE491A /* sinawbButtonPressed.png */,
+				7352100E1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png */,
+				7352100F1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png */,
 				E19A2CFE141FC2D700BE491A /* Localizable.strings */,
 			);
 			name = Resource;
@@ -859,6 +871,10 @@
 				73F3400F14467EC400F9EDBD /* NewFeedListController.xib in Resources */,
 				73F3401014467EC400F9EDBD /* NewFeedStatusCell.xib in Resources */,
 				735210081446BC360010DCD4 /* NewFeedStatusWithRepostcell.xib in Resources */,
+				7352100C1446C1550010DCD4 /* feedRepostCellRepostbutton.png in Resources */,
+				7352100D1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png in Resources */,
+				735210101446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png in Resources */,
+				735210111446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

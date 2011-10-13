@@ -12,10 +12,19 @@
 @implementation NewFeedStatusWithRepostcell
 
 
+@synthesize repostUserName = _repostUserName;
+@synthesize repostAreaButton = _repostAreaButton;
+@synthesize repostAreaButtonCursor = _repostAreaButtonCursor;
+
+@synthesize repostStatus = _repostStatus;
+
 
 - (void)dealloc
 {
     [super dealloc];
+    [_repostUserName release];
+    [_repostAreaButton release];
+    [_repostStatus release];
 }
 
 

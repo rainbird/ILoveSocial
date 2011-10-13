@@ -11,16 +11,25 @@
 
 @interface NewFeedData : NSObject {
     NSDate*         update_Time;
-    long long       post_ID;
-    long long       actor_ID;
-    NSString*       title;
+
+    NSString*   actor_ID;
+   // NSString*       title;
+    
+    
+    //转发信息
+    NSString*       post_Status;
+    NSString*       post_Name;
+      NSString*       post_ID;
+    
+    
+    
     NSString*       description;
     NSString*       owner_Name;
     NSString*          owner_Head;
     int             comment_Count;
     int             likes_Count;
     
-    NSString*       prefix;
+   // NSString*       prefix;
     //int             type;
     NSString*       message;
 }
@@ -28,6 +37,9 @@
 
 -(id)initWithDictionary:(NSDictionary*)feedDic;
 
+
+-(NSString*)getPostMessage;
+-(NSString*)getPostName;
 
 -(NSDate*)getDate;
 -(NSString*)getName;

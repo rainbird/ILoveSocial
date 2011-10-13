@@ -11,7 +11,7 @@
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "NewFeedStatusCell.h"
-
+#import "NewFeedStatusWithRepostcell.h"
 @interface NewFeedListController : UIViewController<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,NSFetchedResultsControllerDelegate> {
     EGORefreshTableHeaderView *_egoHeaderView;
     BOOL _reloading;
@@ -32,8 +32,11 @@
     WeiboUser *_currentWeibosUser;
 
     NSMutableArray* _heightArray;
+    
     IBOutlet NewFeedStatusCell *_feedStatusCel;
-        int _pageNumber;
+    IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;
+        
+    int _pageNumber;
 }
 
 @property (nonatomic, retain) RenrenUser *currentRenrenUser;
