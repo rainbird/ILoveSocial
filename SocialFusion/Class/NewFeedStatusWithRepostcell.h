@@ -21,6 +21,4 @@
 @property(nonatomic, retain) IBOutlet UIButton* repostAreaButton;
 @property(nonatomic, retain) IBOutlet UIButton* repostAreaButtonCursor;
 
-
-@property(nonatomic, retain) IBOutlet UILabel* time;
 @end

@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7309DDC01447E9A500774011 /* NewFeedRootData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7309DDBF1447E9A500774011 /* NewFeedRootData.m */; };
+		7309DDC31447EB4400774011 /* NewFeedBlog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7309DDC21447EB4400774011 /* NewFeedBlog.m */; };
+		7309DDC51448253D00774011 /* NewFeedBlogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7309DDC41448253D00774011 /* NewFeedBlogCell.xib */; };
 		735210081446BC360010DCD4 /* NewFeedStatusWithRepostcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735210071446BC360010DCD4 /* NewFeedStatusWithRepostcell.xib */; };
 		7352100C1446C1550010DCD4 /* feedRepostCellRepostbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100A1446C1550010DCD4 /* feedRepostCellRepostbutton.png */; };
 		7352100D1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100B1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png */; };
 		735210101446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100E1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png */; };
 		735210111446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100F1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png */; };
+		7352101D144734FA0010DCD4 /* NewFeedBlogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7352101B144734F80010DCD4 /* NewFeedBlogCell.m */; };
 		73906650143EE95600835332 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7390664F143EE95600835332 /* libz.1.2.3.dylib */; };
 		7390665C143F095E00835332 /* NewFeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7390665A143F095C00835332 /* NewFeedListController.m */; };
 		73ABE306144145C70067B45F /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE305144145C70067B45F /* NewFeedData.m */; };
@@ -155,11 +159,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7309DDBE1447E9A500774011 /* NewFeedRootData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedRootData.h; sourceTree = "<group>"; };
+		7309DDBF1447E9A500774011 /* NewFeedRootData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedRootData.m; sourceTree = "<group>"; };
+		7309DDC11447EB4400774011 /* NewFeedBlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedBlog.h; sourceTree = "<group>"; };
+		7309DDC21447EB4400774011 /* NewFeedBlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedBlog.m; sourceTree = "<group>"; };
+		7309DDC41448253D00774011 /* NewFeedBlogCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedBlogCell.xib; sourceTree = "<group>"; };
 		735210071446BC360010DCD4 /* NewFeedStatusWithRepostcell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedStatusWithRepostcell.xib; sourceTree = "<group>"; };
 		7352100A1446C1550010DCD4 /* feedRepostCellRepostbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedRepostCellRepostbutton.png; sourceTree = "<group>"; };
 		7352100B1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedRepostCellRepostbutton@2x.png"; sourceTree = "<group>"; };
 		7352100E1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedRepostCellRepostbuttonCusor.png; sourceTree = "<group>"; };
 		7352100F1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedRepostCellRepostbuttonCusor@2x.png"; sourceTree = "<group>"; };
+		7352101A144734F70010DCD4 /* NewFeedBlogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedBlogCell.h; sourceTree = "<group>"; };
+		7352101B144734F80010DCD4 /* NewFeedBlogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedBlogCell.m; sourceTree = "<group>"; };
 		7390664F143EE95600835332 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		73906659143F095C00835332 /* NewFeedListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedListController.h; sourceTree = "<group>"; };
 		7390665A143F095C00835332 /* NewFeedListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedListController.m; sourceTree = "<group>"; };
@@ -397,6 +408,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7309DDBA1447E91F00774011 /* NewFeedData */ = {
+			isa = PBXGroup;
+			children = (
+				7309DDBE1447E9A500774011 /* NewFeedRootData.h */,
+				7309DDBF1447E9A500774011 /* NewFeedRootData.m */,
+				73ABE304144145C70067B45F /* NewFeedData.h */,
+				73ABE305144145C70067B45F /* NewFeedData.m */,
+				7309DDC11447EB4400774011 /* NewFeedBlog.h */,
+				7309DDC21447EB4400774011 /* NewFeedBlog.m */,
+			);
+			name = NewFeedData;
+			sourceTree = "<group>";
+		};
+		7309DDBC1447E93300774011 /* NewFeedCell */ = {
+			isa = PBXGroup;
+			children = (
+				73ABE37E14416E730067B45F /* NewFeedStatusCell.h */,
+				73ABE37F14416E730067B45F /* NewFeedStatusCell.m */,
+				73F34012144680B900F9EDBD /* NewFeedStatusWithRepostcell.h */,
+				73F34013144680B900F9EDBD /* NewFeedStatusWithRepostcell.m */,
+				7352101A144734F70010DCD4 /* NewFeedBlogCell.h */,
+				7352101B144734F80010DCD4 /* NewFeedBlogCell.m */,
+			);
+			name = NewFeedCell;
+			sourceTree = "<group>";
+		};
+		7309DDBD1447E95C00774011 /* NewFeed */ = {
+			isa = PBXGroup;
+			children = (
+				7309DDBC1447E93300774011 /* NewFeedCell */,
+				7309DDBA1447E91F00774011 /* NewFeedData */,
+				73906659143F095C00835332 /* NewFeedListController.h */,
+				7390665A143F095C00835332 /* NewFeedListController.m */,
+			);
+			name = NewFeed;
+			sourceTree = "<group>";
+		};
 		E19A2D0C1420927400BE491A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,14 +615,7 @@
 				E1E5DF4E143B29540098BBD3 /* FriendHeadViewController.m */,
 				E1E5DF50143B365F0098BBD3 /* FriendListViewController.h */,
 				E1E5DF51143B36600098BBD3 /* FriendListViewController.m */,
-				73906659143F095C00835332 /* NewFeedListController.h */,
-				7390665A143F095C00835332 /* NewFeedListController.m */,
-				73ABE304144145C70067B45F /* NewFeedData.h */,
-				73ABE305144145C70067B45F /* NewFeedData.m */,
-				73ABE37E14416E730067B45F /* NewFeedStatusCell.h */,
-				73ABE37F14416E730067B45F /* NewFeedStatusCell.m */,
-				73F34012144680B900F9EDBD /* NewFeedStatusWithRepostcell.h */,
-				73F34013144680B900F9EDBD /* NewFeedStatusWithRepostcell.m */,
+				7309DDBD1447E95C00774011 /* NewFeed */,
 			);
 			name = ViewContrlloers;
 			path = SocialFusion/Class;
@@ -750,6 +791,7 @@
 				E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */,
 				73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */,
 				735210071446BC360010DCD4 /* NewFeedStatusWithRepostcell.xib */,
+				7309DDC41448253D00774011 /* NewFeedBlogCell.xib */,
 			);
 			name = Nibs;
 			path = SocialFusion/Nibs;
@@ -875,6 +917,7 @@
 				7352100D1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png in Resources */,
 				735210101446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png in Resources */,
 				735210111446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png in Resources */,
+				7309DDC51448253D00774011 /* NewFeedBlogCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,6 +995,9 @@
 				73ABE306144145C70067B45F /* NewFeedData.m in Sources */,
 				73ABE38114416E740067B45F /* NewFeedStatusCell.m in Sources */,
 				73F34015144680BA00F9EDBD /* NewFeedStatusWithRepostcell.m in Sources */,
+				7352101D144734FA0010DCD4 /* NewFeedBlogCell.m in Sources */,
+				7309DDC01447E9A500774011 /* NewFeedRootData.m in Sources */,
+				7309DDC31447EB4400774011 /* NewFeedBlog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@
 #import "NewFeedData.h"
 #import "Image+Addition.h"
 #import "UIImageView+DispatchLoad.h"
+#import "NewFeedBlog.h"
 #define kCustomRowCount 8
 
 #define kUserDefaultKeyFirstTimeUsingEGOView @"kUserDefaultKeyFirstTimeUsingEGOView"
@@ -131,56 +132,39 @@
    // else {
     //    [self loadMoreWeiboData];
    // }
-    
-    
 }
 -(void)loadRenrenData
 {
-    _pageNumber=1;
-    
-   
-    RenrenClient *renren = [RenrenClient client];
-    [renren setCompletionBlock:^(RenrenClient *client) {
-         [_feedArray removeAllObjects];
-        if(!client.hasError) {
-            
-            NSLog(@"%@",client.responseJSONObject);
-            NSArray *array = client.responseJSONObject;
-            for(NSDictionary *dict in array) {
-                
-                if ([[dict objectForKey:@"feed_type"] intValue]==10)
-                {
-                NewFeedData* feedData=[[NewFeedData alloc] initWithDictionary:dict];
-                [_feedArray addObject:feedData];
-                [feedData release];
-                }
-            }
-            //  NSLog(@"renren friend count:%d", array.count);
-            //NSLog(@"add finished");
-        }
-        
-        [self doneLoadingTableViewData];
-        _loading = NO;
-    }];
-    [renren getNewFeed:_pageNumber];
-    
+    _pageNumber=0;
+    [self loadMoreRenrenData];
+       
     
 }
-
-
 
 -(void)loadMoreRenrenData
 {
     _pageNumber++;
+    
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if(!client.hasError) {
            NSArray *array = client.responseJSONObject;
             for(NSDictionary *dict in array) {
              
-                NewFeedData* feedData=[[NewFeedData alloc] initWithDictionary:dict];
-                [_feedArray addObject:feedData];
-                [feedData release];
+                if ([[dict objectForKey:@"feed_type"] intValue]==10)
+                {
+                    NewFeedData* feedData=[[NewFeedData alloc] initWithDictionary:dict];
+                    [_feedArray addObject:feedData];
+                    [feedData release];
+                }
+                
+              else if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
+                {
+                    NewFeedBlog* feedBlog=[[NewFeedBlog alloc] initWithDictionary:dict];
+                    [_feedArray addObject:feedBlog];
+                    [feedBlog release];
+                }
+             
             }
           //  NSLog(@"renren friend count:%d", array.count);
             //NSLog(@"add finished");
@@ -384,23 +368,39 @@
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
-    if ([[_feedArray objectAtIndex:indexPath.row] getPostMessage]==nil)
+    if ([[_feedArray objectAtIndex:indexPath.row] class]==[NewFeedData class] )
     {
-    NSString* tempString=[[_feedArray objectAtIndex:indexPath.row] getName];
-    CGSize size = CGSizeMake(212, 1000);
-    CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14]
-                                    constrainedToSize:size];
-    
-    if (labelSize.height<60)
-    {
-        return 70;
+        if ([[_feedArray objectAtIndex:indexPath.row] getPostName]==nil)
+        {
+            NSString* tempString=[[_feedArray objectAtIndex:indexPath.row] getName];
+            CGSize size = CGSizeMake(212, 1000);
+            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14]
+                                      constrainedToSize:size];
+            
+            if (labelSize.height<50)
+            {
+                return 70;
+            }
+            
+            
+            return labelSize.height+20;
+        }
+        else
+        {
+            NSString* tempString=[[_feedArray objectAtIndex:indexPath.row] getName];
+            CGSize size = CGSizeMake(212, 1000);
+            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14]
+                                      constrainedToSize:size];
+            
+            
+            NSString* tempString1=[[_feedArray objectAtIndex:indexPath.row] getPostMessage];
+            CGSize size1 = CGSizeMake(200, 1000);
+            CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12]
+                                        constrainedToSize:size1];
+            return labelSize.height+labelSize1.height+50;
+        }
     }
-    
-    
-    return labelSize.height+20;
-    }
-    else
+    else if ([[_feedArray objectAtIndex:indexPath.row] class]==[NewFeedBlog class] )
     {
         NSString* tempString=[[_feedArray objectAtIndex:indexPath.row] getName];
         CGSize size = CGSizeMake(212, 1000);
@@ -408,223 +408,65 @@
                                   constrainedToSize:size];
         
         
-        NSString* tempString1=[[_feedArray objectAtIndex:indexPath.row] getPostMessage];
-        CGSize size1 = CGSizeMake(200, 1000);
+        NSString* tempString1=[[_feedArray objectAtIndex:indexPath.row] getBlog];
+        CGSize size1 = CGSizeMake(212, 1000);
         CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12]
-                                  constrainedToSize:size1];
-        
-
-
+                                    constrainedToSize:size1];
+        return labelSize.height+labelSize1.height+30;
         
         
-        return labelSize.height+labelSize1.height+20;
     }
+    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     static NSString *StatusCell = @"NewFeedStatusCell";
     static NSString *RepostStatusCell=@"NewFeedRepostCell";
+    static NSString *BlogCell=@"NewFeedBlogCell";
     
+    NewFeedStatusCell* cell;
     
-    
-    
-    if ([[_feedArray objectAtIndex:indexPath.row] getPostName]==nil)
+    if ([[_feedArray objectAtIndex:indexPath.row] class]==[NewFeedData class])
     {
-        NewFeedStatusCell *cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
-        if (cell == nil) {
-            [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
-            cell = _feedStatusCel;
-            // cell=[[NewFeedStatusCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        if ([[_feedArray objectAtIndex:indexPath.row] getPostName]==nil)
+        {
+            cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
+            if (cell == nil) {
+                [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
+                cell = _feedStatusCel;
+                // cell=[[NewFeedStatusCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+                
+            }
+            
             
         }
-
-        cell.status.text=[[_feedArray objectAtIndex:indexPath.row] getName];
         
-        [cell.userName setTitle:[[_feedArray objectAtIndex:indexPath.row] getFeedName] forState:UIControlStateNormal];
-        
-        // [cell.status sizeToFit];
-        
-        
-        
-        CGSize size = CGSizeMake(212, 1000);
-        
-        
-        CGSize labelSize = [cell.status.text sizeWithFont:cell.status.font 
-                                        constrainedToSize:size];
-        
-        cell.status.frame = CGRectMake(cell.status.frame.origin.x, cell.status.frame.origin.y,
-                                       cell.status.frame.size.width, labelSize.height);
-        
-        cell.status.lineBreakMode = UILineBreakModeWordWrap;
-        cell.status.numberOfLines = 0;
-        
-        if (cell.frame.size.height<70)
-        {
-            cell.frame=CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, labelSize.height+20);
-        }
-        
-        
-        NSDate* FeedDate=[[_feedArray objectAtIndex:indexPath.row] getDate];
-        
-        //NSLog(@"%@",FeedDate);
-        int time=-[FeedDate timeIntervalSinceNow];
-        
-        NSString* tempString;
-        if (time<0)
-        {
-            tempString=[[NSString alloc] initWithFormat:@"0秒前"];
-        }
-        else if (time<60)
-        {
-            tempString=[[NSString alloc] initWithFormat:@"%d秒前",time];
-        }
-        else if (time<3600)
-        {
-            tempString=[[NSString alloc]  initWithFormat:@"%d分钟前",time/60];
-        }
-        else if (time<(3600*24))
-        {
-            tempString= [[NSString alloc]  initWithFormat:@"%d小时前",time/3600];
-        }
         else
         {
-            tempString= [[NSString alloc]  initWithFormat:@"%d小时前",time/(3600*24)];
-        }
-        
-        //NSLog(@"%@",tempString);
-        
-        cell.time.frame = CGRectMake(cell.status.frame.origin.x, cell.status.frame.origin.y+cell.status.frame.size.height,
-                                     cell.time.frame.size.width,cell.time.frame.size.height); 
-        cell.time.text=[tempString retain] ;
-        [tempString release];
-
-   return cell;
-    }
-    
-        else
-        {
-            NewFeedStatusWithRepostcell *cell = (NewFeedStatusWithRepostcell *)[tableView dequeueReusableCellWithIdentifier:RepostStatusCell];
+            cell = (NewFeedStatusWithRepostcell *)[tableView dequeueReusableCellWithIdentifier:RepostStatusCell];
             if (cell == nil) {
                 [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusWithRepostcell" owner:self options:nil];
                 cell = _feedRepostStatusCel;
                 // cell=[[NewFeedStatusCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
                 
             }
-            NewFeedData* feedData=[_feedArray objectAtIndex:indexPath.row];
-            cell.status.text=[feedData getName];
             
-            [cell.userName setTitle:[feedData getFeedName] forState:UIControlStateNormal];
-            
-            // [cell.status sizeToFit];
-            
-            
-            
-            CGSize size = CGSizeMake(212, 1000);
-            
-            
-            CGSize labelSize = [cell.status.text sizeWithFont:cell.status.font 
-                                            constrainedToSize:size];
-            
-            cell.status.frame = CGRectMake(cell.status.frame.origin.x, cell.status.frame.origin.y,
-                                           cell.status.frame.size.width, labelSize.height);
-            
-            cell.status.lineBreakMode = UILineBreakModeWordWrap;
-            cell.status.numberOfLines = 0;
-            
-            if (cell.frame.size.height<70)
-            {
-                cell.frame=CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, labelSize.height+20);
-            }
-            
-            
-            NSDate* FeedDate=[[_feedArray objectAtIndex:indexPath.row] getDate];
-            
-            //NSLog(@"%@",FeedDate);
-            int time=-[FeedDate timeIntervalSinceNow];
-            
-            NSString* tempString;
-            if (time<0)
-            {
-                tempString=[[NSString alloc] initWithFormat:@"0秒前"];
-            }
-            else if (time<60)
-            {
-                tempString=[[NSString alloc] initWithFormat:@"%d秒前",time];
-            }
-            else if (time<3600)
-            {
-                tempString=[[NSString alloc]  initWithFormat:@"%d分钟前",time/60];
-            }
-            else if (time<(3600*24))
-            {
-                tempString= [[NSString alloc]  initWithFormat:@"%d小时前",time/3600];
-            }
-            else
-            {
-                tempString= [[NSString alloc]  initWithFormat:@"%d小时前",time/(3600*24)];
-            }
-            
-            //NSLog(@"%@",tempString);
-            
-            [cell.repostUserName setTitle:[feedData getPostName]  forState:UIControlStateNormal];
-    
-            cell.repostAreaButton.frame = CGRectMake(cell.status.frame.origin.x, cell.status.frame.origin.y+cell.status.frame.size.height+10,
-                                         cell.repostAreaButton.frame.size.width,cell.repostAreaButton.frame.size.height); 
-
-            
-            
-            
-            cell.repostStatus.text=[feedData getPostMessage];
-            
-            
-            
-            size = CGSizeMake(200, 1000);
-            
-            
-            CGSize labelSize1 = [cell.repostStatus.text sizeWithFont:cell.repostStatus.font 
-                                            constrainedToSize:size];
-            
-            cell.repostStatus.frame = CGRectMake(cell.repostAreaButton.frame.origin.x+5, cell.repostAreaButton.frame.origin.y+5,
-                                           cell.repostStatus.frame.size.width, labelSize1.height);
-            
-            cell.repostStatus.lineBreakMode = UILineBreakModeWordWrap;
-            cell.repostStatus.numberOfLines = 0;
-
-// [cell.repostAreaButton backgroundImageForState:<#(UIControlState)#>]
-            
-            
-            
-            cell.repostAreaButton.contentMode=UIViewContentModeScaleToFill;
-            cell.repostUserName.frame=  CGRectMake(cell.repostStatus.frame.origin.x, cell.repostStatus.frame.origin.y-2,
-                                                 cell.repostUserName.frame.size.width, cell.repostUserName.frame.size.height);
-            
-            
-            cell.time.frame = CGRectMake(cell.repostStatus.frame.origin.x, cell.repostStatus.frame.origin.y+cell.repostStatus.frame.size.height+10,
-                                         cell.time.frame.size.width,cell.time.frame.size.height); 
-            cell.time.text=[tempString retain] ;
-            [tempString release];
-            
-            cell.repostAreaButton.frame = CGRectMake(cell.status.frame.origin.x, cell.status.frame.origin.y+cell.status.frame.size.height+10,
-                                                     cell.repostAreaButton.frame.size.width,labelSize1.height+10); 
-            
-            
-            
-            cell.repostAreaButtonCursor.frame = CGRectMake(cell.repostAreaButton.frame.origin.x+20, cell.repostAreaButton.frame.origin.y-7,
-                                                     cell.repostAreaButtonCursor.frame.size.width, cell.repostAreaButtonCursor.frame.size.height); 
-            
-            
-            
-
-            
-       
-                cell.frame=CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, labelSize.height+labelSize1.height+20);
-        
-            
-            return cell;
-
         }
- 
+    }
+    
+    else if ([[_feedArray objectAtIndex:indexPath.row] class]==[NewFeedBlog class])
+    {
+        cell=(NewFeedBlogCell*)[tableView dequeueReusableCellWithIdentifier:BlogCell];
+        if (cell == nil) {
+            [[NSBundle mainBundle] loadNibNamed:@"NewFeedBlogCell" owner:self options:nil];
+            cell = _newFeedBlogCel;
+        }
+
+    }
+    [cell configureCell:[_feedArray objectAtIndex:indexPath.row]];
+    return cell;
+    
 }
 
 

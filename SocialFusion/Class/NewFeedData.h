@@ -7,33 +7,31 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NewFeedRootData.h"
 
-
-@interface NewFeedData : NSObject {
-    NSDate*         update_Time;
-
-    NSString*   actor_ID;
-   // NSString*       title;
+@interface NewFeedData : NewFeedRootData {
     
     
-    //转发信息
+    //原信息
     NSString*       post_Status;
+    //原作者
     NSString*       post_Name;
-      NSString*       post_ID;
+    //原作者id
+    NSString*       post_ID;
     
     
-    
-    NSString*       description;
-    NSString*       owner_Name;
-    NSString*          owner_Head;
-    int             comment_Count;
-    int             likes_Count;
+    //
+   // NSString*       description;
+
+ //   int             likes_Count;
     
    // NSString*       prefix;
     //int             type;
+    
+    //消息
     NSString*       message;
 }
-@property(nonatomic,retain) NSString* owner_Name;
+
 
 -(id)initWithDictionary:(NSDictionary*)feedDic;
 
@@ -41,8 +39,7 @@
 -(NSString*)getPostMessage;
 -(NSString*)getPostName;
 
--(NSDate*)getDate;
+
 -(NSString*)getName;
--(NSString*)getFeedName;
--(NSString*)getHeadURL;
+
 @end

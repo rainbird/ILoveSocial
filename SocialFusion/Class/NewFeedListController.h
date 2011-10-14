@@ -12,6 +12,7 @@
 #import "WeiboUser+Addition.h"
 #import "NewFeedStatusCell.h"
 #import "NewFeedStatusWithRepostcell.h"
+#import "NewFeedBlogCell.h"
 @interface NewFeedListController : UIViewController<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,NSFetchedResultsControllerDelegate> {
     EGORefreshTableHeaderView *_egoHeaderView;
     BOOL _reloading;
@@ -35,7 +36,8 @@
     
     IBOutlet NewFeedStatusCell *_feedStatusCel;
     IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;
-        
+    IBOutlet NewFeedBlogCell *_newFeedBlogCel;
+    
     int _pageNumber;
 }
 

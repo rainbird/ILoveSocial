@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "NewFeedData.h"
 
 @interface NewFeedStatusCell : UITableViewCell {
     UIImageView *_defaultHeadImageView;
@@ -34,4 +34,5 @@
 
 
 - (IBAction)cancelButton:(id)sender;
+-(void)configureCell:(NewFeedData*)feedData;
 @end
