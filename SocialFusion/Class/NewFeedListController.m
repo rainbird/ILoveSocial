@@ -136,6 +136,8 @@
 -(void)loadRenrenData
 {
     _pageNumber=0;
+    
+    [_feedArray removeAllObjects];
     [self loadMoreRenrenData];
        
     
