@@ -34,7 +34,7 @@
 
 
 -(id)initWithDictionary:(NSDictionary*)feedDic;
-
+-(id)initWithSinaDictionary:(NSDictionary*)feedDic;
 
 -(NSString*)getPostMessage;
 -(NSString*)getPostName;

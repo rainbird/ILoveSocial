@@ -18,6 +18,10 @@
 -(id)initWithDictionary:(NSDictionary*)feedDic
 {
 
+    
+    style=0;
+    
+    
     actor_ID=[[feedDic objectForKey:@"actor_id"] retain];
     
     owner_Head= [[feedDic objectForKey:@"headurl"] retain];
@@ -46,7 +50,36 @@
     return update_Time;
 }
 
+-(id)initWithSinaDictionary:(NSDictionary*)feedDic
+{
+    style=1;
+    
+    actor_ID=[[[feedDic objectForKey:@"user"] objectForKey:@"id"] retain];
 
+    
+    owner_Head= [[[feedDic objectForKey:@"user"] objectForKey:@"profile_image_url"] retain];
+    
+    
+    
+    owner_Name= [[feedDic objectForKey:@"user"] objectForKey:@"screen_name"];
+    
+    [owner_Name retain];
+    
+    
+    NSDateFormatter *form = [[NSDateFormatter alloc] init];
+    [form setDateFormat:@"ccc MMM dd HH:mm:ss zzzz yyyy"];
+    
+    
+    NSString* dateString=[feedDic objectForKey:@"created_at"];
+	update_Time=[[form dateFromString: dateString] retain];
+    
+    comment_Count=[[feedDic objectForKey:@"comments_count"] intValue];
+    
+    source_ID= [[feedDic objectForKey:@"id"] retain];
+    
+    return self;
+    
+}
 
 
 -(NSString*)getFeedName

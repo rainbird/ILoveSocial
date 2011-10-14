@@ -10,6 +10,10 @@
 
 
 @interface NewFeedRootData : NSObject {
+//数据来源 人人或新浪
+    int style;
+    
+    
     //作者id
     NSString*   actor_ID;
     //更新时间
@@ -26,7 +30,7 @@
 
 //初始化
 -(id)initWithDictionary:(NSDictionary*)feedDic;
-
+-(id)initWithSinaDictionary:(NSDictionary*)feedDic;
 -(NSString*)getFeedName;
 -(NSString*)getHeadURL;
 -(NSDate*)getDate;

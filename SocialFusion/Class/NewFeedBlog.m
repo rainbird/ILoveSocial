@@ -49,7 +49,7 @@
         
         if ([owner_Name characterAtIndex:i]<256)
         {
-            tempString=[tempString stringByAppendingString:@"  "];
+            tempString=[tempString stringByAppendingString:@"   "];
         }
         else
         {

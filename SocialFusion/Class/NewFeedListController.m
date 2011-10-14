@@ -10,6 +10,7 @@
 #import "NavigationToolBar.h"
 
 #import "RenrenClient.h"
+#import "WeiboClient.h"
 #import "NewFeedData.h"
 #import "Image+Addition.h"
 #import "UIImageView+DispatchLoad.h"
@@ -133,11 +134,51 @@
     //    [self loadMoreWeiboData];
    // }
 }
+
+
+
+
+- (void)loadWeiboData {
+    WeiboClient *client = [WeiboClient client];
+    [client setCompletionBlock:^(WeiboClient *client) {
+        if (!client.hasError) {
+            NSLog(@"dict:%@", client.responseJSONObject);
+            
+            NSArray *array = client.responseJSONObject;
+            for(NSDictionary *dict in array) {
+                
+          
+                    NewFeedData* feedData=[[NewFeedData alloc] initWithSinaDictionary:dict];
+                    [_feedArray addObject:feedData];
+                    [feedData release];
+               
+            }
+            [self doneLoadingTableViewData];
+            _loading = NO;
+        }
+    }];
+    // if (_type == RelationshipViewTypeWeiboFriends) {
+    //    [client getFriendsOfUser:self.currentWeiboUser.userID cursor:_nextCursor count:20];
+    // }
+    // else if(_type == RelationshipViewTypeWeiboFollowers) {
+    //    [client getFollowersOfUser:self.currentWeiboUser.userID cursor:_nextCursor count:20];
+    [client getFriendsTimelineSinceID:nil maxID:nil startingAtPage:1 count:30 feature:0];
+}
+
+
+
+
+
+
 -(void)loadRenrenData
 {
+    
+    
     _pageNumber=0;
     
     [_feedArray removeAllObjects];
+   
+   
     [self loadMoreRenrenData];
        
     
@@ -172,8 +213,10 @@
             //NSLog(@"add finished");
         }
     
-        [self doneLoadingTableViewData];
-        _loading = NO;
+       // [self doneLoadingTableViewData];
+      //  _loading = NO;
+        
+           [self loadWeiboData];
     }];
     [renren getNewFeed:_pageNumber];
     
@@ -194,6 +237,8 @@
     _loading = YES;
     //if(_type == RelationshipViewTypeRenrenFriends) {
     [self loadRenrenData];
+   
+ 
     // }
     // else {
     //    [self loadMoreWeiboData];

@@ -25,7 +25,7 @@
         
         if ([post_Name characterAtIndex:i]<256)
         {
-            tempString=[tempString stringByAppendingString:@"  "];
+            tempString=[tempString stringByAppendingString:@"   "];
         }
         else
         {
@@ -66,7 +66,7 @@
         
         if ([owner_Name characterAtIndex:i]<256)
         {
-              tempString=[tempString stringByAppendingString:@"  "];
+              tempString=[tempString stringByAppendingString:@"   "];
         }
         else
         {
@@ -104,8 +104,6 @@
     }
 
 
- 
-
     
 	
 
@@ -115,6 +113,47 @@
     
     return self;
     
+}
+
+-(id)initWithSinaDictionary:(NSDictionary*)feedDic
+{
+    
+    self=[super initWithSinaDictionary:feedDic]; 
+    
+    NSDictionary* attachment=[feedDic objectForKey:@"retweeted_status"];
+    if ([attachment count]!=0)
+    {
+   
+        if ([attachment count]!=0)
+        {
+            post_ID=[[[attachment  objectForKey:@"user"] objectForKey:@"id"] retain];
+            
+            
+            
+    
+            
+            
+            post_Name=[[[attachment objectForKey:@"user"] objectForKey:@"screen_name"] retain];
+
+            
+            
+            post_Status=[[attachment objectForKey:@"text"] retain];
+        }
+        
+    }
+    
+    
+    
+	
+    
+    
+    message=[feedDic objectForKey:@"text"];
+    [message retain];
+    
+
+    
+    
+    return self;
 }
 
 
