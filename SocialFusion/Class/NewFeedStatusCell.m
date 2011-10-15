@@ -134,6 +134,8 @@
 
 -(void)configureCell:(NewFeedData*)feedData
 {
+    
+    [self.headImageView setImage:nil];
     self.status.text=[feedData getName];
     
     [self.userName setTitle:[feedData getFeedName] forState:UIControlStateNormal];
@@ -194,6 +196,26 @@
     self.time.text=[tempString retain] ;
     [tempString release];
 
+    
+
+    [self.userName sizeToFit];
+    
  
+}
+
+
+-(void)setUserHeadImage:(UIImage*)image
+{
+    CATransition *animation = [CATransition animation];
+    animation.delegate = self;
+    animation.duration = 0.3f;
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.fillMode = kCAFillModeForwards;
+    animation.removedOnCompletion = NO;
+    [animation setType:@"kCATransitionFade"];
+    //    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
+    [_headImageView setImage:image];
+    
 }
 @end

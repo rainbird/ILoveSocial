@@ -69,7 +69,6 @@
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
     [form setDateFormat:@"ccc MMM dd HH:mm:ss zzzz yyyy"];
     
-    
     NSString* dateString=[feedDic objectForKey:@"created_at"];
 	update_Time=[[form dateFromString: dateString] retain];
     

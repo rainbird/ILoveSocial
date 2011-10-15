@@ -26,20 +26,24 @@
         NSManagedObjectContext *_managedObjectContext;
     
     NSMutableArray* _feedArray;
-    
+    NSMutableArray* _tempArray;
     
     
     RenrenUser *_currentRenrenUser;
     WeiboUser *_currentWeibosUser;
 
-    NSMutableArray* _heightArray;
+    
+    
     
     IBOutlet NewFeedStatusCell *_feedStatusCel;
     IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;
     IBOutlet NewFeedBlogCell *_newFeedBlogCel;
     
     int _pageNumber;
+
+
 }
+
 
 @property (nonatomic, retain) RenrenUser *currentRenrenUser;
 @property (nonatomic, retain) WeiboUser *currentWeiboUser;
@@ -65,7 +69,7 @@
 - (void)showLoadMoreDataButton;
 - (void)hideLoadMoreDataButton;
 
-
+- (void)loadExtraDataForOnscreenRows;
 
 
 - (IBAction)backButtonPressed:(id)sender;

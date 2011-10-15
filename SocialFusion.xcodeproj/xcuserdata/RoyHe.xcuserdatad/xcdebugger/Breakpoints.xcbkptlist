@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedRootData.m"
-         timestampString = "340276002.735081"
+         filePath = "SocialFusion/Class/NewFeedListController.m"
+         timestampString = "340365867.120433"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "70"
-         endingLineNumber = "70"
-         landmarkName = "-initWithSinaDictionary:"
+         startingLineNumber = "238"
+         endingLineNumber = "238"
+         landmarkName = "-refresh"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -22,13 +22,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedRootData.m"
-         timestampString = "340276041.984234"
+         filePath = "SocialFusion/Class/NewFeedListController.m"
+         timestampString = "340365867.120433"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "60"
-         endingLineNumber = "60"
-         landmarkName = "-initWithSinaDictionary:"
+         startingLineNumber = "271"
+         endingLineNumber = "271"
+         landmarkName = "-doneLoadingTableViewData"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

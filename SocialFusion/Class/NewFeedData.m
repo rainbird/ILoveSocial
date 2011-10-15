@@ -37,7 +37,7 @@
     
     
    // NSLog(@"%@",[tempString stringByAppendingFormat:@"%@",post_Status]);
-    return [tempString stringByAppendingFormat:@"  %@",post_Status] ;
+    return [tempString stringByAppendingFormat:@" %@",post_Status] ;
     
 
 }
@@ -78,7 +78,7 @@
     
     
     
-    return [tempString stringByAppendingFormat:@"  %@",message]  ;
+    return [tempString stringByAppendingFormat:@" %@",message]  ;
     
 }
 -(id)initWithDictionary:(NSDictionary*)feedDic

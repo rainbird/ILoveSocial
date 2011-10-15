@@ -61,7 +61,7 @@
     
     
     
-    return [[tempString stringByAppendingFormat:@"  %@",prefix] stringByAppendingFormat:@"  %@",title]  ;
+    return [[tempString stringByAppendingFormat:@" %@",prefix] stringByAppendingFormat:@"  %@",title]  ;
     
 }
 

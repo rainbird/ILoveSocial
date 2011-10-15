@@ -30,6 +30,9 @@
 -(void)configureCell:(NewFeedData*)feedData
 {
 
+    
+    [self.headImageView setImage:nil];
+    
     self.status.text=[feedData getName];
     
     [self.userName setTitle:[feedData getFeedName] forState:UIControlStateNormal];
@@ -128,6 +131,9 @@
 
     self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, labelSize.height+labelSize1.height+50);
     
+    
+    [self.repostUserName sizeToFit];
+    [self.userName sizeToFit];
 
     
 }

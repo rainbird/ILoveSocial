@@ -61,6 +61,10 @@
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">default_renren_tiny.png</string>
+								</object>
 							</object>
 							<object class="IBUIImageView" id="336808365">
 								<reference key="NSNextResponder" ref="881861137"/>
@@ -139,7 +143,6 @@
 								<string key="NSFrame">{{63, 39}, {64, 21}}</string>
 								<reference key="NSSuperview" ref="881861137"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -207,7 +210,7 @@
 				<string key="IBUIReuseIdentifier">NewFeedBlogCell</string>
 			</object>
 			<object class="IBUIView" id="820243918">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -216,7 +219,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 11}, {49, 37}}</string>
 						<reference key="NSSuperview" ref="820243918"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="608523799"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -241,7 +243,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{85, 11}, {55, 37}}</string>
 						<reference key="NSSuperview" ref="820243918"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="143137940"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -266,7 +267,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{159, 11}, {55, 37}}</string>
 						<reference key="NSSuperview" ref="820243918"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="843541635"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -287,8 +287,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{222, 11}, {70, 37}}</string>
 						<reference key="NSSuperview" ref="820243918"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -305,8 +303,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 60}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="58237765"/>
 				<reference key="IBUIBackgroundColor" ref="958518048"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -324,14 +320,6 @@
 					<int key="connectionID">15</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">defaultHeadImageView</string>
-						<reference key="source" ref="549912513"/>
-						<reference key="destination" ref="336808365"/>
-					</object>
-					<int key="connectionID">16</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">cancelButton:</string>
 						<reference key="source" ref="58237765"/>
@@ -347,14 +335,6 @@
 						<reference key="destination" ref="718576913"/>
 					</object>
 					<int key="connectionID">18</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">headImageView</string>
-						<reference key="source" ref="549912513"/>
-						<reference key="destination" ref="363714660"/>
-					</object>
-					<int key="connectionID">19</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -387,6 +367,22 @@
 						<reference key="destination" ref="549912513"/>
 					</object>
 					<int key="connectionID">24</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">defaultHeadImageView</string>
+						<reference key="source" ref="549912513"/>
+						<reference key="destination" ref="363714660"/>
+					</object>
+					<int key="connectionID">25</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">headImageView</string>
+						<reference key="source" ref="549912513"/>
+						<reference key="destination" ref="336808365"/>
+					</object>
+					<int key="connectionID">26</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -541,7 +537,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">24</int>
+			<int key="maxID">26</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -780,6 +776,10 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">default_renren_tiny.png</string>
+			<string key="NS.object.0">{50, 50}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">301</string>
 	</data>
 </archive>

@@ -19,6 +19,12 @@
 
 #define kUserDefaultKeyFirstTimeUsingEGOView @"kUserDefaultKeyFirstTimeUsingEGOView"
 
+static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2, void *context)
+{
+    return ([[data2 getDate] compare:[data1 getDate]]);
+}
+
+
 
 @implementation NewFeedListController
 @synthesize managedObjectContext = _managedObjectContext;
@@ -48,6 +54,7 @@
 {
     self=[super init];
     _feedArray=[[NSMutableArray alloc] init];
+     _tempArray=[[NSMutableArray alloc] init];
     NSLog(@"a");
     return self;
 }
@@ -138,6 +145,7 @@
 
 
 
+
 - (void)loadWeiboData {
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
@@ -146,13 +154,19 @@
             
             NSArray *array = client.responseJSONObject;
             for(NSDictionary *dict in array) {
-                
-          
                     NewFeedData* feedData=[[NewFeedData alloc] initWithSinaDictionary:dict];
-                    [_feedArray addObject:feedData];
-                    [feedData release];
+                 
+                [_tempArray addObject:feedData];
+                [feedData release];
                
             }
+            
+            if (_pageNumber==1)
+            {
+            [_feedArray removeAllObjects];
+            }
+            [_feedArray addObjectsFromArray:   [_tempArray sortedArrayUsingFunction:SoryArrayByTime context:NULL]];
+            
             [self doneLoadingTableViewData];
             _loading = NO;
         }
@@ -162,7 +176,7 @@
     // }
     // else if(_type == RelationshipViewTypeWeiboFollowers) {
     //    [client getFollowersOfUser:self.currentWeiboUser.userID cursor:_nextCursor count:20];
-    [client getFriendsTimelineSinceID:nil maxID:nil startingAtPage:1 count:30 feature:0];
+    [client getFriendsTimelineSinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
 }
 
 
@@ -172,22 +186,16 @@
 
 -(void)loadRenrenData
 {
-    
-    
     _pageNumber=0;
     
-    [_feedArray removeAllObjects];
-   
-   
-    [self loadMoreRenrenData];
        
-    
+    [self loadMoreRenrenData];
 }
 
 -(void)loadMoreRenrenData
 {
     _pageNumber++;
-    
+    [_tempArray removeAllObjects];
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if(!client.hasError) {
@@ -197,14 +205,14 @@
                 if ([[dict objectForKey:@"feed_type"] intValue]==10)
                 {
                     NewFeedData* feedData=[[NewFeedData alloc] initWithDictionary:dict];
-                    [_feedArray addObject:feedData];
+                   [_tempArray addObject:feedData];
                     [feedData release];
                 }
                 
               else if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
                 {
                     NewFeedBlog* feedBlog=[[NewFeedBlog alloc] initWithDictionary:dict];
-                    [_feedArray addObject:feedBlog];
+                     [_tempArray addObject:feedBlog];         
                     [feedBlog release];
                 }
              
@@ -278,9 +286,54 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {	
 	[self.egoHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+    
+    if (!decelerate)
+	{
+        
+       // NSLog(@"12345");
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    //NSLog(@"scrollViewDidEndDecelerating");
+         //  NSLog(@"12345");
+    [ self loadExtraDataForOnscreenRows ];
+}
+
+- (void)loadExtraDataForOnscreenRows 
+{
+    NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+    NSTimeInterval i = 0;
+    for (NSIndexPath *indexPath in visiblePaths)
+    {
+        i += 0.05;
+        [self performSelector:@selector(loadExtraDataForOnscreenRowsHelp:) withObject:indexPath afterDelay:i];
+    }
 }
 
 
+
+- (void)loadExtraDataForOnscreenRowsHelp:(NSIndexPath *)indexPath {
+    if(self.tableView.dragging || self.tableView.decelerating || _reloading)
+        return;
+    //User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    //Image *image = [Image imageWithURL:[[_feedArray objectAtIndex:indexPath.row] getHeadURL] inManagedObjectContext:self.managedObjectContext];
+    
+    [NSThread detachNewThreadSelector:@selector(updateImageForCellAtIndexPath:) toTarget:self withObject:indexPath];
+
+    
+    
+      
+      //  FriendListTableViewCell *relationshipCell = (FriendListTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+      //  [relationshipCell.headImageView loadImageFromURL:usr.tinyURL completion:^{
+        //    [self showHeadImageAnimation:relationshipCell.headImageView];
+       // } cacheInContext:self.managedObjectContext];
+    
+  //  if(_type == RelationshipViewTypeRenrenFriends && !usr.latestStatus) {
+   //     [RenrenStatus loadLatestStatus:usr inManagedObjectContext:self.managedObjectContext];
+   // }
+}
 
 
 
@@ -472,7 +525,12 @@
     static NSString *RepostStatusCell=@"NewFeedRepostCell";
     static NSString *BlogCell=@"NewFeedBlogCell";
     
+    
+    
+
     NewFeedStatusCell* cell;
+    
+
     
     if ([[_feedArray objectAtIndex:indexPath.row] class]==[NewFeedData class])
     {
@@ -519,21 +577,36 @@
 
 - (void)updateImageForCellAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
+    
+
+    
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSURL *url = [NSURL URLWithString: [[_feedArray objectAtIndex:indexPath.row] getHeadURL]];
 
     UIImage *image =[UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
     NewFeedStatusCell *cell = (NewFeedStatusCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+ 
     
-    [cell.headImageView performSelectorOnMainThread:@selector(setImage:) withObject:image waitUntilDone:NO];
+    
+    
+    
+    
+    [cell performSelectorOnMainThread:@selector(setUserHeadImage:) withObject:image waitUntilDone:NO];
     [pool release];
 }
 
-
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     [NSThread detachNewThreadSelector:@selector(updateImageForCellAtIndexPath:) toTarget:self withObject:indexPath];
-/*
+    
+  //  if (indexPath.row<[_feedArray count])
+   // {
+   //  [NSThread detachNewThreadSelector:@selector(updateImageForCellAtIndexPath:) toTarget:self withObject:indexPath];
+   // }
+    
+    
+        /*
     NewFeedStatusCell* tempcell=cell;
  
     CATransition *animation = [CATransition animation];
@@ -610,5 +683,11 @@
     self.navigationController.toolbarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+
+
+
+
 
 @end

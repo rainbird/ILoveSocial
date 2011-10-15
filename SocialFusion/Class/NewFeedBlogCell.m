@@ -21,6 +21,9 @@
 -(void)configureCell:(NewFeedData*)feedData
 {
     
+    
+    [self.headImageView setImage:nil];
+    
     self.status.text=[feedData getName];
     
     [self.userName setTitle:[feedData getFeedName] forState:UIControlStateNormal];
@@ -102,6 +105,9 @@
     self.time.text=[tempString retain] ;
     [tempString release];
 
+    
+
+    [self.userName sizeToFit];
 }
 
 

@@ -141,7 +141,8 @@
     
     
     NewFeedListController *vc = [[NewFeedListController alloc] init];
-    vc.currentRenrenUser = self.currentRenrenUser;
+    //vc.currentRenrenUser = self.currentRenrenUser;
+    
     vc.toolbarItems=self.toolbarItems;
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
