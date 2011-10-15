@@ -14,8 +14,9 @@
 
 - (void)dealloc
 {
-    [super dealloc];
+
     [_blog release];
+        [super dealloc];
 }
 
 -(void)configureCell:(NewFeedData*)feedData
@@ -102,7 +103,7 @@
     
     self.time.frame = CGRectMake(self.status.frame.origin.x, self.blog.frame.origin.y+self.blog.frame.size.height,
                                  self.time.frame.size.width,self.time.frame.size.height); 
-    self.time.text=[tempString retain] ;
+    self.time.text=tempString ;
     [tempString release];
 
     

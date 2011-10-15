@@ -21,10 +21,15 @@
 
 - (void)dealloc
 {
-    [super dealloc];
+    
     [_repostUserName release];
     [_repostAreaButton release];
     [_repostStatus release];
+    
+
+    [_repostAreaButtonCursor release];
+    
+    [super dealloc];
 }
 
 -(void)configureCell:(NewFeedData*)feedData
@@ -117,7 +122,7 @@
     
     self.time.frame = CGRectMake(self.repostStatus.frame.origin.x, self.repostStatus.frame.origin.y+self.repostStatus.frame.size.height+10,
                                  self.time.frame.size.width,self.time.frame.size.height); 
-    self.time.text=[tempString retain] ;
+    self.time.text=tempString;
     [tempString release];
     
     self.repostAreaButton.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y+self.status.frame.size.height+10,

@@ -12,6 +12,14 @@
 @implementation NewFeedBlog
 
 
+
+-(void )dealloc
+{
+     [prefix release];
+     [title release];
+ [description release];
+    [super dealloc];
+}
 -(id)initWithDictionary:(NSDictionary*)feedDic
 {
     self=[super initWithDictionary:feedDic]; 

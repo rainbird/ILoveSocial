@@ -37,6 +37,8 @@
     NSString* dateString=[feedDic objectForKey:@"update_time"];
 	update_Time=[[form dateFromString: dateString] retain];
     
+    
+    [form release];
     comment_Count=[[[feedDic objectForKey:@"comments"] objectForKey:@"count"] intValue];
     
     source_ID= [[feedDic objectForKey:@"source_id"] retain];
@@ -72,6 +74,8 @@
     NSString* dateString=[feedDic objectForKey:@"created_at"];
 	update_Time=[[form dateFromString: dateString] retain];
     
+    
+    [form release];
     comment_Count=[[feedDic objectForKey:@"comments_count"] intValue];
     
     source_ID= [[feedDic objectForKey:@"id"] retain];
@@ -93,6 +97,15 @@
     return owner_Head;
 }
 
+-(void)dealloc
+{
 
+    [actor_ID release];
+ [update_Time release];
+   [owner_Name release];
+       [owner_Head release];
+
+    [source_ID release];
+}
 
 @end

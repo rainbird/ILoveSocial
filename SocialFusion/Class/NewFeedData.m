@@ -13,6 +13,21 @@
 
 
 
+-(void)dealloc
+{
+    
+    
+       [post_Status release];
+          [post_Name release];
+    [post_ID release];
+    
+    
+
+
+     [message release];
+    [super dealloc];
+
+}
 
 -(NSString*)getPostMessage
 {

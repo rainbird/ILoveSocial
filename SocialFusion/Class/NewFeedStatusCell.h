@@ -10,14 +10,18 @@
 #import "NewFeedData.h"
 
 @interface NewFeedStatusCell : UITableViewCell {
-    UIImageView *_defaultHeadImageView;
-    UIImageView *_headImageView;
-    UILabel *_Status;
+    
 
-    UILabel *_Time;
+    
+
+    
+    
+    
     
     CGPoint _beginPoint;
+    
     BOOL _buttonViewShowed;
+    
     IBOutlet UIView* _buttonView;
 
 

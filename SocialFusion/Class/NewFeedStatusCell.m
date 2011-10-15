@@ -15,7 +15,7 @@
 @synthesize headImageView = _headImageView;
 @synthesize userName = _userName;
 @synthesize status = _status;
-@synthesize time = _Time;
+@synthesize time = _time;
 
 
 - (void)awakeFromNib
@@ -28,12 +28,16 @@
 }
 
 - (void)dealloc {
-    NSLog(@"Friend List Cell Dealloc");
+    //NSLog(@"Friend List Cell Dealloc");
     [_defaultHeadImageView release];
     [_headImageView release];
     [_userName release];
     [_status release];
-   
+    [_time release];
+    
+    
+
+    
     [super dealloc];
 }
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -193,7 +197,7 @@
     
     self.time.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y+self.status.frame.size.height,
                                  self.time.frame.size.width,self.time.frame.size.height); 
-    self.time.text=[tempString retain] ;
+    self.time.text=tempString ;
     [tempString release];
 
     
@@ -206,6 +210,7 @@
 
 -(void)setUserHeadImage:(UIImage*)image
 {
+    /*
     CATransition *animation = [CATransition animation];
     animation.delegate = self;
     animation.duration = 0.3f;
@@ -215,7 +220,8 @@
     [animation setType:@"kCATransitionFade"];
     //    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
     [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
-    [_headImageView setImage:image];
+ */
+     [_headImageView setImage:image];
     
 }
 @end

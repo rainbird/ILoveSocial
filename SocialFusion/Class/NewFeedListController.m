@@ -154,7 +154,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             
             NSArray *array = client.responseJSONObject;
             for(NSDictionary *dict in array) {
-                    NewFeedData* feedData=[[NewFeedData alloc] initWithSinaDictionary:dict];
+                NewFeedData* feedData=[[NewFeedData alloc] initWithSinaDictionary:dict];
                  
                 [_tempArray addObject:feedData];
                 [feedData release];
