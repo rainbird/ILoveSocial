@@ -69,9 +69,23 @@
     
     
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
-    [form setDateFormat:@"ccc MMM dd HH:mm:ss zzzz yyyy"];
+    [form setDateFormat:@"EEE MMM d HH:mm:ss ZZZ yyyy"];
     
+   // Sat Oct 15 21:22:56 +0800 2011
+    
+    NSLocale* tempLocale=[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [form setLocale:tempLocale];
+    [tempLocale release];
+    
+  //  [form setShortStandaloneWeekdaySymbols:[NSArray arrayWithObjects:@"Mon",@"Tue",@"Fri",@"Sat",@"Sun",nil]];
     NSString* dateString=[feedDic objectForKey:@"created_at"];
+    //NSLog(@"%@",dateString);
+    
+    
+    NSDate* date=[NSDate dateWithTimeIntervalSinceNow:0];
+   NSLog(@"%@",[form stringFromDate:date]);
+    //NSDate* aaa=[[form dateFromString: dateString] retain];
+    //NSLog(@"%@",aaa);
 	update_Time=[[form dateFromString: dateString] retain];
     
     

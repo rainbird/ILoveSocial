@@ -81,7 +81,7 @@
 
     if (tempPoint.y-_beginPoint.y<100)
     {
-        if (tempPoint.x-_beginPoint.x>100)
+        if (tempPoint.x-_beginPoint.x>30)
         {
             
             NSLog(@"Moved");
@@ -92,13 +92,13 @@
             
              CATransition *animation = [CATransition animation];
              animation.delegate = self;
-             animation.duration = 0.5f;
+             animation.duration = 0.2f;
              animation.timingFunction = UIViewAnimationCurveEaseInOut;
              animation.fillMode = kCAFillModeForwards;
              animation.removedOnCompletion = NO;
             [animation setType:@"kCATransitionFade"];
          //    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
-            [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
+            [self.layer addAnimation:animation forKey:@"animationID"]; 
 
             
             [self addSubview:_buttonView];
@@ -123,13 +123,13 @@
     
     CATransition *animation = [CATransition animation];
     animation.delegate = self;
-    animation.duration = 0.5f;
+    animation.duration = 0.2f;
     animation.timingFunction = UIViewAnimationCurveEaseInOut;
     animation.fillMode = kCAFillModeForwards;
     animation.removedOnCompletion = NO;
     [animation setType:@"kCATransitionFade"];
     //    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
-    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
+    [self.layer addAnimation:animation forKey:@"animationID"]; 
     
     
     [_buttonView removeFromSuperview];
