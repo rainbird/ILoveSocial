@@ -10,7 +10,7 @@
 
 @class WeiboClient;
 @class User;
-
+@class SocialFusionViewController;
 enum {
     ResetUnreadCountTypeComments = 1,
     ResetUnreadCountTypeReferMe = 2,
@@ -26,6 +26,10 @@ typedef void (^WCCompletionBlock)(WeiboClient *client);
     int _responseStatusCode;
     id _responseJSONObject;
     WCCompletionBlock _completionBlock;
+    
+    
+    
+ //   SocialFusionViewController* _delegate;
 }
 
 @property (nonatomic, assign) BOOL hasError;
@@ -108,5 +112,9 @@ typedef void (^WCCompletionBlock)(WeiboClient *client);
 
 
 
+- (void)setDelegate:(id)delegate;
+
+-(void)oAuth:(SEL)_sSel withFailedSelector:(SEL)_eSel;
+- (void)handleOpenURL:(NSURL *)url;
 
 @end

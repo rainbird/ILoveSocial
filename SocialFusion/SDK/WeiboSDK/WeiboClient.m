@@ -10,11 +10,29 @@
 #import "JSON.h"
 #import "NSString+URLEncoding.h"
 
+
+
+#import "WBRequest.h"
+#import "OADataFetcher.h"
+#import "OAToken.h"
+
+#define SINAAccessURL @"http://api.t.sina.com.cn/oauth/access_token" 
+
+#define AuthorizeURL @"http://api.t.sina.com.cn/oauth/authorize"  //获取授权request token
+#define AccessURL @"http://api.t.sina.com.cn/oauth/access_token"  //获取access token
+
+#define CallBackURL @"oauth://SocialFusion.com"  //回调url
+
 #define kUserDefaultKeyTokenResponseString @"kUserDefaultKeyTokenResponseString"
 
-static NSString* const AppKey = @"1965726745";
-static NSString* const AppSecret = @"55377ca138fa49b63b7767778ca1fb5a";
+static NSString* const AppKey = @"808405667";
+static NSString* const AppSecret = @"2e76c5fca5ac0934c4e4e4114455e261";
 static NSString* const APIDomain = @"api.t.sina.com.cn";
+
+
+
+
+
 
 static NSString* OAuthTokenKey = nil;
 static NSString* OAuthTokenSecret = nil;
@@ -59,6 +77,25 @@ typedef enum {
 @synthesize responseStatusCode = _responseStatusCode;
 @synthesize hasError = _hasError;
 @synthesize errorDesc = _errorDesc;
+
+
+
+#pragma mark Ëé∑ÂæóÊó∂Èó¥Êà≥
+- (NSString *)_generateTimestamp 
+{
+    return [NSString stringWithFormat:@"%d", time(NULL)];
+}
+
+#pragma mark Ëé∑ÂæóÈöèÊó∂Â≠óÁ¨¶‰∏≤
+- (NSString *)_generateNonce 
+{
+    CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+    NSMakeCollectable(theUUID);
+    return (NSString *)string;
+}
+
+
 
 - (void)setCompletionBlock:(void (^)(WeiboClient* client))completionBlock
 {
@@ -336,7 +373,176 @@ report_completion:
 {
     return UserID;
 }
+                  
+                  
+    
+                  
+                  
+                  -(void)oAuth:(SEL)_sSel withFailedSelector:(SEL)_eSel
+{
+    NSString *strSSel = NSStringFromSelector(_sSel);
+    NSString *strESel = NSStringFromSelector(_eSel);
+    
+    NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
+    [info setValue:strSSel forKey:@"WBShareKit_SSel"];
+    [info setValue:strESel forKey:@"WBShareKit_ESel"];
+    [info synchronize];
+    
+    
+    
+  //  _delegate=[delegate retain];
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:AppKey secret:AppSecret];
+	
+	OAHMAC_SHA1SignatureProvider *hmacSha1Provider = [[OAHMAC_SHA1SignatureProvider alloc] init];
+	OAMutableURLRequest *hmacSha1Request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.t.sina.com.cn/oauth/request_token"]
+                                                                           consumer:consumer
+                                                                              token:NULL
+                                                                              realm:NULL
+                                                                  signatureProvider:hmacSha1Provider
+                                                                              nonce:[self _generateNonce]
+                                                                          timestamp:[self _generateTimestamp]];
+    [hmacSha1Request setHTTPMethod:@"GET"];
+	
+	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:hmacSha1Request 
+                         delegate:self
+                didFinishSelector:@selector(requestTokenTicket:finishedWithData:)
+                  didFailSelector:@selector(requestTokenTicket:failedWithError:)];
+    
+      
+}
+                  
+                  
+                  
+        
+                  
+- (void)requestTokenTicket:(OAServiceTicket *)ticket finishedWithData:(NSMutableData *)data {
+                
+    NSString *responseBody = [[NSString alloc] initWithData:data
+                                                                     encoding:NSUTF8StringEncoding];
+    NSLog(@"Ëé∑ÂæóÊú™ÊéàÊùÉÁöÑKEY:%@",responseBody);
+    OAToken *token = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+                      
+    NSString *tt = [token.key URLEncodedString];
+    NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@&oauth_callback=%@",AuthorizeURL,tt,CallBackURL];
+    
+    
+  
+    
+   // UIWebView* webView=[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320,480  )];
 
+    //[webView loadHTMLString:nil baseURL:[NSURL URLWithString:url]]
+
+    
+ 
+    //[[UIApplication sharedApplication].keyWindow addSubview:webView];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                      
+    
+        [WeiboClient setTokenWithHTTPResponseString:responseBody];
+    
+    NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
+	[info setValue:responseBody forKey:@"WBShareKit_responseBody"];
+    //[info setValue:@"sina" forKey:@"WBShareKit_type"];
+    [info synchronize];
+    
+
+    
+    
+                      
+}
+
+                  
+#pragma mark app delegate
+- (void)handleOpenURL:(NSURL *)url
+{
+//NSString *string = [[url query] substringWithRange:NSMakeRange([[url query] length]-6, 6)];
+                    
+    
+    NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
+ //   NSString *type = [info valueForKey:@"WBShareKit_type"];
+   
+        NSString *string = [[url query] substringWithRange:NSMakeRange([[url query] length]-6, 6)];
+        
+        
+        [info setValue:string forKey:@"WBShareKit_ver"];
+
+        
+        
+                //    [info setValue:string forKey:@"WBShareKit_ver"];
+                    //	[info setValue:[url query] forKey:@"WBShareKit_responseBody"];
+                  //  [info synchronize];
+                   [self startSinaAccessWithVerifier:string];
+                
+}
+
+           
+                  
+                  
+                  - (void)startSinaAccessWithVerifier:(NSString *)_ver
+            {
+                                
+                
+                
+                
+                WBRequest *hmacSha1Request = [WBRequest requestWithURL:SINAAccessURL dic:[NSDictionary dictionaryWithObjectsAndKeys:_ver,@"oauth_verifier", nil] method:@"GET" withServers:@"sina" requestToken:NO accessToken:YES];
+                
+                OAAsynchronousDataFetcher *fetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:hmacSha1Request delegate:self didFinishSelector:@selector(sinaAccessTokenTicket:finishedWithData:) didFailSelector:@selector(sinaAccessTokenTicket:failedWithError:)];
+                [fetcher start];
+                [fetcher release];
+            }
+                  
+                  - (void)sinaAccessTokenTicket:(OAServiceTicket *)ticket failedWithError:(NSError *)error {
+                      NSLog(@"sina 获取access token失败 错误:%@",error);
+                      
+                      NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"WBShareKit.delegate"];
+                      id delegate = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+                      NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
+                      [delegate performSelector:NSSelectorFromString([info valueForKey:@"WBShareKit_ESel"]) withObject:error];
+                  }
+                  
+                  
+                  - (void)sinaAccessTokenTicket:(OAServiceTicket *)ticket finishedWithData:(NSMutableData *)data {
+                      NSString *responseBody = [[[NSString alloc] initWithData:data
+                                                                      encoding:NSUTF8StringEncoding] autorelease];
+         
+                      
+                      NSLog(@"获取access token:%@",responseBody);
+                      NSLog(@"Success");
+                      
+                      [WeiboClient setTokenWithHTTPResponseString:responseBody];
+             
+                              NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                              [ud setObject:responseBody
+                                     forKey:kUserDefaultKeyTokenResponseString];
+                              [ud synchronize];
+                     
+                  //    [_delegate wbDidLogin];
+                   //   [_delegate finished];
+                      
+                              
+                                      //    [responseBody release];
+                      
+                      NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"WBShareKit.delegate"];
+                      id delegate = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+                      [delegate performSelector:NSSelectorFromString([ud valueForKey:@"WBShareKit_SSel"]) withObject:nil];
+                    
+                      [self release];
+                  }
+                  
+            
+                  - (void)setDelegate:(id)delegate
+            {
+                NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"WBShareKit.delegate"];
+                [NSKeyedArchiver archiveRootObject:delegate toFile:path];
+            }
+                  
+                  
+                  
+                  
+                  
+                  
+                  
 - (void)authWithUsername:(NSString *)username password:(NSString *)password autosave:(BOOL)autosave
 {
     self.path = @"oauth/access_token";
@@ -351,6 +557,8 @@ report_completion:
     [self setPreCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
             NSString *responseString = client.request.responseString;
+            
+         //   NSLog(@"111111:%@",responseString);
             [WeiboClient setTokenWithHTTPResponseString:responseString];
             if (UserID) {
                 if (autosave) {

@@ -11,7 +11,7 @@
 @class SocialFusionViewController;
 
 @interface SocialFusionAppDelegate : NSObject <UIApplicationDelegate> {
-
+    //NSManagedObjectContext* _manageObjectModel1;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

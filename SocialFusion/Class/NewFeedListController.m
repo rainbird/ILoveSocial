@@ -169,6 +169,11 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             
             [self doneLoadingTableViewData];
             _loading = NO;
+           // [self.tableView scrollsToTop:YES];
+            //[self.tableView scrollsToTop];
+                  [ self loadExtraDataForOnscreenRows ];
+
+         //   [self.tableView reloadData];
         }
     }];
     // if (_type == RelationshipViewTypeWeiboFriends) {
@@ -236,6 +241,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     //_loading=NO;
    // _reloading=NO;
     NSLog(@"refresh!");
+
    // [self hideLoadMoreDataButton];
   
     //   [self loadMoreData];
@@ -289,7 +295,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     if (!decelerate)
 	{
-        
+        [ self loadExtraDataForOnscreenRows ];
+
        // NSLog(@"12345");
     }
 }

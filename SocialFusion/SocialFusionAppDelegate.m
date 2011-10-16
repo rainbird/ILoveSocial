@@ -9,7 +9,7 @@
 #import "SocialFusionAppDelegate.h"
 #import "SocialFusionViewController.h"
 #import "NavigationToolBar.h"
-
+#import "WeiboClient.h"
 @implementation SocialFusionAppDelegate
 
 
@@ -20,9 +20,24 @@
 @synthesize managedObjectModel=__managedObjectModel;  
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+	NSLog(@"获得已授权的key:%@",url);
+    
+  //  [[WBShareKit mainShare] handleOpenURL:url];
+    [[WeiboClient client] handleOpenURL:url];
+    
+    return YES;
+}
+
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+  //  _manageObjectModel1=self.managedObjectContext;
     self.viewController.managedObjectContext = self.managedObjectContext;
     UINavigationController *navigationController = [NavigationToolBar SFNavigationController];
     navigationController.viewControllers = [NSArray arrayWithObject:self.viewController];    
@@ -51,6 +66,24 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    
+    
+    NSLog(@"%@",self.viewController.managedObjectContext);
+   // self.viewController.managedObjectContext = _manageObjectModel1;
+    NSLog(@"active");
+    
+    /*
+ 
+    UINavigationController *navigationController = [NavigationToolBar SFNavigationController];
+    
+
+    navigationController.viewControllers = [NSArray arrayWithObject:self.viewController];    
+    SocialFusionViewController* temp=   [navigationController.viewControllers objectAtIndex:1];
+    
+temp.managedObjectContext=self.managedObjectContext;
+    */
+    //self.window.rootViewController = navigationController;
+    
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
@@ -61,6 +94,7 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+     // NSLog(@"%@",self.viewController.managedObjectContext);
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

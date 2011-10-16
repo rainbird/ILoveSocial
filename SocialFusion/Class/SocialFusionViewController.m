@@ -47,6 +47,7 @@
     return self;
 }
 
+
 - (void)dealloc
 {
    
@@ -100,12 +101,16 @@
 	}
     
 	if ([WeiboClient authorized]) {
+        
+        
         NSString *weiboID = [ud objectForKey:@"weibo_ID"];
         self.currentWeiboUser = [WeiboUser userWithID:weiboID inManagedObjectContext:self.managedObjectContext];
         if(self.currentWeiboUser == nil) {
             [self wbDidLogin];
         }
         else {
+            // [self wbDidLogin];
+            
             [_weiboStatusLabel setText:[ud stringForKey:@"weibo_Name"]];
         }
 	} else {
@@ -123,8 +128,8 @@
 
 - (IBAction)gotoMain:(id)sender
 {
-
-    /*
+/*
+    
     if(![RenrenClient authorized] && ![WeiboClient authorized])
         return;
     //FriendListViewController *vc = [[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers];
@@ -137,8 +142,8 @@
     [vc release];
      
   
-    */
     
+    */
     
     NewFeedListController *vc = [[NewFeedListController alloc] init];
     //vc.currentRenrenUser = self.currentRenrenUser;
@@ -146,7 +151,7 @@
     vc.toolbarItems=self.toolbarItems;
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
-    
+
      
 }
 
@@ -173,11 +178,21 @@
 - (IBAction)weiboLogIn:(id)sender
 {
 	if (![WeiboClient authorized]) {
-        WeiboClient *weibo = [WeiboClient client];
+    /*  WeiboClient *weibo = [WeiboClient client];
         [weibo setCompletionBlock:^(WeiboClient *client) {
             [self wbDidLogin];
         }];
+       
         [weibo authWithUsername:@"wzc345@gmail.com" password:@"5656496" autosave:YES];
+    */
+        
+        WeiboClient *weibo = [WeiboClient client];
+        [weibo setDelegate:self];
+        [weibo oAuth:@selector(wbDidLogin) withFailedSelector:@selector(wbDidLogin)];
+        
+
+        
+    
     }
     else {
         [self showHasLoggedInAlert:LOGOUT_WEIBO];
@@ -198,6 +213,13 @@
     }
 }
 
+
+-(void)finished
+{
+
+    self.currentWeiboUser = [WeiboUser insertUser:nil inManagedObjectContext:self.managedObjectContext];
+    [self.managedObjectContext processPendingChanges];
+}
 - (void)wbDidLogin {
     NSLog(@"weibo did login");
     // get user info
@@ -214,6 +236,8 @@
             [ud setValue:weiboID forKey:@"weibo_ID"];
             [ud synchronize];
             [_weiboStatusLabel setText:weiboName];
+
+            
             self.currentWeiboUser = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
             [self.managedObjectContext processPendingChanges];
         }

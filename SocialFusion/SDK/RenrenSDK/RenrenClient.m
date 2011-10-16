@@ -16,8 +16,8 @@ static NSString* kRRSessionKeyURL=@"http://graph.renren.com/renren_api/session_k
 static NSString* kRRSuccessURL=@"http://widget.renren.com/callback.html";
 static NSString* kSDKversion=@"1.0";
 
-static NSString* const AppKey = @"b68c8294b6684677a74cfd727a0cd4e8";
-static NSString* const AppID = @"157389";
+static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
+static NSString* const AppID = @"150399";
 
 //static NSString* UserID = nil;
 
