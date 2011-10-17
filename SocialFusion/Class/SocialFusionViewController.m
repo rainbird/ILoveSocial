@@ -128,11 +128,11 @@
 
 - (IBAction)gotoMain:(id)sender
 {
-/*
-    
+
+    /*
     if(![RenrenClient authorized] && ![WeiboClient authorized])
         return;
-    //FriendListViewController *vc = [[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers];
+   // FriendListViewController *vc = [[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers];
     FriendListViewController *vc = [[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends];
     //FriendHeadViewController *vc = [[FriendHeadViewController alloc] initWithType:RelationshipViewTypeWeiboFriends];
     vc.currentRenrenUser = self.currentRenrenUser;
@@ -142,8 +142,9 @@
     [vc release];
      
   
-    
     */
+    
+    
     
     NewFeedListController *vc = [[NewFeedListController alloc] init];
     //vc.currentRenrenUser = self.currentRenrenUser;
@@ -187,9 +188,9 @@
     */
         
         WeiboClient *weibo = [WeiboClient client];
-        [weibo setDelegate:self];
-        [weibo oAuth:@selector(wbDidLogin) withFailedSelector:@selector(wbDidLogin)];
-        
+       // [weibo setDelegate:self];
+        //[weibo oAuth:@selector(wbDidLogin) withFailedSelector:@selector(wbDidLogin)];
+   [weibo authorize:nil delegate:self];
 
         
     
@@ -198,6 +199,7 @@
         [self showHasLoggedInAlert:LOGOUT_WEIBO];
     }
 }
+
 
 - (IBAction)renrenLogIn:(id)sender
 {    

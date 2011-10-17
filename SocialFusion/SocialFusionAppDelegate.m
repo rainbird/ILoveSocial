@@ -9,7 +9,6 @@
 #import "SocialFusionAppDelegate.h"
 #import "SocialFusionViewController.h"
 #import "NavigationToolBar.h"
-#import "WeiboClient.h"
 @implementation SocialFusionAppDelegate
 
 
@@ -21,6 +20,8 @@
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 
 
+
+/*
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
 	NSLog(@"获得已授权的key:%@",url);
@@ -31,7 +32,7 @@
     return YES;
 }
 
-
+*/
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

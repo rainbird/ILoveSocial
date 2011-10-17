@@ -16,6 +16,9 @@
 #import "OADataFetcher.h"
 #import "OAToken.h"
 
+#import "WBDialog.h"
+
+#define RequestURL @"http://api.t.sina.com.cn/oauth/request_token" 
 #define SINAAccessURL @"http://api.t.sina.com.cn/oauth/access_token" 
 
 #define AuthorizeURL @"http://api.t.sina.com.cn/oauth/authorize"  //获取授权request token
@@ -60,6 +63,11 @@ typedef enum {
 - (void)buildURL;
 - (void)sendRequest;
 
+
+//Roy added
+- (void)authorizeWithRRAppAuth:(BOOL)tryRRAppAuth
+                    safariAuth:(BOOL)trySafariAuth;
+    
 @end
 
 @implementation WeiboClient
@@ -375,7 +383,7 @@ report_completion:
 }
                   
                   
-    
+    /*
                   
                   
                   -(void)oAuth:(SEL)_sSel withFailedSelector:(SEL)_eSel
@@ -539,6 +547,135 @@ report_completion:
                   
                   
                   
+                  
+*/
+                  
+                  //RoyAdded
+                  
+                  - (void)authorize:(NSArray *)permissions
+                  delegate:(id<WBSessionDelegate>)delegate {
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      NSLog(@"OAuth2.0 请求认证授权 。。。");
+                      _sessionDelegate = delegate;
+                     // if (![self isSessionValid]) {
+                          [self authorizeWithRRAppAuth:YES safariAuth:YES]; 
+                     // }
+                      
+                  }
+
+                  
+                  
+                  - (void)authorizeWithRRAppAuth:(BOOL)tryRRAppAuth
+                  safariAuth:(BOOL)trySafariAuth {
+                      
+                      NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
+                      NSString *strAccess = [info valueForKey:@"WBShareKit_sinaToken"];
+                      
+                      
+                      if (strAccess==nil)
+                      {
+                          OAConsumer *consumer = [[OAConsumer alloc] initWithKey:AppKey secret:AppSecret];
+                          
+                          OAHMAC_SHA1SignatureProvider *hmacSha1Provider = [[OAHMAC_SHA1SignatureProvider alloc] init];
+                          OAMutableURLRequest *hmacSha1Request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:RequestURL]
+                                                                                                 consumer:consumer
+                                                                                                    token:NULL
+                                                                                                    realm:NULL
+                                                                                        signatureProvider:hmacSha1Provider
+                                                                                                    nonce:[self _generateNonce]
+                                                                                                timestamp:[self _generateTimestamp]];
+                          [hmacSha1Request setHTTPMethod:@"GET"];
+                          
+                          OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+                          [fetcher fetchDataWithRequest:hmacSha1Request 
+                                               delegate:self
+                                      didFinishSelector:@selector(requestTokenTicket:finishedWithData:)
+                                        didFailSelector:@selector(requestTokenTicket:failedWithError:)];
+                      }
+       
+                  }
+                  
+                  
+  
+                  
+                  
+                  - (void)requestTokenTicket:(OAServiceTicket *)ticket finishedWithData:(NSMutableData *)data {
+                      
+                      NSString *responseBody = [[NSString alloc] initWithData:data
+                                                                     encoding:NSUTF8StringEncoding];
+                      // NSLog(@"Ëé∑ÂæóÊú™ÊéàÊùÉÁöÑKEY:%@",responseBody);
+                      
+                      OAToken *token = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+                      
+                      
+                      
+                      NSString *tt = [token.key URLEncodedString];
+                      
+                      
+                      NSLog(@"oauthtoken:%@",tt);
+                      
+                      
+                      
+                      
+                      NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                     tt, @"oauth_token",
+                                                     @" ", @"oauth_callback",
+                                                     @"mobile", @"display",
+                                                     nil];
+                      
+                      
+                      //   if (_permissions != nil) {
+                      //     NSString* scope = [_permissions componentsJoinedByString:@","];
+                      //    [params setValue:scope forKey:@"scope"];
+                      //}
+                      
+                      
+                      /*
+                       [_loginDialog release];
+                       _loginDialog = [[RRLoginDialog alloc] initWithURL:kAuthBaseURL
+                       loginParams:params
+                       delegate:self];
+                       [_loginDialog show];
+                       */
+                      
+                      WBDialog *rrDialog = [[WBDialog alloc] initWithURL:@"http://api.t.sina.com.cn/oauth/authorize" params:params delegate:self];
+                      [rrDialog show];
+                      
+                      
+                      
+                      
+                      
+                      //  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                      
+                      NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
+                      [info setValue:responseBody forKey:@"responseBody"];
+                      [info synchronize];
+                      
+                  }
+                  
+
+                 
+                  
+                  - (void)wbDialogLogin:(NSString *)token  {
+               //       self.accessToken = token;
+                      // self.expirationDate = expirationDate;
+                      //    self.secret=[self getSecretKeyByToken:token];
+                      //  self.sessionKey=[self getSessionKeyByToken:token];	
+                      //用户信息保存到本地
+                   //   if ([self.sessionDelegate respondsToSelector:@selector(wbDidLogin)]) {  
+                          [_sessionDelegate wbDidLogin];
+                  //    }
+                      
+                  }
+        ////////////////////////////////////////////////////////
                   
                   
                   

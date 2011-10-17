@@ -46,7 +46,10 @@
     return self;
     
 }
-
+-(int)getComment_Count
+{
+    return comment_Count;
+}
 -(NSDate*)getDate
 {
     return update_Time;
@@ -90,7 +93,12 @@
     
     
     [form release];
-    comment_Count=[[feedDic objectForKey:@"comments_count"] intValue];
+    
+    
+   // NSLog(@"%@",[feedDic objectForKey:@"comments_count"]);
+    
+   // NSLog(@"%@",feedDic);
+    comment_Count=[[feedDic objectForKey:@"comment_count"] intValue];
     
     source_ID= [[feedDic objectForKey:@"id"] retain];
     
@@ -98,6 +106,10 @@
     
 }
 
+-(int)getStyle
+{
+    return style;
+}
 
 -(NSString*)getFeedName
 {
@@ -120,6 +132,7 @@
        [owner_Head release];
 
     [source_ID release];
+    [super dealloc];
 }
 
 @end

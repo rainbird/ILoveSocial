@@ -7,10 +7,11 @@
 //
 
 #import "OAuthHTTPRequest.h"
-
+#import "WBDialog.h"
 @class WeiboClient;
 @class User;
 @class SocialFusionViewController;
+
 enum {
     ResetUnreadCountTypeComments = 1,
     ResetUnreadCountTypeReferMe = 2,
@@ -20,7 +21,10 @@ enum {
 
 typedef void (^WCCompletionBlock)(WeiboClient *client);
 
-@interface WeiboClient : NSObject <ASIHTTPRequestDelegate> {
+
+@protocol WBSessionDelegate;
+
+@interface WeiboClient : NSObject <ASIHTTPRequestDelegate,WBDialogDelegate> {
     BOOL _hasError;
     NSString* _errorDesc;
     int _responseStatusCode;
@@ -28,6 +32,9 @@ typedef void (^WCCompletionBlock)(WeiboClient *client);
     WCCompletionBlock _completionBlock;
     
     
+    
+    
+        id<WBSessionDelegate> _sessionDelegate;
     
  //   SocialFusionViewController* _delegate;
 }
@@ -112,9 +119,37 @@ typedef void (^WCCompletionBlock)(WeiboClient *client);
 
 
 
+- (void)authorize:(NSArray *)permissions
+         delegate:(id<WBSessionDelegate>)delegate ;
++ (void)setTokenWithHTTPResponseString:(NSString *)responseString;
+/*
 - (void)setDelegate:(id)delegate;
 
 -(void)oAuth:(SEL)_sSel withFailedSelector:(SEL)_eSel;
 - (void)handleOpenURL:(NSURL *)url;
+ 
+ 
+*/
+
+
+@end
+
+@protocol WBSessionDelegate <NSObject>
+
+@optional
+/**
+ * 用户的登录成功后，第三方开发者实现这个方法
+ */
+- (void)wbDidLogin;
+
+/**
+ * 用户退出后调用 第三方开发者实现这个方法
+ */
+- (void)wbDidLogout;
+
+/**
+ *
+ */
+- (void)wbDidNotLogin:(BOOL)cancelled;
 
 @end

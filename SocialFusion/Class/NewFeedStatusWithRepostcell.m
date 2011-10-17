@@ -36,6 +36,17 @@
 {
 
     
+    if ([feedData getStyle]==0)
+    {
+        [_styleView setImage:[UIImage imageNamed:@"Renren12.png"]];
+    }
+    else
+    {
+        [_styleView setImage:[UIImage imageNamed:@"Weibo12.png"]];
+    }
+    [self.headImageView setImage:nil];
+    self.status.text=[feedData getName];
+    
     [self.headImageView setImage:nil];
     
     self.status.text=[feedData getName];
@@ -140,6 +151,14 @@
     [self.repostUserName sizeToFit];
     [self.userName sizeToFit];
 
+    NSString* countSting=[[NSString alloc] initWithFormat:@"回复:%d",[feedData getComment_Count]];
+    _commentCount.text=countSting;
+    [countSting release];
+    
+    [_commentCount sizeToFit];
+    [_commentCount setFrame:CGRectMake(self.status.frame.origin.x+self.status.frame.size.width-_commentCount.frame.size.width, self.time.frame.origin.y, _commentCount.frame.size.width, _commentCount.frame.size.height)];
+    
+    
     
 }
 

@@ -20,7 +20,7 @@
 		<string>Icon.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.bmwchina.a4a.dev.socialfusion</string>
+	<string>com.bmwchina.a4a.dev.SocialFusion</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

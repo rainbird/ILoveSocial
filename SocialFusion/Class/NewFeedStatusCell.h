@@ -25,7 +25,9 @@
     IBOutlet UIView* _buttonView;
 
 
-    
+    IBOutlet UIImageView* _styleView;
+
+    IBOutlet UILabel* _commentCount;
 }
 
 

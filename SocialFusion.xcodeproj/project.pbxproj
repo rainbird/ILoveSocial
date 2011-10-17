@@ -20,6 +20,11 @@
 		7390665C143F095E00835332 /* NewFeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7390665A143F095C00835332 /* NewFeedListController.m */; };
 		73ABE306144145C70067B45F /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE305144145C70067B45F /* NewFeedData.m */; };
 		73ABE38114416E740067B45F /* NewFeedStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE37F14416E730067B45F /* NewFeedStatusCell.m */; };
+		73DD21F6144BC945003BED92 /* WBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DD21F5144BC945003BED92 /* WBDialog.m */; };
+		73DD2216144C0216003BED92 /* Renren12.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DD2214144C0216003BED92 /* Renren12.png */; };
+		73DD2217144C0216003BED92 /* Renren12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DD2215144C0216003BED92 /* Renren12@2x.png */; };
+		73DD221A144C0347003BED92 /* Weibo12.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DD2218144C0347003BED92 /* Weibo12.png */; };
+		73DD221B144C0347003BED92 /* Weibo12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DD2219144C0347003BED92 /* Weibo12@2x.png */; };
 		73F3400F14467EC400F9EDBD /* NewFeedListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F3400D14467EC400F9EDBD /* NewFeedListController.xib */; };
 		73F3401014467EC400F9EDBD /* NewFeedStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */; };
 		73F34015144680BA00F9EDBD /* NewFeedStatusWithRepostcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F34013144680B900F9EDBD /* NewFeedStatusWithRepostcell.m */; };
@@ -191,6 +196,12 @@
 		73ABE305144145C70067B45F /* NewFeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedData.m; sourceTree = "<group>"; };
 		73ABE37E14416E730067B45F /* NewFeedStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedStatusCell.h; sourceTree = "<group>"; };
 		73ABE37F14416E730067B45F /* NewFeedStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedStatusCell.m; sourceTree = "<group>"; };
+		73DD21F4144BC945003BED92 /* WBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBDialog.h; sourceTree = "<group>"; };
+		73DD21F5144BC945003BED92 /* WBDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBDialog.m; sourceTree = "<group>"; };
+		73DD2214144C0216003BED92 /* Renren12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Renren12.png; sourceTree = "<group>"; };
+		73DD2215144C0216003BED92 /* Renren12@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Renren12@2x.png"; sourceTree = "<group>"; };
+		73DD2218144C0347003BED92 /* Weibo12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Weibo12.png; sourceTree = "<group>"; };
+		73DD2219144C0347003BED92 /* Weibo12@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weibo12@2x.png"; sourceTree = "<group>"; };
 		73F3400D14467EC400F9EDBD /* NewFeedListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedListController.xib; sourceTree = "<group>"; };
 		73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedStatusCell.xib; sourceTree = "<group>"; };
 		73F34012144680B900F9EDBD /* NewFeedStatusWithRepostcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedStatusWithRepostcell.h; sourceTree = "<group>"; };
@@ -715,6 +726,10 @@
 		E1ABA433141FA882002CD0A6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				73DD2218144C0347003BED92 /* Weibo12.png */,
+				73DD2219144C0347003BED92 /* Weibo12@2x.png */,
+				73DD2214144C0216003BED92 /* Renren12.png */,
+				73DD2215144C0216003BED92 /* Renren12@2x.png */,
 				7352100A1446C1550010DCD4 /* feedRepostCellRepostbutton.png */,
 				7352100B1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png */,
 				E1E5DF57143B44A60098BBD3 /* tableviewBackgroundGray.png */,
@@ -831,6 +846,8 @@
 				E1ABA478141FA882002CD0A6 /* Base64Transcoder.h */,
 				E1ABA480141FA882002CD0A6 /* NSString+URLEncoding.h */,
 				E1ABA481141FA882002CD0A6 /* NSString+URLEncoding.m */,
+				73DD21F4144BC945003BED92 /* WBDialog.h */,
+				73DD21F5144BC945003BED92 /* WBDialog.m */,
 				E1ABA482141FA882002CD0A6 /* OAuthHTTPRequest.h */,
 				E1ABA483141FA882002CD0A6 /* OAuthHTTPRequest.m */,
 				E1ABA484141FA882002CD0A6 /* WeiboClient.h */,
@@ -1011,6 +1028,10 @@
 				735210101446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png in Resources */,
 				735210111446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png in Resources */,
 				7309DDC51448253D00774011 /* NewFeedBlogCell.xib in Resources */,
+				73DD2216144C0216003BED92 /* Renren12.png in Resources */,
+				73DD2217144C0216003BED92 /* Renren12@2x.png in Resources */,
+				73DD221A144C0347003BED92 /* Weibo12.png in Resources */,
+				73DD221B144C0347003BED92 /* Weibo12@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,6 +1125,7 @@
 				73F4F978144A9EA400A692F7 /* OAServiceTicket.m in Sources */,
 				73F4F979144A9EA400A692F7 /* OAToken.m in Sources */,
 				73F4F9C5144AAD8D00A692F7 /* WBRequest.m in Sources */,
+				73DD21F6144BC945003BED92 /* WBDialog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1184,7 +1206,7 @@
 				GCC_PREFIX_HEADER = "SocialFusion/SocialFusion-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "SocialFusion/SocialFusion-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1200,7 +1222,7 @@
 				GCC_PREFIX_HEADER = "SocialFusion/SocialFusion-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "SocialFusion/SocialFusion-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;

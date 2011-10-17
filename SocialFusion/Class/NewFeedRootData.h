@@ -28,7 +28,11 @@
     NSString*   source_ID;
 }
 
+
+-(int)getStyle;
+-(int)getComment_Count;
 //初始化
+
 -(id)initWithDictionary:(NSDictionary*)feedDic;
 -(id)initWithSinaDictionary:(NSDictionary*)feedDic;
 -(NSString*)getFeedName;

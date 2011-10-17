@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/SDK/WeiboSDK/WeiboClient.m"
-         timestampString = "340467803.84852"
+         timestampString = "340515269.049737"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "563"
-         endingLineNumber = "563"
+         startingLineNumber = "700"
+         endingLineNumber = "700"
          landmarkName = "-requestFinished:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -37,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/SocialFusionAppDelegate.m"
-         timestampString = "340471314.960025"
+         timestampString = "340512571.859568"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "67"
-         endingLineNumber = "67"
+         startingLineNumber = "68"
+         endingLineNumber = "68"
          landmarkName = "-applicationWillEnterForeground:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -51,11 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/SocialFusionAppDelegate.m"
-         timestampString = "340471314.960025"
+         timestampString = "340512571.859568"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "81"
-         endingLineNumber = "81"
+         startingLineNumber = "82"
+         endingLineNumber = "82"
          landmarkName = "-applicationWillEnterForeground:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -65,26 +65,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/SocialFusionAppDelegate.m"
-         timestampString = "340471314.960025"
+         timestampString = "340512571.859568"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "71"
-         endingLineNumber = "71"
+         startingLineNumber = "72"
+         endingLineNumber = "72"
          landmarkName = "-applicationWillEnterForeground:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "SocialFusion/Class/SocialFusionViewController.m"
-         timestampString = "340468427.686191"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "228"
-         endingLineNumber = "228"
-         landmarkName = "-wbDidLogin"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -107,12 +93,82 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/SocialFusionAppDelegate.m"
-         timestampString = "340471314.960025"
+         timestampString = "340512571.859568"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "96"
-         endingLineNumber = "96"
-         landmarkName = "-applicationDidBecomeActive:"
+         startingLineNumber = "75"
+         endingLineNumber = "75"
+         landmarkName = "-applicationWillEnterForeground:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "SocialFusion/Class/SocialFusionViewController.m"
+         timestampString = "340513161.993226"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "230"
+         endingLineNumber = "230"
+         landmarkName = "-wbDidLogin"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "SocialFusion/SDK/WeiboSDK/WBDialog.m"
+         timestampString = "340513354.450582"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "751"
+         endingLineNumber = "751"
+         landmarkName = "-requestTokenTicket:finishedWithData:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "SocialFusion/SDK/WeiboSDK/WBDialog.m"
+         timestampString = "340522918.707241"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "772"
+         endingLineNumber = "772"
+         landmarkName = "-requestTokenTicket:finishedWithData:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "SocialFusion/SDK/WeiboSDK/WeiboClient.m"
+         timestampString = "340515269.049737"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "567"
+         endingLineNumber = "567"
+         landmarkName = "-requestFinished:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "SocialFusion/Class/NewFeedRootData.m"
+         timestampString = "340528504.969211"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "98"
+         endingLineNumber = "98"
+         landmarkName = "-initWithSinaDictionary:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
