@@ -627,23 +627,9 @@ else if (oauth_token==nil&&([[url absoluteString] isEqualToString:@"http://api.t
 	  // NSString *tokenString = [self getStringFromUrl:q needle:@"oauth_token="];
 	   NSString *expTime = [self getStringFromUrl:q needle:@"oauth_verifier="];
         
-        //NSLog(@"token=%@     verifier=%@",token,expTime);
-	
-    
-    
-    
-    
-    
-    
-  //  NSLog(@"Ëé∑ÂæóÂ∑≤ÊéàÊùÉÁöÑkey:%@",[url query]);
-//	NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
-	//NSString *string = [[url query] substringWithRange:NSMakeRange([[url query] length]-6, 6)];
-    
-	
+
      OAConsumer *consumer = [[OAConsumer alloc] initWithKey:@"808405667" secret:@"2e76c5fca5ac0934c4e4e4114455e261"];
-  //  NSLog(@"Âà©Áî®Êï∞ÊçÆÊåÅ‰πÖÂèñÂæóÁ¨¨‰∫åÊ≠•Ëé∑ÂæóÁöÑtoken");
-    
-    
+
     
     NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
 	OAToken *token = [[OAToken alloc] initWithHTTPResponseBody:[info valueForKey:@"responseBody"]];
@@ -665,49 +651,6 @@ else if (oauth_token==nil&&([[url absoluteString] isEqualToString:@"http://api.t
     
     [fetcher start];
     [fetcher release];
-  /*  [fetcher fetchDataWithRequest:hmacSha1Request 
-                         delegate:self
-                didFinishSelector:@selector(requestTokenTicket:finishedWithData:)
-                  didFailSelector:@selector(requestTokenTicket:failedWithError:)];
-
-    */
-    
-    /*
-    NSDate *expirationDate =nil;
-	   if (expTime != nil) {
-		  int expVal = [expTime intValue];
-		  if (expVal == 0) {
-			 expirationDate = [NSDate distantFuture];
-		  } else {
-			expirationDate = [NSDate dateWithTimeIntervalSinceNow:expVal];
-		  } 
-	   } 
-	   if ((token == (NSString *) [NSNull null]) || (token.length == 0)) {
-		  [self dialogDidCancel:url];
-		  [self dismissWithSuccess:NO animated:YES];
-	   } else {
-		if ([_delegate respondsToSelector:@selector(wbDialogLogin:expirationDate:)]) {
-			[_delegate wbDialogLogin:token expirationDate:expirationDate];
-		}
-		[self dismissWithSuccess:YES animated:YES];
-	   }
-	  }
-   NSString *flag = [self getStringFromUrl:q needle:@"flag="];	
-   if ([flag isEqualToString:@"success"]) {
-	   NSString *query = [url fragment];
-	   if (!query) {
-		   query = [url query];
-	   }
-	   NSDictionary *params = [self parseURLParams:query];
-	   if ([_delegate respondsToSelector:@selector(widgetDialogCompleteWithDict:)]) {
-		   [_delegate widgetDialogCompleteWithDict:params];
-	   }
-   }
-  if ([_delegate respondsToSelector:@selector(dialogCompleteWithUrl:)]) {
-    [_delegate dialogCompleteWithUrl:url];
-  }
-  [self dismissWithSuccess:YES animated:YES];
-     */
 }
 
 

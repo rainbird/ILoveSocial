@@ -190,10 +190,9 @@
         WeiboClient *weibo = [WeiboClient client];
        // [weibo setDelegate:self];
         //[weibo oAuth:@selector(wbDidLogin) withFailedSelector:@selector(wbDidLogin)];
-   [weibo authorize:nil delegate:self];
+        [weibo authorize:nil delegate:self];
 
         
-    
     }
     else {
         [self showHasLoggedInAlert:LOGOUT_WEIBO];
@@ -215,6 +214,10 @@
     }
 }
 
+- (void)wbDidNotLogin:(BOOL)cancelled
+{
+    
+}
 
 -(void)finished
 {

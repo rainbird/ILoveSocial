@@ -85,8 +85,8 @@
     //NSLog(@"%@",dateString);
     
     
-    NSDate* date=[NSDate dateWithTimeIntervalSinceNow:0];
-   NSLog(@"%@",[form stringFromDate:date]);
+    //NSDate* date=[NSDate dateWithTimeIntervalSinceNow:0];
+   //NSLog(@"%@",[form stringFromDate:date]);
     //NSDate* aaa=[[form dateFromString: dateString] retain];
     //NSLog(@"%@",aaa);
 	update_Time=[[form dateFromString: dateString] retain];

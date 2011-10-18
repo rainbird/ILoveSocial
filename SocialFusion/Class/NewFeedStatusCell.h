@@ -38,6 +38,7 @@
 
 @property(nonatomic, retain) IBOutlet UILabel* time;
 
++(NSString*)getTimeBefore:(NSDate*)date;
 
 - (IBAction)cancelButton:(id)sender;
 -(void)configureCell:(NewFeedData*)feedData;

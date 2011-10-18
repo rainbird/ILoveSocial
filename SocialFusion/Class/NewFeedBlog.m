@@ -47,7 +47,7 @@
     //if (description==nil)
     //description=@"";
     
-    NSString* tempString=@"";
+NSString* tempString=[[[NSString alloc] initWithFormat:@""] autorelease];
     
     
     int nameLength=[owner_Name length];
@@ -55,13 +55,13 @@
     for (int i=0;i<nameLength;i++)
     {
         
-        if ([owner_Name characterAtIndex:i]<256)
+        if ([owner_Name characterAtIndex:i]<512)
         {
-            tempString=[tempString stringByAppendingString:@"   "];
+            tempString=[tempString stringByAppendingString:@" "];
         }
         else
         {
-            tempString=[tempString stringByAppendingString:@"    "];
+            tempString=[tempString stringByAppendingString:@"  "];
         }
     }
     
@@ -69,7 +69,7 @@
     
     
     
-    return [[tempString stringByAppendingFormat:@" %@",prefix] stringByAppendingFormat:@"  %@",title]  ;
+    return [[tempString stringByAppendingFormat:@"%@",prefix] stringByAppendingFormat:@"%@",title]  ;
     
 }
 

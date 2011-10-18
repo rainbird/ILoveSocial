@@ -274,6 +274,9 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 	[self.egoHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading];
   
   //  NSLog(@"%@",_feedArray);
+    
+    [self showLoadMoreDataButton];
+
    [_tableView reloadData];
      
 }
@@ -288,6 +291,10 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
 	[self.egoHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    
+    
+       
+    
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {	
@@ -296,9 +303,26 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     if (!decelerate)
 	{
         [ self loadExtraDataForOnscreenRows ];
+        
+        
+        
+        
+        CGPoint offset = scrollView.contentOffset;       
+        CGRect bounds = scrollView.bounds;       
+        CGSize size = scrollView.contentSize;       
+        UIEdgeInsets inset = scrollView.contentInset;       
+        float y = offset.y + bounds.size.height - inset.bottom;       
+        float h = size.height;       
+        float reload_distance = 10;       
+        if(y > h + reload_distance) {           
+            //NSLog(@"load more rows");  
+            
+            [self loadMoreData];
+        }   
 
        // NSLog(@"12345");
     }
+    
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -306,6 +330,19 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     //NSLog(@"scrollViewDidEndDecelerating");
          //  NSLog(@"12345");
     [ self loadExtraDataForOnscreenRows ];
+    CGPoint offset = scrollView.contentOffset;       
+    CGRect bounds = scrollView.bounds;       
+    CGSize size = scrollView.contentSize;       
+    UIEdgeInsets inset = scrollView.contentInset;       
+    float y = offset.y + bounds.size.height - inset.bottom;       
+    float h = size.height;       
+    float reload_distance = -10;       
+    if(y > h + reload_distance) {           
+        //NSLog(@"load more rows");  
+        
+        [self loadMoreData];
+    }   
+
 }
 
 - (void)loadExtraDataForOnscreenRows 
@@ -375,8 +412,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
-    [self showLoadMoreDataButton];
+    [self hideLoadMoreDataButton];
     _pageNumber=1;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -404,7 +440,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     _loading = NO;
     
     [self configureToolbar];
-    NSLog(@"friend list view did load");
+   // NSLog(@"friend list view did load");
     self.navigationController.toolbarHidden = NO;
     
    self.egoHeaderView.textColor = [UIColor whiteColor];
@@ -474,6 +510,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+ //这里有点乱，需要改
     
     if ([[_feedArray objectAtIndex:indexPath.row] class]==[NewFeedData class] )
     {
@@ -481,28 +518,27 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         {
             NSString* tempString=[[_feedArray objectAtIndex:indexPath.row] getName];
             CGSize size = CGSizeMake(212, 1000);
-            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14]
+            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
                                       constrainedToSize:size];
             
             if (labelSize.height<50)
             {
                 return 70;
             }
-            
-            
+
             return labelSize.height+20;
         }
         else
         {
             NSString* tempString=[[_feedArray objectAtIndex:indexPath.row] getName];
             CGSize size = CGSizeMake(212, 1000);
-            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14]
+            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
                                       constrainedToSize:size];
             
             
             NSString* tempString1=[[_feedArray objectAtIndex:indexPath.row] getPostMessage];
             CGSize size1 = CGSizeMake(200, 1000);
-            CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12]
+            CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Courier New" size:12]
                                         constrainedToSize:size1];
             return labelSize.height+labelSize1.height+50;
         }
@@ -511,13 +547,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     {
         NSString* tempString=[[_feedArray objectAtIndex:indexPath.row] getName];
         CGSize size = CGSizeMake(212, 1000);
-        CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14]
+        CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
                                   constrainedToSize:size];
         
         
         NSString* tempString1=[[_feedArray objectAtIndex:indexPath.row] getBlog];
         CGSize size1 = CGSizeMake(212, 1000);
-        CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12]
+        CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Courier New" size:12]
                                     constrainedToSize:size1];
         return labelSize.height+labelSize1.height+30;
         
@@ -532,11 +568,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     static NSString *RepostStatusCell=@"NewFeedRepostCell";
     static NSString *BlogCell=@"NewFeedBlogCell";
     
-    
-    
 
     NewFeedStatusCell* cell;
-    
 
     
     if ([[_feedArray objectAtIndex:indexPath.row] class]==[NewFeedData class])
@@ -547,11 +580,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             if (cell == nil) {
                 [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
                 cell = _feedStatusCel;
-                // cell=[[NewFeedStatusCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-                
+                                
             }
-            
-            
         }
         
         else
@@ -560,9 +590,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             if (cell == nil) {
                 [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusWithRepostcell" owner:self options:nil];
                 cell = _feedRepostStatusCel;
-                // cell=[[NewFeedStatusCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-                
-            }
+        }
             
         }
     }
@@ -574,8 +602,11 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             [[NSBundle mainBundle] loadNibNamed:@"NewFeedBlogCell" owner:self options:nil];
             cell = _newFeedBlogCel;
         }
-
     }
+    
+    
+    
+    
     [cell configureCell:[_feedArray objectAtIndex:indexPath.row]];
     return cell;
     
@@ -594,12 +625,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
     UIImage *image =[UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
     NewFeedStatusCell *cell = (NewFeedStatusCell*)[self.tableView cellForRowAtIndexPath:indexPath];
- 
-    
-    
-    
-    
-    
+
     [cell performSelectorOnMainThread:@selector(setUserHeadImage:) withObject:image waitUntilDone:NO];
     [pool release];
 }

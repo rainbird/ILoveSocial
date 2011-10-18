@@ -23,29 +23,9 @@
 {
     
     
-    [self.headImageView setImage:nil];
+    [super configureCell:feedData];
     
-    self.status.text=[feedData getName];
-    
-    [self.userName setTitle:[feedData getFeedName] forState:UIControlStateNormal];
-    
-    // [cell.status sizeToFit];
-    
-    
-    
-    
-    
-    CGSize size = CGSizeMake(212, 1000);
-    
-    
-    CGSize labelSize = [self.status.text sizeWithFont:self.status.font 
-                                    constrainedToSize:size];
-    
-    self.status.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y,
-                                   self.status.frame.size.width, labelSize.height);
-    
-    self.status.lineBreakMode = UILineBreakModeWordWrap;
-    self.status.numberOfLines = 0;
+ 
     
     
     
@@ -65,39 +45,12 @@
     self.blog.numberOfLines = 0;
     
    
-    
-    if (self.frame.size.height<50)
-    {
-        self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, labelSize.height+20);
-    }
-    
-    
     NSDate* FeedDate=[feedData getDate];
     
     //NSLog(@"%@",FeedDate);
-    int time=-[FeedDate timeIntervalSinceNow];
     
-    NSString* tempString;
-    if (time<0)
-    {
-        tempString=[[NSString alloc] initWithFormat:@"0秒前"];
-    }
-    else if (time<60)
-    {
-        tempString=[[NSString alloc] initWithFormat:@"%d秒前",time];
-    }
-    else if (time<3600)
-    {
-        tempString=[[NSString alloc]  initWithFormat:@"%d分钟前",time/60];
-    }
-    else if (time<(3600*24))
-    {
-        tempString= [[NSString alloc]  initWithFormat:@"%d小时前",time/3600];
-    }
-    else
-    {
-        tempString= [[NSString alloc]  initWithFormat:@"%d小时前",time/(3600*24)];
-    }
+    NSString* tempString=[NewFeedStatusCell getTimeBefore:FeedDate];
+    
     
     //NSLog(@"%@",tempString);
     
@@ -105,10 +58,16 @@
                                  self.time.frame.size.width,self.time.frame.size.height); 
     self.time.text=tempString ;
     [tempString release];
-
+    
+    NSString* countSting=[[NSString alloc] initWithFormat:@"回复:%d",[feedData getComment_Count]];
+    _commentCount.text=countSting;
+    [countSting release];
+    [_commentCount sizeToFit];
+    [_commentCount setFrame:CGRectMake(self.status.frame.origin.x+self.status.frame.size.width-_commentCount.frame.size.width, self.time.frame.origin.y, _commentCount.frame.size.width, _commentCount.frame.size.height)];
+    
     
 
-    [self.userName sizeToFit];
+    
 }
 
 

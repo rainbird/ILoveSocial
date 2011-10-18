@@ -20,8 +20,7 @@
        [post_Status release];
           [post_Name release];
     [post_ID release];
-    
-    
+
 
 
      [message release];
@@ -31,20 +30,20 @@
 
 -(NSString*)getPostMessage
 {
-    NSString* tempString=@"";
+    NSString* tempString=[[[NSString alloc] initWithFormat:@""] autorelease];
    
     int nameLength=[post_Name length];
     
     for (int i=0;i<nameLength;i++)
     {
         
-        if ([post_Name characterAtIndex:i]<256)
+        if ([post_Name characterAtIndex:i]<512)
         {
-            tempString=[tempString stringByAppendingString:@"   "];
+            tempString=[tempString stringByAppendingString:@" "];
         }
         else
         {
-            tempString=[tempString stringByAppendingString:@"    "];
+            tempString=[tempString stringByAppendingString:@"  "];
         }
     }
     
@@ -52,7 +51,7 @@
     
     
    // NSLog(@"%@",[tempString stringByAppendingFormat:@"%@",post_Status]);
-    return [tempString stringByAppendingFormat:@" %@",post_Status] ;
+    return [tempString stringByAppendingFormat:@":%@",post_Status] ;
     
 
 }
@@ -70,8 +69,7 @@
 
     //if (description==nil)
     //description=@"";
-    
-    NSString* tempString=@"";
+    NSString* tempString=[[[NSString alloc] initWithFormat:@""] autorelease];
 
     
     int nameLength=[owner_Name length];
@@ -79,13 +77,13 @@
     for (int i=0;i<nameLength;i++)
     {
         
-        if ([owner_Name characterAtIndex:i]<256)
+        if ([owner_Name characterAtIndex:i]<512)
         {
-              tempString=[tempString stringByAppendingString:@"   "];
+              tempString=[tempString stringByAppendingString:@" "];
         }
         else
         {
-            tempString=[tempString stringByAppendingString:@"    "];
+            tempString=[tempString stringByAppendingString:@"  "];
         }
     }
 
@@ -93,7 +91,7 @@
     
     
     
-    return [tempString stringByAppendingFormat:@" %@",message]  ;
+    return [tempString stringByAppendingFormat:@":%@",message]  ;
     
 }
 -(id)initWithDictionary:(NSDictionary*)feedDic
