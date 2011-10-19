@@ -7,7 +7,7 @@
 //
 
 #import "NewFeedStatusWithRepostcell.h"
-
+#import "CommonFunction.h"
 
 @implementation NewFeedStatusWithRepostcell
 
@@ -94,7 +94,7 @@
     NSDate* FeedDate=[feedData getDate];
     
     
-    NSString* tempString=[NewFeedStatusCell getTimeBefore:FeedDate];
+    NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
     
     //NSLog(@"%@",tempString);
     

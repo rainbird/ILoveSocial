@@ -96,7 +96,7 @@ static NSString* const AppID = @"150399";
 
 // please modify your permissions here
 - (void)authorize {
-    NSArray *permissions = [[NSArray arrayWithObjects:@"read_user_feed photo_upload publish_feed status_update operate_like read_user_status",nil] retain];
+    NSArray *permissions = [[NSArray arrayWithObjects:@"read_user_feed photo_upload publish_feed status_update operate_like read_user_status read_user_status",nil] retain];
     
     NSLog(@"人人网 OAuth2.0 请求认证授权");
     if (![RenrenClient authorized]) {
@@ -380,4 +380,22 @@ static NSString* const AppID = @"150399";
     [tempString release];
 	[self requestWithParams:params andDelegate:self];
 }
+
+
+-(void)getComments:(NSString*)userID status_ID:(NSString*)status pageNumber:(int)pageNumber
+{
+    
+    NSString* tempString=[[NSString alloc] initWithFormat:@"%d",pageNumber];
+    NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 @"status.getComment",@"method",
+                                 status,@"status_id",
+                                 userID,@"owner_id",
+                                 tempString,@"page",
+                                 @"1",@"order",
+                                 nil];
+    [tempString release];
+	[self requestWithParams:params andDelegate:self];
+}
+
+
 @end

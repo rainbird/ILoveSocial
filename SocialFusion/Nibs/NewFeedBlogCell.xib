@@ -163,13 +163,13 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="996356377">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="590063620">
 									<string key="name">CourierNewPSMT</string>
 									<string key="family">Courier New</string>
 									<int key="traits">0</int>
 									<double key="pointSize">12</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="419729850">
+								<object class="NSFont" key="IBUIFont" id="1032877109">
 									<string key="NSName">CourierNewPSMT</string>
 									<double key="NSSize">12</double>
 									<int key="NSfFlags">16</int>
@@ -191,8 +191,8 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<reference key="IBUIFontDescription" ref="996356377"/>
-								<reference key="IBUIFont" ref="419729850"/>
+								<reference key="IBUIFontDescription" ref="590063620"/>
+								<reference key="IBUIFont" ref="1032877109"/>
 							</object>
 							<object class="IBUILabel" id="312469470">
 								<reference key="NSNextResponder" ref="881861137"/>
@@ -214,8 +214,8 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<reference key="IBUIFontDescription" ref="996356377"/>
-								<reference key="IBUIFont" ref="419729850"/>
+								<reference key="IBUIFontDescription" ref="590063620"/>
+								<reference key="IBUIFont" ref="1032877109"/>
 							</object>
 							<object class="IBUIImageView" id="209393939">
 								<reference key="NSNextResponder" ref="881861137"/>
@@ -652,6 +652,57 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
+					<string key="className">DragRefreshTableViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">backButtonPressed:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">backButtonPressed:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">backButtonPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>tableView</string>
+							<string>tableViewBackground</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UITableView</string>
+							<string>UIImageView</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>tableView</string>
+							<string>tableViewBackground</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">tableView</string>
+								<string key="candidateClassName">UITableView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">tableViewBackground</string>
+								<string key="candidateClassName">UIImageView</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/DragRefreshTableViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">NewFeedBlogCell</string>
 					<string key="superclassName">NewFeedStatusCell</string>
 					<object class="NSMutableDictionary" key="outlets">
@@ -672,18 +723,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NewFeedListController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">backButtonPressed:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">backButtonPressed:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">backButtonPressed:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
+					<string key="superclassName">DragRefreshTableViewController</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
@@ -691,16 +731,12 @@
 							<string>_feedRepostStatusCel</string>
 							<string>_feedStatusCel</string>
 							<string>_newFeedBlogCel</string>
-							<string>tableView</string>
-							<string>tableViewBackground</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NewFeedStatusWithRepostcell</string>
 							<string>NewFeedStatusCell</string>
 							<string>NewFeedBlogCell</string>
-							<string>UITableView</string>
-							<string>UIImageView</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -710,8 +746,6 @@
 							<string>_feedRepostStatusCel</string>
 							<string>_feedStatusCel</string>
 							<string>_newFeedBlogCel</string>
-							<string>tableView</string>
-							<string>tableViewBackground</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -726,14 +760,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">_newFeedBlogCel</string>
 								<string key="candidateClassName">NewFeedBlogCell</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">tableView</string>
-								<string key="candidateClassName">UITableView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">tableViewBackground</string>
-								<string key="candidateClassName">UIImageView</string>
 							</object>
 						</object>
 					</object>

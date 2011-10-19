@@ -15,6 +15,14 @@
 {
     return nil;
 }
+-(NSString*)getActor_ID
+{
+    return actor_ID;
+}
+-(NSString*)getSource_ID
+{
+    return source_ID;
+}
 -(id)initWithDictionary:(NSDictionary*)feedDic
 {
 
@@ -22,7 +30,9 @@
     style=0;
     
     
-    actor_ID=[[feedDic objectForKey:@"actor_id"] retain];
+    actor_ID=[[[feedDic objectForKey:@"actor_id"] stringValue] retain];
+    
+    
     
     owner_Head= [[feedDic objectForKey:@"headurl"] retain];
     
@@ -41,7 +51,7 @@
     [form release];
     comment_Count=[[[feedDic objectForKey:@"comments"] objectForKey:@"count"] intValue];
     
-    source_ID= [[feedDic objectForKey:@"source_id"] retain];
+    source_ID= [[[feedDic objectForKey:@"source_id"] stringValue] retain];
     
     return self;
     
@@ -59,7 +69,7 @@
 {
     style=1;
     
-    actor_ID=[[[feedDic objectForKey:@"user"] objectForKey:@"id"] retain];
+    actor_ID=[[[[feedDic objectForKey:@"user"] objectForKey:@"id"] stringValue] retain];
 
     
     owner_Head= [[[feedDic objectForKey:@"user"] objectForKey:@"profile_image_url"] retain];
@@ -100,7 +110,7 @@
    // NSLog(@"%@",feedDic);
     comment_Count=[[feedDic objectForKey:@"comment_count"] intValue];
     
-    source_ID= [[feedDic objectForKey:@"id"] retain];
+    source_ID= [[[feedDic objectForKey:@"id"] stringValue] retain];
     
     return self;
     

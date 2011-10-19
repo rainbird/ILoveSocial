@@ -7,7 +7,7 @@
 //
 
 #import "NewFeedBlogCell.h"
-
+#import "CommonFunction.h"
 
 @implementation NewFeedBlogCell
 @synthesize blog=_blog;
@@ -49,7 +49,7 @@
     
     //NSLog(@"%@",FeedDate);
     
-    NSString* tempString=[NewFeedStatusCell getTimeBefore:FeedDate];
+    NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
     
     
     //NSLog(@"%@",tempString);

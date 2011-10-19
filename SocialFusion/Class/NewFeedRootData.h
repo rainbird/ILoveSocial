@@ -38,6 +38,7 @@
 -(NSString*)getFeedName;
 -(NSString*)getHeadURL;
 -(NSDate*)getDate;
-
+-(NSString*)getActor_ID;
+-(NSString*)getSource_ID;
 -(NSString*)getBlog;
 @end

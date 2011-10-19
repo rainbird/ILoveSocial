@@ -8,7 +8,8 @@
 
 #import "NewFeedStatusCell.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "CommonFunction.h"
+#import "NewFeedBlog.h"
 @implementation NewFeedStatusCell
 
 @synthesize defaultHeadImageView = _defaultHeadImageView;
@@ -16,41 +17,6 @@
 @synthesize userName = _userName;
 @synthesize status = _status;
 @synthesize time = _time;
-+(NSString*)getTimeBefore:(NSDate*)date
-{
-   
-    
-    //NSLog(@"%@",FeedDate);
-    int time=-[date timeIntervalSinceNow];
-    
-    NSString* tempString;
-    
-    
-    
-    if (time<0)
-    {
-        tempString=[[NSString alloc] initWithFormat:@"0秒前"];
-    }
-    else if (time<60)
-    {
-        tempString=[[NSString alloc] initWithFormat:@"%d秒前",time];
-    }
-    else if (time<3600)
-    {
-        tempString=[[NSString alloc]  initWithFormat:@"%d分钟前",time/60];
-    }
-    else if (time<(3600*24))
-    {
-        tempString= [[NSString alloc]  initWithFormat:@"%d小时前",time/3600];
-    }
-    else
-    {
-        tempString= [[NSString alloc]  initWithFormat:@"%d小时前",time/(3600*24)];
-    }
-    
-    return tempString;
-}
-
 - (void)awakeFromNib
 {
     self.defaultHeadImageView.layer.masksToBounds = YES;
@@ -73,6 +39,67 @@
     
     [super dealloc];
 }
+
+
++(float)heightForCell:(NewFeedData*)feedData
+{
+    
+    
+    if ([feedData class]==[NewFeedData class] )
+    {
+        if ([feedData getPostName]==nil)
+        {
+            NSString* tempString=[feedData getName];
+            CGSize size = CGSizeMake(212, 1000);
+            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
+                                      constrainedToSize:size];
+            
+            if (labelSize.height<50)
+            {
+                return 70;
+            }
+            
+            return labelSize.height+20;
+        }
+        else
+        {
+            NSString* tempString=[feedData getName];
+            CGSize size = CGSizeMake(212, 1000);
+            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
+                                      constrainedToSize:size];
+            
+            
+            NSString* tempString1=[feedData getPostMessage];
+            CGSize size1 = CGSizeMake(200, 1000);
+            CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Courier New" size:12]
+                                        constrainedToSize:size1];
+            return labelSize.height+labelSize1.height+50;
+        }
+    }
+    else if ([feedData class]==[NewFeedBlog class] )
+    {
+        NSString* tempString=[feedData getName];
+        CGSize size = CGSizeMake(212, 1000);
+        CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
+                                  constrainedToSize:size];
+        
+        
+        NSString* tempString1=[feedData getBlog];
+        CGSize size1 = CGSizeMake(212, 1000);
+        CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Courier New" size:12]
+                                    constrainedToSize:size1];
+        return labelSize.height+labelSize1.height+30;
+        
+        
+    }
+    return 0;
+    
+    
+}
+
+
+
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -93,7 +120,7 @@
    
 }   
 
-
+/*
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (_buttonViewShowed==NO)
@@ -107,6 +134,9 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
+    [self setSelected:YES];
+    
     if (_buttonViewShowed==NO)
     {
     UITouch* touch=[touches anyObject];
@@ -139,7 +169,9 @@
         }
     }
     }
+     
 }
+*/
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     //NSLog(@"selected:%d", selected);
@@ -218,7 +250,7 @@
     //NSLog(@"%@",FeedDate);
 
     
-    NSString* tempString=[NewFeedStatusCell getTimeBefore:FeedDate];
+    NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
     
     //NSLog(@"%@",tempString);
     

@@ -7,33 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGORefreshTableHeaderView.h"
+#import "DragRefreshTableViewController.h"
+
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "NewFeedStatusCell.h"
 #import "NewFeedStatusWithRepostcell.h"
 #import "NewFeedBlogCell.h"
-@interface NewFeedListController : UIViewController<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,NSFetchedResultsControllerDelegate> {
-    EGORefreshTableHeaderView *_egoHeaderView;
-    BOOL _reloading;
-    BOOL _loading;
-    UIImageView *_topShadowImageView;
-    UIImageView *_bottomShadowImageView;
-    UITableView *_tableView;
-    UIButton *_loadMoreDataButton;
+@interface NewFeedListController : DragRefreshTableViewController<UITableViewDataSource,UITableViewDelegate> {
 
     
-        NSManagedObjectContext *_managedObjectContext;
+  
     
     NSMutableArray* _feedArray;
     NSMutableArray* _tempArray;
     
     
-    RenrenUser *_currentRenrenUser;
-    WeiboUser *_currentWeibosUser;
 
-    
-    
     
     IBOutlet NewFeedStatusCell *_feedStatusCel;
     IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;
@@ -44,33 +34,11 @@
 
 }
 
-
-@property (nonatomic, retain) RenrenUser *currentRenrenUser;
-@property (nonatomic, retain) WeiboUser *currentWeiboUser;
-
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-
-@property(nonatomic, retain) EGORefreshTableHeaderView *egoHeaderView;
-@property(nonatomic, retain) UIButton *loadMoreDataButton;
-
-@property (nonatomic, retain) IBOutlet UIImageView *tableViewBackground;
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
-
-- (void)showHeadImageAnimation:(UIImageView *)imageView;
-- (void)loadExtraDataForOnscreenRowsHelp:(NSIndexPath *)indexPath;
 -(void)loadMoreRenrenData;
 
 -(void)loadRenrenData;
-- (void)showHeadImageAnimation:(UIImageView *)imageView ;
-//to override
-- (void)loadMoreData;
-- (void)refresh;
-- (void)doneLoadingTableViewData;
-- (void)showLoadMoreDataButton;
-- (void)hideLoadMoreDataButton;
-
-- (void)loadExtraDataForOnscreenRows;
 
 
-- (IBAction)backButtonPressed:(id)sender;
+
+
 @end
