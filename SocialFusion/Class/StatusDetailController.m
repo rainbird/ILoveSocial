@@ -354,6 +354,9 @@
     
     _pageNumber=1;
     
+    
+    if ([_feedData getStyle]==0)
+    {
     RenrenClient *renren1 = [RenrenClient client];
     [renren1 setCompletionBlock:^(RenrenClient *client) {
         if(!client.hasError) {
@@ -384,7 +387,43 @@
     }];
     
     [renren1 getStatus:[_feedData getActor_ID] status_ID:[_feedData getSource_ID]];
-
+    }
+    else
+    {
+        WeiboClient *weibo = [WeiboClient client];
+        [weibo setCompletionBlock:^(WeiboClient *client) {
+            if(!client.hasError) {
+                NSDictionary *dic = [client.responseJSONObject objectAtIndex:0];
+                
+                [_feedData setCount:[[dic objectForKey:@"comments"] intValue]];
+                /*  
+                 
+                 if(_completing==YES)
+                 {
+                 _loading=NO;
+                 [self.tableView reloadData];
+                 
+                 }
+                 else
+                 {
+                 _completing=YES;
+                 }
+                 
+                 _pageNumber=[_feedData getComment_Count]/10+1;
+                 */
+                
+                [super viewDidLoad]; 
+            }
+            
+            
+            
+        }];
+        
+        NSArray* tempArray=[[NSArray alloc] initWithObjects:[_feedData getSource_ID], nil];
+        [weibo getCommentsAndRepostsCount:tempArray];
+        [tempArray release];
+      //  [renren1 getStatus:[_feedData getActor_ID] status_ID:[_feedData getSource_ID]];
+    }
     
     
 }

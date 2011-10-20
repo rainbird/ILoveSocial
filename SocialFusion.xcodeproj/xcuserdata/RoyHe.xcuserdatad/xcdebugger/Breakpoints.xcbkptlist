@@ -135,11 +135,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/StatusDetailController.m"
-         timestampString = "340812902.335735"
+         timestampString = "340814596.418774"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "536"
-         endingLineNumber = "536"
+         startingLineNumber = "575"
+         endingLineNumber = "575"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -163,11 +163,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/StatusDetailController.m"
-         timestampString = "340812902.335735"
+         timestampString = "340814596.418774"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "528"
-         endingLineNumber = "528"
+         startingLineNumber = "567"
+         endingLineNumber = "567"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -252,7 +252,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "142"
          endingLineNumber = "142"
-         landmarkName = "-initWithSelfDic:andStyle:andCount:"
+         landmarkName = "-initWithSelfDic:andStyle:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
