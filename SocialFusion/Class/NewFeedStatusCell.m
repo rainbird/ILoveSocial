@@ -120,14 +120,17 @@
    
 }   
 
-/*
+/* 这里的问题需要解决
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+
     if (_buttonViewShowed==NO)
     {
 
     UITouch* touch=[touches anyObject];
     _beginPoint=[touch locationInView:self];
+        
+     //   [super touchesBegan:touches withEvent:event];
     }    
 
 }
@@ -135,7 +138,8 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
-    [self setSelected:YES];
+    
+   // [self setSelected:YES];
     
     if (_buttonViewShowed==NO)
     {
@@ -149,6 +153,7 @@
             
             NSLog(@"Moved");
             
+            [self setSelected:NO];
             _buttonView.frame=CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
           
             
@@ -168,6 +173,7 @@
             _buttonViewShowed=YES;
         }
     }
+    
     }
      
 }
@@ -200,10 +206,14 @@
     [_buttonView removeFromSuperview];
     _buttonViewShowed=NO;
 }
-
+-(NewFeedRootData*) getFeedData
+{
+    return _feedData;
+}
 -(void)configureCell:(NewFeedData*)feedData
 {
     
+    _feedData=feedData;
     //  修改人人／weibo小标签
     
     if ([feedData getStyle]==0)

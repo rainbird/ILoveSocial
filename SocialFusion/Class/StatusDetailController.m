@@ -101,6 +101,8 @@
     if(_loading)
         return;
     _loading = YES;
+   // _completing=NO;
+    
     //if(_type == RelationshipViewTypeRenrenFriends) {
     [self loadData];
     
@@ -117,6 +119,12 @@
 {
     if ([_feedData getStyle]==0)
     {
+      
+      //  [renren1 getComments:[_feedData getActor_ID] status_ID:[_feedData getSource_ID] pageNumber:_pageNumber];
+        
+
+        
+        
         RenrenClient *renren = [RenrenClient client];
         [renren setCompletionBlock:^(RenrenClient *client) {
             if(!client.hasError) {
@@ -136,8 +144,19 @@
                 {
                     _showMoreButton=NO;
                 }
+                
                 _loading=NO;
                 [self.tableView reloadData];
+                /*
+                if(_completing==YES)
+                {
+                    
+                }
+                else
+                {
+                    _completing=YES;
+                }
+                 */
             }
             
 
@@ -155,7 +174,7 @@
         [weibo setCompletionBlock:^(WeiboClient *client) {
             if(!client.hasError) {
                 
-                //NSLog(@"%@",client.responseJSONObject);
+                NSLog(@"%@",client.responseJSONObject);
                 NSArray *array = client.responseJSONObject;
                              for(NSDictionary *dict in array) {
                     StatusCommentData* feedData=[[StatusCommentData alloc] initWithSinaDictionary:dict];
@@ -183,6 +202,8 @@
          
             
         }];
+        
+        NSLog(@"%@",[_feedData getSource_ID]);
         [weibo getCommentsOfStatus:[_feedData getSource_ID] page:_pageNumber count:10];
     }
 
@@ -332,7 +353,39 @@
     
     
     _pageNumber=1;
-    [super viewDidLoad]; 
+    
+    RenrenClient *renren1 = [RenrenClient client];
+    [renren1 setCompletionBlock:^(RenrenClient *client) {
+        if(!client.hasError) {
+            NSDictionary *dic = client.responseJSONObject;
+            
+            [_feedData setCount:[[dic objectForKey:@"comment_count"] intValue]];
+            /*  
+             
+             if(_completing==YES)
+             {
+             _loading=NO;
+             [self.tableView reloadData];
+             
+             }
+             else
+             {
+             _completing=YES;
+             }
+             
+             _pageNumber=[_feedData getComment_Count]/10+1;
+             */
+            
+            [super viewDidLoad]; 
+        }
+        
+        
+        
+    }];
+    
+    [renren1 getStatus:[_feedData getActor_ID] status_ID:[_feedData getSource_ID]];
+
+    
     
 }
 
@@ -564,7 +617,7 @@ if (indexPath.row==0)
 
 
 - (IBAction)backButtonPressed:(id)sender {
-    self.navigationController.toolbarHidden = YES;
+   // self.navigationController.toolbarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

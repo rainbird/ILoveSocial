@@ -498,11 +498,36 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
      
 }
 
+-(IBAction)gotoRepostStatus:(id)sender
+{
 
+    NewFeedStatusCell* cell=(NewFeedStatusCell*)[[sender superview] superview];
+    
+
+    NewFeedData* feed=(NewFeedData*)[cell getFeedData];
+    
+    
+    
+
+    StatusDetailController *detailViewController = [[StatusDetailController alloc] initWithNibName:@"StatusDetailController" bundle:nil];
+    // ...
+    // Pass the selected object to the new view controller.
+    detailViewController.toolbarItems=self.toolbarItems;
+    detailViewController.feedData=[feed getOriginalFeed];
+    
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    [detailViewController release];
+    
+    
+    
+}
 - (IBAction)backButtonPressed:(id)sender {
     self.navigationController.toolbarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 
 
 

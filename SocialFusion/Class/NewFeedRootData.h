@@ -41,4 +41,5 @@
 -(NSString*)getActor_ID;
 -(NSString*)getSource_ID;
 -(NSString*)getBlog;
+-(void)setCount:(int)count;
 @end

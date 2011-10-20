@@ -60,6 +60,12 @@
 {
     return comment_Count;
 }
+
+
+-(void)setCount:(int)count
+{
+    comment_Count=count;
+}
 -(NSDate*)getDate
 {
     return update_Time;

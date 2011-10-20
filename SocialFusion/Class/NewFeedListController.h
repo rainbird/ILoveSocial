@@ -39,6 +39,6 @@
 -(void)loadRenrenData;
 
 
-
+-(IBAction)gotoRepostStatus:(id)sender;
 
 @end

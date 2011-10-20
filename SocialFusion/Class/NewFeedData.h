@@ -19,7 +19,7 @@
     //原作者id
     NSString*       post_ID;
     
-    
+    NSString*       post_StatusID;
     //
    // NSString*       description;
 
@@ -30,16 +30,15 @@
     
     //消息
     NSString*       message;
+    
+   // int       post_Count;
 }
 
 
 -(id)initWithDictionary:(NSDictionary*)feedDic;
 -(id)initWithSinaDictionary:(NSDictionary*)feedDic;
-
 -(NSString*)getPostMessage;
 -(NSString*)getPostName;
-
-
 -(NSString*)getName;
-
+-(NewFeedData*)getOriginalFeed;
 @end

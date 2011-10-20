@@ -14,7 +14,7 @@
 
     
 
-    
+    NewFeedRootData* _feedData;
     
     
     
@@ -38,6 +38,7 @@
 
 @property(nonatomic, retain) IBOutlet UILabel* time;
 +(float)heightForCell:(NewFeedData*)feedData;
+-(NewFeedRootData*) getFeedData;
 - (IBAction)cancelButton:(id)sender;
 -(void)configureCell:(NewFeedData*)feedData;
 @end
