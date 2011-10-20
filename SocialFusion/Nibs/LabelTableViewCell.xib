@@ -106,7 +106,7 @@
 							<object class="IBUILabel" id="758943797">
 								<reference key="NSNextResponder" ref="317935453"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{77, 44}</string>
+								<string key="NSFrame">{{0, 7}, {104, 37}}</string>
 								<reference key="NSSuperview" ref="317935453"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="652277080"/>
@@ -120,9 +120,9 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText"/>
-								<object class="NSFont" key="IBUIFont" id="1052859646">
+								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica</string>
-									<double key="NSSize">14</double>
+									<double key="NSSize">16</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor">
@@ -131,10 +131,10 @@
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xNTY4NjI3NDUxIDAuMTU2ODYyNzQ1MSAwLjE1Njg2Mjc0NTEAA</bytes>
+									<bytes key="NSRGB">MC42IDAuMDU4ODIzNTI5NDEgMC4xMDE5NjA3ODQzAA</bytes>
 								</object>
 								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
+								<float key="IBUIMinimumFontSize">16</float>
 								<int key="IBUITextAlignment">1</int>
 							</object>
 						</object>
@@ -165,7 +165,11 @@
 				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="317935453"/>
-				<reference key="IBUIFont" ref="1052859646"/>
+				<object class="NSFont" key="IBUIFont">
+					<string key="NSName">Helvetica</string>
+					<double key="NSSize">14</double>
+					<int key="NSfFlags">16</int>
+				</object>
 				<reference key="IBUITextColor" ref="840487444"/>
 				<reference key="IBUISelectedTextColor" ref="840487444"/>
 			</object>

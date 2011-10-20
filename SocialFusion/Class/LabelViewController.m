@@ -85,7 +85,6 @@
 - (void)setCellSelectedAtIndexPath:(NSIndexPath *)indexPath {
     // if there is a label on the selected label right hand
     for(int i = indexPath.row - indexPath.row % 4; i < _labelName.count && i < 4 - indexPath.row % 4 + indexPath.row; i++) {
-        NSLog(@"cell i:%d", i);
         LabelTableViewCell *cell = (LabelTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
         if(i <= indexPath.row)
             cell.highlightLeftLabelImage.hidden = YES;
@@ -93,14 +92,9 @@
             cell.highlightLeftLabelImage.hidden = NO;
     }
 }
-- (void)setCellUnselectedAtIndexPath:(NSIndexPath *)indexPath {
-    // if there is a label on the selected label right hand
-    
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //[self setCellUnselectedAtIndexPath:_currentCellIndexPath];
     [self setCellSelectedAtIndexPath:indexPath];
     if([self.delegate respondsToSelector:@selector(didSelectLabelAtIndexPath:)]) {
         [self.delegate didSelectLabelAtIndexPath:indexPath];
@@ -127,20 +121,38 @@
     }
     
     if(indexPath.row % 4 == 0) {
+        // 最左边的label
         cell.leftLabelImage.hidden = YES;
         cell.rightLabelImage.hidden = YES;
+        cell.highlightLeftLabelImage.hidden = YES;
     }
     else if(indexPath.row % 4 == 3) {
+        // 最右边的label
         cell.leftLabelImage.hidden = NO;
         cell.rightLabelImage.hidden = NO;
+        cell.highlightLeftLabelImage.hidden = NO;
     }
     else {
+        // 中间的label
         cell.leftLabelImage.hidden = NO;
         cell.rightLabelImage.hidden = YES;
+        cell.highlightLeftLabelImage.hidden = NO;
     }
     
     if(indexPath.row == _labelName.count - 1) {
+        // 最最右边的label
         cell.rightLabelImage.hidden = NO;
+    }
+    
+    // 接下来判断当前滑动到的page有被选中的label的情况
+    if(indexPath.row >= _currentCellIndexPath.row % 4 + _currentCellIndexPath.row 
+       && indexPath.row < 4 - _currentCellIndexPath.row % 4 + _currentCellIndexPath.row) {
+        if(indexPath.row <= _currentCellIndexPath.row) {
+            cell.highlightLeftLabelImage.hidden = YES;
+        }
+        else {
+            cell.highlightLeftLabelImage.hidden = NO;
+        }
     }
     
     if(indexPath.row < _labelName.count)
