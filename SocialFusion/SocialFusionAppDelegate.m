@@ -40,8 +40,8 @@
     // Override point for customization after application launch.
   //  _manageObjectModel1=self.managedObjectContext;
     self.viewController.managedObjectContext = self.managedObjectContext;
-    UINavigationController *navigationController = [NavigationToolBar SFNavigationController];
-    navigationController.viewControllers = [NSArray arrayWithObject:self.viewController];    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    navigationController.navigationBarHidden = YES;
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     return YES;

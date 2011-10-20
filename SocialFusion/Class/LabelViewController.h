@@ -13,9 +13,10 @@
 @interface LabelViewController : UIViewController<UITableViewDataSource, UITableViewDelegate> {
     UITableView *_tableView;
     NSMutableArray *_labelName;
+    NSIndexPath *_currentCellIndexPath;
 }
 
-@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) id<LableViewControllerDelegate> delegate;
 
 @end

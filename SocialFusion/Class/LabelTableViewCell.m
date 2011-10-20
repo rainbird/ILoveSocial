@@ -10,7 +10,10 @@
 
 @implementation LabelTableViewCell
 @synthesize labelName = _labelName;
-@synthesize highlightLabelImage = _highlightLabelImage;
+@synthesize leftLabelImage = _leftLabelImage;
+@synthesize midLabelImage = _midLabelImage;
+@synthesize rightLabelImage = _rightLabelImage;
+@synthesize highlightLeftLabelImage = _highlightLeftLabelImage;
 
 - (void)awakeFromNib
 {
@@ -20,7 +23,10 @@
 
 - (void)dealloc {
     [_labelName release];
-    [_highlightLabelImage release];
+    [_leftLabelImage release];
+    [_midLabelImage release];
+    [_rightLabelImage release];
+    [_highlightLeftLabelImage release];
     [super dealloc];
 }
 
@@ -29,13 +35,13 @@
     if(highlighted == NO && self.selected == YES)
         return;
     self.labelName.highlighted = highlighted;
-    self.imageView.highlighted = highlighted;
+    //self.imageView.highlighted = highlighted;
 }   
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     self.labelName.highlighted = selected;
-    self.imageView.highlighted = selected;
+    //self.imageView.highlighted = selected;
 }
 
 @end

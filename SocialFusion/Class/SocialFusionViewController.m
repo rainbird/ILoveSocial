@@ -50,7 +50,6 @@
 
 - (void)dealloc
 {
-   
     [_managedObjectContext release];
     [_weiboStatusLabel release];
     [_renrenStatusLabel release];
@@ -129,7 +128,7 @@
 - (IBAction)gotoMain:(id)sender
 {
 
-    /*
+    
     if(![RenrenClient authorized] && ![WeiboClient authorized])
         return;
    // FriendListViewController *vc = [[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers];
@@ -137,20 +136,19 @@
     //FriendHeadViewController *vc = [[FriendHeadViewController alloc] initWithType:RelationshipViewTypeWeiboFriends];
     vc.currentRenrenUser = self.currentRenrenUser;
     vc.currentWeiboUser  = self.currentWeiboUser;
-    vc.toolbarItems = self.toolbarItems;
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
      
   
-    */
+    return;
     
     
     
-    NewFeedListController *vc = [[NewFeedListController alloc] init];
+    NewFeedListController *vc2 = [[NewFeedListController alloc] init];
     //vc.currentRenrenUser = self.currentRenrenUser;
     
     vc.toolbarItems=self.toolbarItems;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc2 animated:YES];
     [vc release];
 
      

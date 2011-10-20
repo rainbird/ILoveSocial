@@ -39,9 +39,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureToolbar];
+    //[self configureToolbar];
     NSLog(@"friend list view did load");
-    self.navigationController.toolbarHidden = NO;
     self.egoHeaderView.textColor = [UIColor whiteColor];
     _topShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellTopShadow.png"]];
     _topShadowImageView.frame = CGRectMake(0, -20, 320, 20);
@@ -156,14 +155,8 @@
         _bottomShadowImageView.alpha = 1;
         //NSLog(@"bottom!!!!!");
         _bottomShadowImageView.frame = CGRectMake(0, scrollView.contentSize.height - scrollView.contentOffset.y, 320, 20);
-        if(self.tableView.tableFooterView != nil) {
-            ((NavigationToolBar *)self.navigationController.toolbar).respondView = self.tableView.tableFooterView;
-        }
     }
     else {
-        if(scrollView.contentOffset.y < scrollView.contentSize.height - self.tableView.frame.size.height - 60) {
-            ((NavigationToolBar *)self.navigationController.toolbar).respondView = self.tableView;
-        }
         _bottomShadowImageView.alpha = 0;
     }
     if(_reloading) {
@@ -175,7 +168,7 @@
 
 #pragma mark - IBAction
 - (IBAction)backButtonPressed:(id)sender {
-    self.navigationController.toolbarHidden = YES;
+    //self.navigationController.toolbarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

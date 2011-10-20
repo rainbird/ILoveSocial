@@ -18,6 +18,8 @@
 // UIViewController
 
 - (void)configureToolbar {
+    self.navigationController.toolbar.hidden = YES;
+    return;
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
     [backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
@@ -44,15 +46,15 @@
     
     FriendHeadViewController *wbFollowers = [[[FriendHeadViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers] autorelease];
     wbFollowers.currentWeiboUser = self.currentWeiboUser;
-    wbFollowers.view.frame = CGRectMake(0, 40, 320, 420 - 44);
+    wbFollowers.view.frame = CGRectMake(0, 40, 320, 420);
     
     FriendHeadViewController *wbFriends = [[[FriendHeadViewController alloc] initWithType:RelationshipViewTypeWeiboFriends] autorelease];
     wbFriends.currentWeiboUser = self.currentWeiboUser;
-    wbFriends.view.frame = CGRectMake(0, 40, 320, 420 - 44);
+    wbFriends.view.frame = CGRectMake(0, 40, 320, 420);
     
     FriendHeadViewController *rrFriends = [[[FriendHeadViewController alloc] initWithType:RelationshipViewTypeRenrenFriends] autorelease];
     rrFriends.currentRenrenUser = self.currentRenrenUser;
-    rrFriends.view.frame = CGRectMake(0, 40, 320, 420 - 44);
+    rrFriends.view.frame = CGRectMake(0, 40, 320, 420);
     
     [_viewControllers addObject:wbFollowers];
     [_viewControllers addObject:wbFriends];
@@ -92,6 +94,7 @@
 
 #pragma mark - Label View Controller Delegate
 - (void)didSelectLabelAtIndexPath:(NSIndexPath *)indexPath {
+    return;
     if(!_firstLoad) {
         NSArray *subviews = [self.view subviews];
         NSLog(@"subviews count:%d", [subviews count]);
@@ -99,6 +102,8 @@
         [view removeFromSuperview];
     }
     NSInteger row = indexPath.row;
+    if(row > _viewControllers.count - 1)
+        return;
     UIViewController *viewController = ((UIViewController *)[_viewControllers objectAtIndex:row]);
     viewController.navigationController.toolbarHidden = YES;
     [self.view addSubview:viewController.view];

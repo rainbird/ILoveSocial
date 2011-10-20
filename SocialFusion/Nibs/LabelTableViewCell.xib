@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1280</int>
+		<int key="IBDocument.SystemTarget">1056</int>
 		<string key="IBDocument.SystemVersion">11A494a</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1864</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1617</string>
 		<string key="IBDocument.AppKitVersion">1128</string>
 		<string key="IBDocument.HIToolboxVersion">564.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">865</string>
+			<string key="NS.object.0">534</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<string>IBProxyObject</string>
-			<string>IBUILabel</string>
 			<string>IBUITableViewCell</string>
+			<string>IBUIImageView</string>
+			<string>IBUILabel</string>
+			<string>IBProxyObject</string>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
-			<integer value="1" key="NS.object.0"/>
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys" id="0">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
+			<reference key="dict.values" ref="0"/>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -44,13 +48,68 @@
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUILabel" id="758943797">
+							<object class="IBUIImageView" id="488975405">
 								<reference key="NSNextResponder" ref="317935453"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, 6}, {78, 34}}</string>
+								<string key="NSFrameSize">{32, 44}</string>
+								<reference key="NSSuperview" ref="317935453"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="460357067"/>
+								<string key="NSReuseIdentifierKey">_NS:541</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage" id="960905410">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">rightlabel.png</string>
+								</object>
+							</object>
+							<object class="IBUIImageView" id="460357067">
+								<reference key="NSNextResponder" ref="317935453"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrameSize">{72, 44}</string>
+								<reference key="NSSuperview" ref="317935453"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="146904084"/>
+								<string key="NSReuseIdentifierKey">_NS:541</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">leftlabel.png</string>
+								</object>
+							</object>
+							<object class="IBUIImageView" id="652277080">
+								<reference key="NSNextResponder" ref="317935453"/>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrame">{{72, 0}, {32, 44}}</string>
 								<reference key="NSSuperview" ref="317935453"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
+								<string key="NSReuseIdentifierKey">_NS:541</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<reference key="IBUIImage" ref="960905410"/>
+							</object>
+							<object class="IBUIImageView" id="146904084">
+								<reference key="NSNextResponder" ref="317935453"/>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrameSize">{32, 44}</string>
+								<reference key="NSSuperview" ref="317935453"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="758943797"/>
+								<string key="NSReuseIdentifierKey">_NS:541</string>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<reference key="IBUIImage" ref="960905410"/>
+							</object>
+							<object class="IBUILabel" id="758943797">
+								<reference key="NSNextResponder" ref="317935453"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrameSize">{77, 44}</string>
+								<reference key="NSSuperview" ref="317935453"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="652277080"/>
 								<string key="NSReuseIdentifierKey">_NS:317</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="840487444">
 									<int key="NSColorSpace">3</int>
@@ -60,7 +119,12 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
+								<string key="IBUIText"/>
+								<object class="NSFont" key="IBUIFont" id="1052859646">
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">14</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
@@ -72,21 +136,12 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">1</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="477555021">
-									<int key="type">1</int>
-									<int key="size">4</int>
-								</object>
-								<object class="NSFont" key="IBUIFont" id="1052859646">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">14</double>
-									<int key="NSfFlags">16</int>
-								</object>
 							</object>
 						</object>
-						<string key="NSFrameSize">{78, 40}</string>
+						<string key="NSFrameSize">{72, 44}</string>
 						<reference key="NSSuperview" ref="98812121"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="758943797"/>
+						<reference key="NSNextKeyView" ref="488975405"/>
 						<string key="NSReuseIdentifierKey">_NS:375</string>
 						<reference key="IBUIBackgroundColor" ref="840487444"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -96,7 +151,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{78, 40}</string>
+				<string key="NSFrameSize">{72, 44}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="317935453"/>
@@ -110,18 +165,9 @@
 				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="317935453"/>
-				<reference key="IBUIFontDescription" ref="477555021"/>
 				<reference key="IBUIFont" ref="1052859646"/>
 				<reference key="IBUITextColor" ref="840487444"/>
 				<reference key="IBUISelectedTextColor" ref="840487444"/>
-				<object class="NSCustomResource" key="IBUIImage">
-					<string key="NSClassName">NSImage</string>
-					<string key="NSResourceName">label.png</string>
-				</object>
-				<object class="NSCustomResource" key="IBUISelectedImage">
-					<string key="NSClassName">NSImage</string>
-					<string key="NSResourceName">label-highlight.png</string>
-				</object>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -135,15 +181,45 @@
 					</object>
 					<int key="connectionID">5</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">leftLabelImage</string>
+						<reference key="source" ref="98812121"/>
+						<reference key="destination" ref="488975405"/>
+					</object>
+					<int key="connectionID">16</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">midLabelImage</string>
+						<reference key="source" ref="98812121"/>
+						<reference key="destination" ref="460357067"/>
+					</object>
+					<int key="connectionID">17</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">rightLabelImage</string>
+						<reference key="source" ref="98812121"/>
+						<reference key="destination" ref="652277080"/>
+					</object>
+					<int key="connectionID">18</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">highlightLeftLabelImage</string>
+						<reference key="source" ref="98812121"/>
+						<reference key="destination" ref="146904084"/>
+					</object>
+					<int key="connectionID">20</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBObjectRecord">
 						<int key="objectID">0</int>
-						<object class="NSArray" key="object" id="0">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-						</object>
+						<reference key="object" ref="0"/>
 						<reference key="children" ref="1000"/>
 						<nil key="parent"/>
 					</object>
@@ -164,6 +240,10 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="758943797"/>
+							<reference ref="488975405"/>
+							<reference ref="460357067"/>
+							<reference ref="652277080"/>
+							<reference ref="146904084"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Label Table View Cell</string>
@@ -174,23 +254,57 @@
 						<reference key="parent" ref="98812121"/>
 						<string key="objectName">lableName</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">10</int>
+						<reference key="object" ref="460357067"/>
+						<reference key="parent" ref="98812121"/>
+						<string key="objectName">midLabelImage</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">11</int>
+						<reference key="object" ref="488975405"/>
+						<reference key="parent" ref="98812121"/>
+						<string key="objectName">leftLabelImage</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">14</int>
+						<reference key="object" ref="652277080"/>
+						<reference key="parent" ref="98812121"/>
+						<string key="objectName">rightLabelImage</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">19</int>
+						<reference key="object" ref="146904084"/>
+						<reference key="parent" ref="98812121"/>
+						<string key="objectName">hightlightLeftLabelImage</string>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="NSArray" key="dict.sortedKeys">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>-1.CustomClassName</string>
 					<string>-1.IBPluginDependency</string>
 					<string>-2.CustomClassName</string>
 					<string>-2.IBPluginDependency</string>
+					<string>10.IBPluginDependency</string>
+					<string>11.IBPluginDependency</string>
+					<string>14.IBPluginDependency</string>
+					<string>19.IBPluginDependency</string>
 					<string>3.CustomClassName</string>
 					<string>3.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>LabelTableViewCell</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>LabelTableViewCell</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -209,7 +323,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">9</int>
+			<int key="maxID">20</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -221,31 +335,52 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>highlightLabelImage</string>
+							<string>highlightLeftLabelImage</string>
 							<string>labelName</string>
+							<string>leftLabelImage</string>
+							<string>midLabelImage</string>
+							<string>rightLabelImage</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIImageView</string>
 							<string>UILabel</string>
+							<string>UIImageView</string>
+							<string>UIImageView</string>
+							<string>UIImageView</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>highlightLabelImage</string>
+							<string>highlightLeftLabelImage</string>
 							<string>labelName</string>
+							<string>leftLabelImage</string>
+							<string>midLabelImage</string>
+							<string>rightLabelImage</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
-								<string key="name">highlightLabelImage</string>
+								<string key="name">highlightLeftLabelImage</string>
 								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">labelName</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">leftLabelImage</string>
+								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">midLabelImage</string>
+								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">rightLabelImage</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 						</object>
 					</object>
@@ -268,15 +403,15 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>label-highlight.png</string>
-				<string>label.png</string>
+				<string>leftlabel.png</string>
+				<string>rightlabel.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{79, 40}</string>
-				<string>{79, 40}</string>
+				<string>{72, 44}</string>
+				<string>{32, 44}</string>
 			</object>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">865</string>
+		<string key="IBCocoaTouchPluginVersion">534</string>
 	</data>
 </archive>

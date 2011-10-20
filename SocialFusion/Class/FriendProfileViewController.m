@@ -99,11 +99,7 @@
 - (void)clearData
 {
     if(_type == RelationshipViewTypeRenrenFriends) {
-      //  CoreDataViewController::_firstLoadFlag=YES;
-       
-        
-        _firstLoadFlag=YES;
-        
+        _firstLoadFlag = YES;
         [self.currentRenrenUser removeFriends:self.currentRenrenUser.friends];
     }
     else if(_type == RelationshipViewTypeWeiboFriends) {
@@ -130,7 +126,7 @@
         }
         [self doneLoadingTableViewData];
         
-        _loading=NO;
+        _loading = NO;
         
     }];
     [renren getFriendsProfile];

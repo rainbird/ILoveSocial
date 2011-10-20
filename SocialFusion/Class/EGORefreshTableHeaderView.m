@@ -37,7 +37,7 @@
 
 @implementation EGORefreshTableHeaderView
 
-@synthesize delegate=_delegate;
+@synthesize delegate = _delegate;
 @synthesize textColor = _textColor;
 
 

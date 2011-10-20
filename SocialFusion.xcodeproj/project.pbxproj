@@ -22,7 +22,6 @@
 		735210101446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100E1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png */; };
 		735210111446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100F1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png */; };
 		7352101D144734FA0010DCD4 /* NewFeedBlogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7352101B144734F80010DCD4 /* NewFeedBlogCell.m */; };
-		737B883B1449B66C00F7AA23 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 737B883A1449B66C00F7AA23 /* libz.1.2.5.dylib */; };
 		7390665C143F095E00835332 /* NewFeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7390665A143F095C00835332 /* NewFeedListController.m */; };
 		73ABE306144145C70067B45F /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE305144145C70067B45F /* NewFeedData.m */; };
 		73ABE38114416E740067B45F /* NewFeedStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE37F14416E730067B45F /* NewFeedStatusCell.m */; };
@@ -55,7 +54,17 @@
 		E14D17CF142855B3006B675E /* bottomGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17CD142855B3006B675E /* bottomGradient.png */; };
 		E14D17D0142855B3006B675E /* bottomGradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17CE142855B3006B675E /* bottomGradient@2x.png */; };
 		E1777D2A1430475900A8D1BA /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E1777D291430475900A8D1BA /* blueArrow.png */; };
-		E19A2CEC141FBD5300BE491A /* SocialFusion-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA40A141FA6E1002CD0A6 /* SocialFusion-Info.plist */; };
+		E17817B31450082900DB0D70 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E17817B21450082900DB0D70 /* libz.1.2.3.dylib */; };
+		E17817B61450084B00DB0D70 /* rootbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817B41450084B00DB0D70 /* rootbackground.png */; };
+		E17817B71450084B00DB0D70 /* rootbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817B51450084B00DB0D70 /* rootbackground@2x.png */; };
+		E17817B91450097800DB0D70 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E17817B81450097800DB0D70 /* RootViewController.xib */; };
+		E17817BE1450206B00DB0D70 /* rightlabel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817BA1450206B00DB0D70 /* rightlabel@2x.png */; };
+		E17817BF1450206B00DB0D70 /* rightlabel.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817BB1450206B00DB0D70 /* rightlabel.png */; };
+		E17817C01450206B00DB0D70 /* leftlabel.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817BC1450206B00DB0D70 /* leftlabel.png */; };
+		E17817C11450206B00DB0D70 /* leftlabel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817BD1450206B00DB0D70 /* leftlabel@2x.png */; };
+		E17817C814502C3300DB0D70 /* separator.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817C614502C3300DB0D70 /* separator.png */; };
+		E17817C914502C3300DB0D70 /* separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817C714502C3300DB0D70 /* separator@2x.png */; };
+		E17817CB14502C6C00DB0D70 /* LabelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E17817CA14502C6C00DB0D70 /* LabelViewController.xib */; };
 		E19A2CFC141FC2D700BE491A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E19A2CFE141FC2D700BE491A /* Localizable.strings */; };
 		E19A2D06141FC3B300BE491A /* homeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D00141FC3B300BE491A /* homeButton.png */; };
 		E19A2D07141FC3B300BE491A /* homeButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D01141FC3B300BE491A /* homeButtonPressed.png */; };
@@ -206,7 +215,6 @@
 		7352100F1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedRepostCellRepostbuttonCusor@2x.png"; sourceTree = "<group>"; };
 		7352101A144734F70010DCD4 /* NewFeedBlogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedBlogCell.h; sourceTree = "<group>"; };
 		7352101B144734F80010DCD4 /* NewFeedBlogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedBlogCell.m; sourceTree = "<group>"; };
-		737B883A1449B66C00F7AA23 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		73906659143F095C00835332 /* NewFeedListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedListController.h; sourceTree = "<group>"; };
 		7390665A143F095C00835332 /* NewFeedListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedListController.m; sourceTree = "<group>"; };
 		73ABE304144145C70067B45F /* NewFeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedData.h; sourceTree = "<group>"; };
@@ -260,6 +268,17 @@
 		E14D17CD142855B3006B675E /* bottomGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomGradient.png; sourceTree = "<group>"; };
 		E14D17CE142855B3006B675E /* bottomGradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottomGradient@2x.png"; sourceTree = "<group>"; };
 		E1777D291430475900A8D1BA /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		E17817B21450082900DB0D70 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
+		E17817B41450084B00DB0D70 /* rootbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rootbackground.png; sourceTree = "<group>"; };
+		E17817B51450084B00DB0D70 /* rootbackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rootbackground@2x.png"; sourceTree = "<group>"; };
+		E17817B81450097800DB0D70 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		E17817BA1450206B00DB0D70 /* rightlabel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightlabel@2x.png"; sourceTree = "<group>"; };
+		E17817BB1450206B00DB0D70 /* rightlabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightlabel.png; sourceTree = "<group>"; };
+		E17817BC1450206B00DB0D70 /* leftlabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftlabel.png; sourceTree = "<group>"; };
+		E17817BD1450206B00DB0D70 /* leftlabel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftlabel@2x.png"; sourceTree = "<group>"; };
+		E17817C614502C3300DB0D70 /* separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator.png; sourceTree = "<group>"; };
+		E17817C714502C3300DB0D70 /* separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "separator@2x.png"; sourceTree = "<group>"; };
+		E17817CA14502C6C00DB0D70 /* LabelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelViewController.xib; sourceTree = "<group>"; };
 		E19A2CFD141FC2D700BE491A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E19A2CFF141FC2DE00BE491A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E19A2D00141FC3B300BE491A /* homeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeButton.png; sourceTree = "<group>"; };
@@ -463,7 +482,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				737B883B1449B66C00F7AA23 /* libz.1.2.5.dylib in Frameworks */,
+				E17817B31450082900DB0D70 /* libz.1.2.3.dylib in Frameworks */,
 				E1ABA4D4141FAB2F002CD0A6 /* MobileCoreServices.framework in Frameworks */,
 				E1ABA4D2141FAB23002CD0A6 /* SystemConfiguration.framework in Frameworks */,
 				E1ABA4D0141FAB16002CD0A6 /* CFNetwork.framework in Frameworks */,
@@ -676,7 +695,7 @@
 		E1ABA3F1141FA6E1002CD0A6 = {
 			isa = PBXGroup;
 			children = (
-				737B883A1449B66C00F7AA23 /* libz.1.2.5.dylib */,
+				E17817B21450082900DB0D70 /* libz.1.2.3.dylib */,
 				E1ABA4D7141FAC8C002CD0A6 /* Nibs */,
 				E19A2D0C1420927400BE491A /* Classes */,
 				E1ABA443141FA882002CD0A6 /* SDK */,
@@ -765,6 +784,10 @@
 		E1ABA433141FA882002CD0A6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E17817C614502C3300DB0D70 /* separator.png */,
+				E17817C714502C3300DB0D70 /* separator@2x.png */,
+				E17817B41450084B00DB0D70 /* rootbackground.png */,
+				E17817B51450084B00DB0D70 /* rootbackground@2x.png */,
 				73DD2218144C0347003BED92 /* Weibo12.png */,
 				73DD2219144C0347003BED92 /* Weibo12@2x.png */,
 				73DD2214144C0216003BED92 /* Renren12.png */,
@@ -821,6 +844,10 @@
 				E19A2D05141FC3B300BE491A /* sinawbButtonPressed.png */,
 				7352100E1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png */,
 				7352100F1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png */,
+				E17817BA1450206B00DB0D70 /* rightlabel@2x.png */,
+				E17817BB1450206B00DB0D70 /* rightlabel.png */,
+				E17817BC1450206B00DB0D70 /* leftlabel.png */,
+				E17817BD1450206B00DB0D70 /* leftlabel@2x.png */,
 				E19A2CFE141FC2D700BE491A /* Localizable.strings */,
 			);
 			name = Resource;
@@ -935,12 +962,14 @@
 				E1E5DF49143B290C0098BBD3 /* FriendHeadTabelViewCell.xib */,
 				E1E5DF44143B26740098BBD3 /* FriendHeadGridViewController.xib */,
 				73F3400D14467EC400F9EDBD /* NewFeedListController.xib */,
-				E1E5DF4A143B290C0098BBD3 /* LabelTableViewCell.xib */,
 				E1247266142A58090086AC61 /* MainPageViewController.xib */,
 				E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */,
 				73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */,
 				735210071446BC360010DCD4 /* NewFeedStatusWithRepostcell.xib */,
 				7309DDC41448253D00774011 /* NewFeedBlogCell.xib */,
+				E17817B81450097800DB0D70 /* RootViewController.xib */,
+				E17817CA14502C6C00DB0D70 /* LabelViewController.xib */,
+				E1E5DF4A143B290C0098BBD3 /* LabelTableViewCell.xib */,
 			);
 			name = Nibs;
 			path = SocialFusion/Nibs;
@@ -1017,7 +1046,6 @@
 				E1ABA4C8141FA9B1002CD0A6 /* Default@2x.png in Resources */,
 				E1ABA4DA141FAC8D002CD0A6 /* MainWindow.xib in Resources */,
 				E1ABA4DB141FAC8D002CD0A6 /* SocialFusionViewController.xib in Resources */,
-				E19A2CEC141FBD5300BE491A /* SocialFusion-Info.plist in Resources */,
 				E19A2CFC141FC2D700BE491A /* Localizable.strings in Resources */,
 				E19A2D06141FC3B300BE491A /* homeButton.png in Resources */,
 				E19A2D07141FC3B300BE491A /* homeButtonPressed.png in Resources */,
@@ -1073,6 +1101,16 @@
 				73DD221B144C0347003BED92 /* Weibo12@2x.png in Resources */,
 				7319DCD8144D6FFC006FE917 /* StatusDetailController.xib in Resources */,
 				7305A697144DB38C00ED59AA /* StatusCommentCell.xib in Resources */,
+				E17817B61450084B00DB0D70 /* rootbackground.png in Resources */,
+				E17817B71450084B00DB0D70 /* rootbackground@2x.png in Resources */,
+				E17817B91450097800DB0D70 /* RootViewController.xib in Resources */,
+				E17817BE1450206B00DB0D70 /* rightlabel@2x.png in Resources */,
+				E17817BF1450206B00DB0D70 /* rightlabel.png in Resources */,
+				E17817C01450206B00DB0D70 /* leftlabel.png in Resources */,
+				E17817C11450206B00DB0D70 /* leftlabel@2x.png in Resources */,
+				E17817C814502C3300DB0D70 /* separator.png in Resources */,
+				E17817C914502C3300DB0D70 /* separator@2x.png in Resources */,
+				E17817CB14502C6C00DB0D70 /* LabelViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1248,12 +1286,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialFusion/SocialFusion-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "SocialFusion/SocialFusion-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -1264,12 +1304,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialFusion/SocialFusion-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "SocialFusion/SocialFusion-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

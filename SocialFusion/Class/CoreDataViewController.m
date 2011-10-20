@@ -14,7 +14,7 @@
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize currentRenrenUser = _currentRenrenUser;
-@synthesize currentWeiboUser = _currentWeibosUser;
+@synthesize currentWeiboUser = _currentWeiboUser;
 
 - (void)dealloc
 {
@@ -37,9 +37,9 @@
 
 - (void)setCurrentWeiboUser:(WeiboUser *)weiboUser
 {
-    if (_currentWeibosUser != weiboUser) {
-        [_currentWeibosUser release];
-        _currentWeibosUser = [weiboUser retain];
+    if (_currentWeiboUser != weiboUser) {
+        [_currentWeiboUser release];
+        _currentWeiboUser = [weiboUser retain];
         if (!self.managedObjectContext) {
             self.managedObjectContext = weiboUser.managedObjectContext;
         }
