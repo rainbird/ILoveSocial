@@ -18,6 +18,8 @@
 #define kUserDefaultKeyFirstTimeUsingEGOView @"kUserDefaultKeyFirstTimeUsingEGOView"
 
 
+
+
 - (void)dealloc
 {
     [_egoHeaderView release];
@@ -163,7 +165,8 @@
     
 
     
-    
+    [self configureToolbar];
+    self.navigationController.toolbarHidden = NO; 
     //NSLog(@"bound width:%f, bound height:%f", self.tableView.bounds.size.width,self.tableView.bounds.size.height);
     _egoHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 
                                                                                  0.0f - self.tableView.bounds.size.height, 
@@ -184,9 +187,9 @@
     _reloading = NO;
     _loading = NO;
     
-    [self configureToolbar];
+   // [self configureToolbar];
     // NSLog(@"friend list view did load");
-    self.navigationController.toolbarHidden = NO;
+
     
     self.egoHeaderView.textColor = [UIColor whiteColor];
     _topShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellTopShadow.png"]];
@@ -202,6 +205,12 @@
     
 }
 
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];

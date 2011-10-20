@@ -397,5 +397,16 @@ static NSString* const AppID = @"150399";
 	[self requestWithParams:params andDelegate:self];
 }
 
+-(void)getStatus:(NSString*)userID status_ID:(NSString*)status
+{
+ 
+      NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 @"status.get",@"method",
+                                 status,@"status_id",
+                                 userID,@"owner_id",
+                                 nil];
+  	[self requestWithParams:params andDelegate:self];
+}
+
 
 @end

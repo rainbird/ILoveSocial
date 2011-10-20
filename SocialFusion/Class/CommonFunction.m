@@ -38,7 +38,7 @@
     }
     else
     {
-        tempString= [[NSString alloc]  initWithFormat:@"%d小时前",time/(3600*24)];
+        tempString= [[NSString alloc]  initWithFormat:@"%d天前",time/(3600*24)];
     }
     
     return tempString;

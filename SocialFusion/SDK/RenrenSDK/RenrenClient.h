@@ -44,4 +44,5 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
 - (void)getFriendsProfile;
 - (void)getNewFeed:(int)pageNumber;
 -(void)getComments:(NSString*)userID status_ID:(NSString*)status pageNumber:(int)pageNumber;
+-(void)getStatus:(NSString*)userID status_ID:(NSString*)status;
 @end

@@ -60,6 +60,12 @@
 {
     return comment_Count;
 }
+
+
+-(void)setCount:(int)count
+{
+    comment_Count=count;
+}
 -(NSDate*)getDate
 {
     return update_Time;
@@ -82,7 +88,7 @@
     
     
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
-    [form setDateFormat:@"EEE MMM d HH:mm:ss ZZZ yyyy"];
+    [form setDateFormat:@"EEE MMM dd HH:mm:ss ZZZ yyyy"];
     
    // Sat Oct 15 21:22:56 +0800 2011
     

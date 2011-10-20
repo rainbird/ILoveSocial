@@ -21,6 +21,8 @@
     int _pageNumber;
     
     BOOL _showMoreButton;
+    
+ //   BOOL _completing;
 }
 @property (nonatomic, retain) NewFeedData* feedData;
 -(void)loadData;
