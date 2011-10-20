@@ -60,7 +60,7 @@
     [tempString release];
     
     NSString* countSting=[[NSString alloc] initWithFormat:@"回复:%d",[feedData getComment_Count]];
-    _commentCount.text=countSting;
+    _commentCount.text = countSting;
     [countSting release];
     [_commentCount sizeToFit];
     [_commentCount setFrame:CGRectMake(self.status.frame.origin.x+self.status.frame.size.width-_commentCount.frame.size.width, self.time.frame.origin.y, _commentCount.frame.size.width, _commentCount.frame.size.height)];

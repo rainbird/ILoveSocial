@@ -8,27 +8,22 @@
 
 #import "SocialFusionViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
 #import "FriendListViewController.h"
 #import "FriendHeadViewController.h"
-
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
-
 #import "WeiboClient.h"
 #import "RenrenClient.h"
 
 #import "NewFeedListController.h"
+
 #define LOGOUT_RENREN NO
 #define LOGOUT_WEIBO YES
 
 @interface SocialFusionViewController()
-
 @property(nonatomic, assign) BOOL logoutClient;
-
 - (void)rrDidLogin;
 - (void)wbDidLogin;
-
 @end
 
 @implementation SocialFusionViewController
@@ -50,7 +45,6 @@
 
 - (void)dealloc
 {
-    [_managedObjectContext release];
     [_weiboStatusLabel release];
     [_renrenStatusLabel release];
     if(self.hasLoggedInAlertView.visible) {

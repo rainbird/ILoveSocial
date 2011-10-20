@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CoreDataViewController.h"
 #import "WeiboClient.h"
-@interface SocialFusionViewController : CoreDataViewController<UIAlertViewDelegate,WBSessionDelegate>
+
+@interface SocialFusionViewController : CoreDataViewController<UIAlertViewDelegate, WBSessionDelegate>
 
 @property(nonatomic, retain) UIAlertView *hasLoggedInAlertView;
 @property(nonatomic, retain) IBOutlet UILabel *weiboStatusLabel;

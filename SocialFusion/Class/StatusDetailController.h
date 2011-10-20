@@ -14,15 +14,15 @@
 #import "NewFeedStatusWithRepostcell.h"
 @interface StatusDetailController : DragRefreshTableViewController<UITableViewDataSource,UITableViewDelegate>
 {
-     IBOutlet StatusCommentCell *_commentCel;
-        IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;
+    IBOutlet StatusCommentCell *_commentCel;
+    IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;
     IBOutlet NewFeedStatusCell* _feedStatusCel;
     NSMutableArray* _commentArray;
     int _pageNumber;
-    
     BOOL _showMoreButton;
+    NewFeedData* _feedData;
     
- //   BOOL _completing;
+    //   BOOL _completing;
 }
 @property (nonatomic, retain) NewFeedData* feedData;
 -(void)loadData;

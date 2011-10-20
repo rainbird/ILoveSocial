@@ -10,27 +10,27 @@
 
 @interface StatusCommentData : NSObject
 {
-//数据来源 人人或新浪 0为人人
-int style;
+    //数据来源 人人或新浪 0为人人
+    int style;
     
     
-//作者id
-NSString*   actor_ID;
-
+    //作者id
+    NSString*   actor_ID;
+    
     
     //更新时间
-NSDate*         update_Time;
-
+    NSDate*         update_Time;
+    
     
     //作者名字
-NSString*       owner_Name;
-
+    NSString*       owner_Name;
+    
     
     //作者头像
-NSString*          owner_Head;
-
+    NSString*          owner_Head;
+    
     //评论id
-NSString*   comment_ID;
+    NSString*   comment_ID;
     
     //评论内容
     NSString* text;

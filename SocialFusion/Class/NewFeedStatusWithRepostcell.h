@@ -10,6 +10,10 @@
 #import "NewFeedStatusCell.h"
 
 @interface NewFeedStatusWithRepostcell : NewFeedStatusCell {
+    UIButton* _repostUserName;
+    UILabel* _repostStatus;
+    UIButton* _repostAreaButton;
+    UIButton* _repostAreaButtonCursor;
 
 }
 

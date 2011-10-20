@@ -18,6 +18,7 @@ typedef enum {
 @interface FriendProfileViewController : EGOTableViewController {
     int _nextCursor;
     RelationshipViewType _type;
+    UIImageView *_tableViewBackground;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView *tableViewBackground;

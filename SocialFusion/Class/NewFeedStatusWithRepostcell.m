@@ -15,7 +15,6 @@
 @synthesize repostUserName = _repostUserName;
 @synthesize repostAreaButton = _repostAreaButton;
 @synthesize repostAreaButtonCursor = _repostAreaButtonCursor;
-
 @synthesize repostStatus = _repostStatus;
 
 
