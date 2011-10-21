@@ -10,10 +10,8 @@
 #import "FriendProfileViewController.h"
 
 @interface FriendListViewController : FriendProfileViewController {
-    UIImageView *_topShadowImageView;
-    UIImageView *_bottomShadowImageView;
+    //UIImageView *_topShadowImageView;
+    //UIImageView *_bottomShadowImageView;
 }
-
-- (IBAction)backButtonPressed:(id)sender;
 
 @end

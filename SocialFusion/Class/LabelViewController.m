@@ -17,25 +17,18 @@
 @implementation LabelViewController
 @synthesize tableView = _tableView;
 @synthesize delegate = _delegate;
+@synthesize labelName = _labelName;
 
 - (id)init {
     self = [super init];
     if(self) {
         _labelName = [[NSMutableArray alloc] init];
-        [_labelName addObject:[NSString stringWithString:@"信息"]];
-        [_labelName addObject:[NSString stringWithString:@"微博"]];
-        [_labelName addObject:[NSString stringWithString:@"关注"]];
-        [_labelName addObject:[NSString stringWithString:@"粉丝"]];
-        [_labelName addObject:[NSString stringWithString:@"收藏"]];
-        [_labelName addObject:[NSString stringWithString:@"若运"]];
-        [_labelName addObject:[NSString stringWithString:@"君儒"]];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    //NSLog(@"label view controller dealloc");
     [_tableView release];
     [_labelName release];
     _delegate = nil;
@@ -54,10 +47,6 @@
 	self.tableView.frame = oldFrame;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;    
-    //UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 7)] autorelease];
-    //UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 7)] autorelease];
-    //[self.tableView setTableHeaderView:headerView];
-    //[self.tableView setTableFooterView:footerView];
 }
 
 - (void)viewDidUnload
@@ -65,8 +54,6 @@
     [super viewDidUnload];
     self.tableView.delegate = nil;
     self.tableView = nil;
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 #pragma mark - UITableView Delegate

@@ -8,7 +8,8 @@
 
 #import "MainPageViewController.h"
 #import "NavigationToolBar.h"
-#import "FriendHeadViewController.h"
+#import "FriendListViewController.h"
+#import "NewFeedListController.h"
 
 @implementation MainPageViewController
 @synthesize lableViewController = _lableViewController;
@@ -16,55 +17,39 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
-
-- (void)configureToolbar {
-    self.navigationController.toolbar.hidden = YES;
-    return;
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
-    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    backButton.frame = CGRectMake(12, 12, 31, 34);
-    UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
-    NSMutableArray *toolBarItems = [NSMutableArray array];
-    [toolBarItems addObject:backButtonItem];
-    self.toolbarItems = nil;
-    self.toolbarItems = toolBarItems;
-    ((NavigationToolBar *)self.navigationController.toolbar).respondView = self.view;
-}
-
 - (void)selectDefaultLable {
     NSIndexPath *defaultIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     _firstLoad = YES;
     [self.lableViewController.tableView selectRowAtIndexPath:defaultIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-    [self didSelectLabelAtIndexPath:defaultIndexPath];
-    _firstLoad = NO;
+    [self performSelector:@selector(didSelectLabelAtIndexPath:) withObject:defaultIndexPath afterDelay:0.01];
+}
+
+- (void)setRenrenWeiboUser:(NSArray *)array {
+    for(id vc in array) {
+        if([vc isKindOfClass:[CoreDataViewController class]]) {
+            CoreDataViewController *cd = (CoreDataViewController *)vc;
+            cd.currentRenrenUser = self.currentRenrenUser;
+            cd.currentWeiboUser = self.currentWeiboUser;
+        }
+    }
 }
 
 - (void)configureViewControllers {
     _viewControllers = [[NSMutableArray alloc] init];
-    
-    FriendHeadViewController *wbFollowers = [[[FriendHeadViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers] autorelease];
-    wbFollowers.currentWeiboUser = self.currentWeiboUser;
-    wbFollowers.view.frame = CGRectMake(0, 40, 320, 420);
-    
-    FriendHeadViewController *wbFriends = [[[FriendHeadViewController alloc] initWithType:RelationshipViewTypeWeiboFriends] autorelease];
-    wbFriends.currentWeiboUser = self.currentWeiboUser;
-    wbFriends.view.frame = CGRectMake(0, 40, 320, 420);
-    
-    FriendHeadViewController *rrFriends = [[[FriendHeadViewController alloc] initWithType:RelationshipViewTypeRenrenFriends] autorelease];
-    rrFriends.currentRenrenUser = self.currentRenrenUser;
-    rrFriends.view.frame = CGRectMake(0, 40, 320, 420);
-    
-    [_viewControllers addObject:wbFollowers];
-    [_viewControllers addObject:wbFriends];
-    [_viewControllers addObject:rrFriends];
-    
+    NewFeedListController *newFeedList = [[NewFeedListController alloc] init];
+    FriendListViewController *renrenFriendList = [[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends];
+    FriendListViewController *weiboFriendList = [[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFriends];
+    FriendListViewController *weiboFollowerList = [[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers];
+    NSArray *viewControllers = [NSArray arrayWithObjects:newFeedList, renrenFriendList, weiboFriendList, weiboFollowerList, nil];
+    [self.viewControllers addObjectsFromArray:viewControllers];
+    [self setRenrenWeiboUser:self.viewControllers];
     [self selectDefaultLable];
 }
 
 - (void)configureLabelViewController {
     self.lableViewController = [[[LabelViewController alloc] init] autorelease];
+    //[NSArray arrayWithObjects:@"首页", @"新鲜事", @"好友", @"关注", @"资料", @"留言板", @"访客", @"日志", @"相册", @"状态", @"分享", nil];
+    [self.lableViewController.labelName addObjectsFromArray:[NSArray arrayWithObjects:@"新鲜事", @"人人好友", @"微博关注", @"微博粉丝", nil]];
     self.lableViewController.delegate = self;
     [self.view addSubview:self.lableViewController.view];
 }
@@ -72,8 +57,6 @@
 - (void)viewDidLoad {
     NSLog(@"main page view did load");
     [super viewDidLoad];
-    [self configureToolbar];
-    //[self configureViewControllers];
     [self configureLabelViewController];
     [self performSelector:@selector(configureViewControllers) withObject:nil afterDelay:0.3];
 }
@@ -85,29 +68,20 @@
     [super dealloc];
 }
 
-// IBAction
-- (IBAction)backButtonPressed:(id)sender {
-    UINavigationController *nav = self.navigationController;
-    [self.navigationController popViewControllerAnimated:YES];
-    [nav.topViewController performSelector:@selector(configureToolbar)];
-}
-
 #pragma mark - Label View Controller Delegate
 - (void)didSelectLabelAtIndexPath:(NSIndexPath *)indexPath {
-    return;
     if(!_firstLoad) {
         NSArray *subviews = [self.view subviews];
         NSLog(@"subviews count:%d", [subviews count]);
-        UIView *view = [subviews objectAtIndex:0];
+        UIView *view = [subviews objectAtIndex:1];
         [view removeFromSuperview];
     }
+    _firstLoad = NO;
     NSInteger row = indexPath.row;
     if(row > _viewControllers.count - 1)
         return;
     UIViewController *viewController = ((UIViewController *)[_viewControllers objectAtIndex:row]);
-    viewController.navigationController.toolbarHidden = YES;
-    [self.view addSubview:viewController.view];
-    [self.view exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
+    [self.view insertSubview:viewController.view belowSubview:self.lableViewController.view];
 }
 
 @end

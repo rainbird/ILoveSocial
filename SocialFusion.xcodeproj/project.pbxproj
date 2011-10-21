@@ -755,10 +755,6 @@
 		E1ABA41C141FA882002CD0A6 /* ViewContrlloers */ = {
 			isa = PBXGroup;
 			children = (
-				E1E5DF3E143B24CB0098BBD3 /* FriendHeadTableViewCell.h */,
-				E1E5DF3F143B24CB0098BBD3 /* FriendHeadTableViewCell.m */,
-				E1ABA41D141FA882002CD0A6 /* FriendListTableViewCell.h */,
-				E1ABA41E141FA882002CD0A6 /* FriendListTableViewCell.m */,
 				E1ABA421141FA882002CD0A6 /* MainPageViewController.h */,
 				E1ABA422141FA882002CD0A6 /* MainPageViewController.m */,
 				E1ABA42B141FA882002CD0A6 /* SocialFusionViewController.h */,
@@ -767,14 +763,7 @@
 				E1F1D4DC142E09ED00720635 /* LabelViewController.m */,
 				E1F1D4E2142E24FC00720635 /* LabelTableViewCell.h */,
 				E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */,
-				E1E5DF46143B27730098BBD3 /* FriendHeadGridViewController.h */,
-				E1E5DF47143B27730098BBD3 /* FriendHeadGridViewController.m */,
-				E1ABA41F141FA882002CD0A6 /* FriendProfileViewController.h */,
-				E1ABA420141FA882002CD0A6 /* FriendProfileViewController.m */,
-				E1E5DF4D143B29530098BBD3 /* FriendHeadViewController.h */,
-				E1E5DF4E143B29540098BBD3 /* FriendHeadViewController.m */,
-				E1E5DF50143B365F0098BBD3 /* FriendListViewController.h */,
-				E1E5DF51143B36600098BBD3 /* FriendListViewController.m */,
+				E1E6E8E41451E63600FCB08B /* Friend */,
 				7309DDBD1447E95C00774011 /* NewFeed */,
 			);
 			name = ViewContrlloers;
@@ -962,17 +951,36 @@
 				E1E5DF49143B290C0098BBD3 /* FriendHeadTabelViewCell.xib */,
 				E1E5DF44143B26740098BBD3 /* FriendHeadGridViewController.xib */,
 				73F3400D14467EC400F9EDBD /* NewFeedListController.xib */,
-				E1247266142A58090086AC61 /* MainPageViewController.xib */,
 				E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */,
 				73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */,
 				735210071446BC360010DCD4 /* NewFeedStatusWithRepostcell.xib */,
 				7309DDC41448253D00774011 /* NewFeedBlogCell.xib */,
 				E17817B81450097800DB0D70 /* RootViewController.xib */,
+				E1247266142A58090086AC61 /* MainPageViewController.xib */,
 				E17817CA14502C6C00DB0D70 /* LabelViewController.xib */,
 				E1E5DF4A143B290C0098BBD3 /* LabelTableViewCell.xib */,
 			);
 			name = Nibs;
 			path = SocialFusion/Nibs;
+			sourceTree = "<group>";
+		};
+		E1E6E8E41451E63600FCB08B /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				E1E5DF3E143B24CB0098BBD3 /* FriendHeadTableViewCell.h */,
+				E1E5DF3F143B24CB0098BBD3 /* FriendHeadTableViewCell.m */,
+				E1ABA41D141FA882002CD0A6 /* FriendListTableViewCell.h */,
+				E1ABA41E141FA882002CD0A6 /* FriendListTableViewCell.m */,
+				E1E5DF46143B27730098BBD3 /* FriendHeadGridViewController.h */,
+				E1E5DF47143B27730098BBD3 /* FriendHeadGridViewController.m */,
+				E1ABA41F141FA882002CD0A6 /* FriendProfileViewController.h */,
+				E1ABA420141FA882002CD0A6 /* FriendProfileViewController.m */,
+				E1E5DF4D143B29530098BBD3 /* FriendHeadViewController.h */,
+				E1E5DF4E143B29540098BBD3 /* FriendHeadViewController.m */,
+				E1E5DF50143B365F0098BBD3 /* FriendListViewController.h */,
+				E1E5DF51143B36600098BBD3 /* FriendListViewController.m */,
+			);
+			name = Friend;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1296,6 +1304,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialFusion/SocialFusion-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				INFOPLIST_FILE = "SocialFusion/SocialFusion-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1314,6 +1323,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialFusion/SocialFusion-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				INFOPLIST_FILE = "SocialFusion/SocialFusion-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";

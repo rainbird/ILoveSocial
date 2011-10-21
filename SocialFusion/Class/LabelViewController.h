@@ -18,6 +18,7 @@
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) id<LableViewControllerDelegate> delegate;
+@property (nonatomic, retain) NSMutableArray *labelName;
 
 @end
 

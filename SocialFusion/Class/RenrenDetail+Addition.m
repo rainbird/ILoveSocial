@@ -32,7 +32,7 @@
             result.gender = [NSString stringWithString:@"女"];
     }
     result.birthday = [dict objectForKey:@"birthday"];
-        result.headURL = [dict objectForKey:@"headurl"];
+    result.headURL = [dict objectForKey:@"headurl"];
     result.mainURL = [dict objectForKey:@"mainurl"];
     
     NSDictionary *hometown = [dict objectForKey:@"hometown_location"];

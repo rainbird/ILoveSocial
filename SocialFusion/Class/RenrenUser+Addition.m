@@ -27,9 +27,6 @@
     result.pinyinName = [result.name pinyinFirstLetterArray];
     result.tinyURL = [dict objectForKey:@"tinyurl"];
     
-    RenrenDetail *detail = [RenrenDetail insertDetailInformation:dict userID:userID inManagedObjectContext:context];
-    result.detailInformation = detail;
-    
     return result;
 }
 
@@ -41,7 +38,10 @@
 + (RenrenUser *)insertUser:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
 {
     NSString *userID = [[dict objectForKey:@"uid"] stringValue];
-    return [RenrenUser insertUserHelp:dict userID:userID inManagedObjectContext:context];
+    RenrenUser *result = [RenrenUser insertUserHelp:dict userID:userID inManagedObjectContext:context];
+    RenrenDetail *detail = [RenrenDetail insertDetailInformation:dict userID:userID inManagedObjectContext:context];
+    result.detailInformation = detail;
+    return result;
 }
 
 + (RenrenUser *)userWithID:(NSString *)userID inManagedObjectContext:(NSManagedObjectContext *)context

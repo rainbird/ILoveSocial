@@ -8,14 +8,11 @@
 
 #import "SocialFusionViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "FriendListViewController.h"
-#import "FriendHeadViewController.h"
+#import "MainPageViewController.h"
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "WeiboClient.h"
 #import "RenrenClient.h"
-
-#import "NewFeedListController.h"
 
 #define LOGOUT_RENREN NO
 #define LOGOUT_WEIBO YES
@@ -62,23 +59,11 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)configToolbar {
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
-    backButton.frame = CGRectMake(12, 12, 31, 34);
-    UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
-    NSMutableArray *toolBarItems = [NSMutableArray array];
-    [toolBarItems addObject:backButtonItem];
-    self.toolbarItems = toolBarItems;
-}
-
 #pragma mark - View lifecycle
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
-    [self configToolbar];    
+    [super viewDidLoad];      
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	if ([RenrenClient authorized]) {
         NSString *renrenID = [ud objectForKey:@"renren_ID"];
@@ -121,31 +106,13 @@
 
 - (IBAction)gotoMain:(id)sender
 {
-
-    
     if(![RenrenClient authorized] && ![WeiboClient authorized])
         return;
-   // FriendListViewController *vc = [[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers];
-    FriendListViewController *vc = [[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends];
-    //FriendHeadViewController *vc = [[FriendHeadViewController alloc] initWithType:RelationshipViewTypeWeiboFriends];
+    MainPageViewController *vc = [[MainPageViewController alloc] init];
     vc.currentRenrenUser = self.currentRenrenUser;
     vc.currentWeiboUser  = self.currentWeiboUser;
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
-     
-  
-    return;
-    
-    
-    
-    NewFeedListController *vc2 = [[NewFeedListController alloc] init];
-    //vc.currentRenrenUser = self.currentRenrenUser;
-    
-    vc.toolbarItems=self.toolbarItems;
-    [self.navigationController pushViewController:vc2 animated:YES];
-    [vc release];
-
-     
 }
 
 - (void)showHasLoggedInAlert:(BOOL)whoCalled {

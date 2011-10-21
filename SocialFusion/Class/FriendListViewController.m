@@ -42,17 +42,17 @@
     //[self configureToolbar];
     NSLog(@"friend list view did load");
     self.egoHeaderView.textColor = [UIColor whiteColor];
-    _topShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellTopShadow.png"]];
+    /*_topShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellTopShadow.png"]];
     _topShadowImageView.frame = CGRectMake(0, -20, 320, 20);
     [self.view addSubview:_topShadowImageView];
     _bottomShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellBottomShadow.png"]];
     _bottomShadowImageView.frame = CGRectMake(0, 460, 320, 20);
-    [self.view addSubview:_bottomShadowImageView];    
+    [self.view addSubview:_bottomShadowImageView];*/
 }
 
 - (void)dealloc {
-    [_topShadowImageView release];
-    [_bottomShadowImageView release];
+    //[_topShadowImageView release];
+    //[_bottomShadowImageView release];
     [super dealloc];
 }
 
@@ -128,6 +128,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    return;
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     cell.selected = NO;
     cell.highlighted = NO;
@@ -139,7 +140,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+/*- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     // 控制shadow显示
     //NSLog(@"offset:%f, height:%f", scrollView.contentOffset.y, scrollView.contentSize.height);
     [super scrollViewDidScroll:scrollView];
@@ -164,12 +165,6 @@
         _topShadowImageView.alpha = 0;
         _bottomShadowImageView.alpha = 0;
     }
-}
-
-#pragma mark - IBAction
-- (IBAction)backButtonPressed:(id)sender {
-    //self.navigationController.toolbarHidden = YES;
-    [self.navigationController popViewControllerAnimated:YES];
-}
+}*/
 
 @end

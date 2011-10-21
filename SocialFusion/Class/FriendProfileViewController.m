@@ -21,7 +21,6 @@
 @end
 
 @implementation FriendProfileViewController
-@synthesize tableViewBackground = _tableViewBackground;
 
 - (id)initWithType:(RelationshipViewType)type
 {
@@ -53,7 +52,6 @@
 }
 
 - (void)dealloc {
-    [_tableViewBackground release];
     [super dealloc];
 }
 
@@ -179,8 +177,6 @@
         [self loadMoreWeiboData];
     }
 }
-
-
 
 // 优化显示，每次滑动停止才载入数据
 - (void)loadExtraDataForOnscreenRowsHelp:(NSIndexPath *)indexPath {
