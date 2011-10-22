@@ -69,7 +69,12 @@
 }
 
 #pragma mark - Label View Controller Delegate
+
 - (void)didSelectLabelAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = indexPath.row;
+    if(row > _viewControllers.count - 1)
+        return;
+    
     if(!_firstLoad) {
         NSArray *subviews = [self.view subviews];
         NSLog(@"subviews count:%d", [subviews count]);
@@ -77,9 +82,7 @@
         [view removeFromSuperview];
     }
     _firstLoad = NO;
-    NSInteger row = indexPath.row;
-    if(row > _viewControllers.count - 1)
-        return;
+    
     UIViewController *viewController = ((UIViewController *)[_viewControllers objectAtIndex:row]);
     [self.view insertSubview:viewController.view belowSubview:self.lableViewController.view];
 }

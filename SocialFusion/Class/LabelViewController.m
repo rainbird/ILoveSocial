@@ -9,8 +9,8 @@
 #import "LabelViewController.h"
 #import "LabelTableViewCell.h"
 
-#define kLeftLabelWidth 72
-#define kRightLabelWidth 32
+#define kLeftLabelWidth 75
+#define kRightLabelWidth 6
 #define kLabelHeight 44
 #define kHeaderAndFooterWidth 7
 
@@ -61,7 +61,7 @@
     NSInteger row = indexPath.row;
     NSInteger result;
     if(row % 4 == 3) {
-        result = kLeftLabelWidth + kRightLabelWidth;
+        result = kLeftLabelWidth + kRightLabelWidth + kHeaderAndFooterWidth * 2;
     }
     else {
         result = kLeftLabelWidth;
@@ -128,11 +128,12 @@
     
     if(indexPath.row == _labelName.count - 1) {
         // 最最右边的label
+        NSLog(@"here!!!!");
         cell.rightLabelImage.hidden = NO;
     }
     
     // 接下来判断当前滑动到的page有被选中的label的情况
-    if(indexPath.row >= _currentCellIndexPath.row % 4 + _currentCellIndexPath.row 
+    if(indexPath.row >= _currentCellIndexPath.row - _currentCellIndexPath.row % 4
        && indexPath.row < 4 - _currentCellIndexPath.row % 4 + _currentCellIndexPath.row) {
         if(indexPath.row <= _currentCellIndexPath.row) {
             cell.highlightLeftLabelImage.hidden = YES;
