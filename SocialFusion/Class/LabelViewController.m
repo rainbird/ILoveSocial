@@ -73,10 +73,16 @@
     // if there is a label on the selected label right hand
     for(int i = indexPath.row - indexPath.row % 4; i < _labelName.count && i < 4 - indexPath.row % 4 + indexPath.row; i++) {
         LabelTableViewCell *cell = (LabelTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
-        if(i <= indexPath.row)
+        if(i <= indexPath.row) {
+            if (i % 4 != 0) {
+                cell.leftLabelImage.hidden = NO;
+            }
             cell.highlightLeftLabelImage.hidden = YES;
-        else
+        }
+        else {
             cell.highlightLeftLabelImage.hidden = NO;
+            cell.leftLabelImage.hidden = YES;
+        }
     }
 }
 
@@ -107,6 +113,19 @@
         cell = [nib lastObject];
     }
     
+    // 接下来判断当前滑动到的page有被选中的label的情况
+    if(indexPath.row >= _currentCellIndexPath.row - _currentCellIndexPath.row % 4
+       && indexPath.row < 4 - _currentCellIndexPath.row % 4 + _currentCellIndexPath.row) {
+        if(indexPath.row <= _currentCellIndexPath.row) {
+            cell.highlightLeftLabelImage.hidden = YES;
+            cell.leftLabelImage.hidden = NO;
+        }
+        else {
+            cell.highlightLeftLabelImage.hidden = NO;
+            cell.leftLabelImage.hidden = YES;
+        }
+    }
+    
     if(indexPath.row % 4 == 0) {
         // 最左边的label
         cell.leftLabelImage.hidden = YES;
@@ -128,19 +147,7 @@
     
     if(indexPath.row == _labelName.count - 1) {
         // 最最右边的label
-        NSLog(@"here!!!!");
         cell.rightLabelImage.hidden = NO;
-    }
-    
-    // 接下来判断当前滑动到的page有被选中的label的情况
-    if(indexPath.row >= _currentCellIndexPath.row - _currentCellIndexPath.row % 4
-       && indexPath.row < 4 - _currentCellIndexPath.row % 4 + _currentCellIndexPath.row) {
-        if(indexPath.row <= _currentCellIndexPath.row) {
-            cell.highlightLeftLabelImage.hidden = YES;
-        }
-        else {
-            cell.highlightLeftLabelImage.hidden = NO;
-        }
     }
     
     if(indexPath.row < _labelName.count)

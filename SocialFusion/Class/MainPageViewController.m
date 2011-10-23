@@ -21,7 +21,7 @@
     NSIndexPath *defaultIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     _firstLoad = YES;
     [self.lableViewController.tableView selectRowAtIndexPath:defaultIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-    [self performSelector:@selector(didSelectLabelAtIndexPath:) withObject:defaultIndexPath afterDelay:0.01];
+    [self performSelector:@selector(didSelectLabelAtIndexPath:) withObject:defaultIndexPath afterDelay:0.1];
 }
 
 - (void)setRenrenWeiboUser:(NSArray *)array {

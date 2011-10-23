@@ -19,7 +19,7 @@
 #import "NavigationToolBar.h"
 #import "MainPageViewController.h"
 
-#define kCustomRowCount 8
+#define kCustomRowCount 7
 
 @implementation FriendListViewController
 

@@ -47,6 +47,8 @@
 		73F4F978144A9EA400A692F7 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F968144A9EA400A692F7 /* OAServiceTicket.m */; };
 		73F4F979144A9EA400A692F7 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F96B144A9EA400A692F7 /* OAToken.m */; };
 		73F4F9C5144AAD8D00A692F7 /* WBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F9C4144AAD8D00A692F7 /* WBRequest.m */; };
+		E12064441454321A00A7FE4F /* rightlabelwithnoshadow.png in Resources */ = {isa = PBXBuildFile; fileRef = E12064421454321A00A7FE4F /* rightlabelwithnoshadow.png */; };
+		E12064451454321A00A7FE4F /* rightlabelwithnoshadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E12064431454321A00A7FE4F /* rightlabelwithnoshadow@2x.png */; };
 		E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1247266142A58090086AC61 /* MainPageViewController.xib */; };
 		E14D17C8142771AD006B675E /* backButton-highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C6142771AD006B675E /* backButton-highlight@2x.png */; };
 		E14D17C9142771AD006B675E /* backButton-highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C7142771AD006B675E /* backButton-highlight.png */; };
@@ -261,6 +263,8 @@
 		73F4F96C144A9EA400A692F7 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		73F4F9C3144AAD8D00A692F7 /* WBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBRequest.h; sourceTree = "<group>"; };
 		73F4F9C4144AAD8D00A692F7 /* WBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBRequest.m; sourceTree = "<group>"; };
+		E12064421454321A00A7FE4F /* rightlabelwithnoshadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightlabelwithnoshadow.png; sourceTree = "<group>"; };
+		E12064431454321A00A7FE4F /* rightlabelwithnoshadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightlabelwithnoshadow@2x.png"; sourceTree = "<group>"; };
 		E1247266142A58090086AC61 /* MainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageViewController.xib; sourceTree = "<group>"; };
 		E14D17C6142771AD006B675E /* backButton-highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight@2x.png"; sourceTree = "<group>"; };
 		E14D17C7142771AD006B675E /* backButton-highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight.png"; sourceTree = "<group>"; };
@@ -837,6 +841,8 @@
 				E17817BB1450206B00DB0D70 /* rightlabel.png */,
 				E17817BC1450206B00DB0D70 /* leftlabel.png */,
 				E17817BD1450206B00DB0D70 /* leftlabel@2x.png */,
+				E12064421454321A00A7FE4F /* rightlabelwithnoshadow.png */,
+				E12064431454321A00A7FE4F /* rightlabelwithnoshadow@2x.png */,
 				E19A2CFE141FC2D700BE491A /* Localizable.strings */,
 			);
 			name = Resource;
@@ -1119,6 +1125,8 @@
 				E17817C814502C3300DB0D70 /* separator.png in Resources */,
 				E17817C914502C3300DB0D70 /* separator@2x.png in Resources */,
 				E17817CB14502C6C00DB0D70 /* LabelViewController.xib in Resources */,
+				E12064441454321A00A7FE4F /* rightlabelwithnoshadow.png in Resources */,
+				E12064451454321A00A7FE4F /* rightlabelwithnoshadow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1307,7 +1315,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				INFOPLIST_FILE = "SocialFusion/SocialFusion-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pocket Social";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1326,7 +1334,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				INFOPLIST_FILE = "SocialFusion/SocialFusion-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pocket Social";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
