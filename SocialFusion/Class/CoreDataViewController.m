@@ -15,12 +15,16 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize currentRenrenUser = _currentRenrenUser;
 @synthesize currentWeiboUser = _currentWeiboUser;
+@synthesize renrenUser = _renrenUser;
+@synthesize weiboUser = _weiboUser;
 
 - (void)dealloc
 {
     [_managedObjectContext release];
     [_currentRenrenUser release];
     [_currentWeibosUser release];
+    [_renrenUser release];
+    [_weiboUser release];
     [super dealloc];
 }
 

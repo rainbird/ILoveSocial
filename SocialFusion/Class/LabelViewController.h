@@ -14,17 +14,25 @@
     UITableView *_tableView;
     NSMutableArray *_labelName;
     NSIndexPath *_currentCellIndexPath;
+    NSIndexPath *_previousCellIndexPath;
+    NSString *_backLabelName;
+    id<LableViewControllerDelegate> _delegate;
+    NSMutableArray *_labelStack;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) id<LableViewControllerDelegate> delegate;
-@property (nonatomic, retain) NSMutableArray *labelName;
+@property (nonatomic, copy) NSString *backLabelName;
+
+- (void)pushLabels:(NSMutableArray *)labels;
+- (void)popLabels;
 
 @end
 
 @protocol LableViewControllerDelegate <NSObject>
 
 @required
-- (void)didSelectLabelAtIndexPath:(NSIndexPath *) indexPath;
+- (void)didSelectLabelAtIndexPath:(NSIndexPath *)indexPath withLabelName:(NSString *)name;
+- (void)didSelectBackLabel;
 
 @end

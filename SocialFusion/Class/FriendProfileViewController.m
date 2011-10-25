@@ -21,6 +21,7 @@
 @end
 
 @implementation FriendProfileViewController
+@synthesize delegate = _delegate;
 
 - (id)initWithType:(RelationshipViewType)type
 {
@@ -34,7 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if(_type == RelationshipViewTypeRenrenFriends && self.currentRenrenUser.friends.count > 0)
+    if(_type == RelationshipViewTypeRenrenFriends && self.renrenUser.friends.count > 0)
         return;
     [self refresh];
 }
@@ -42,6 +43,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    _delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,6 +54,7 @@
 }
 
 - (void)dealloc {
+    _delegate = nil;
     [super dealloc];
 }
 
@@ -61,15 +64,15 @@
     NSPredicate *predicate;
     NSSortDescriptor *sort;
     if(_type == RelationshipViewTypeRenrenFriends) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.currentRenrenUser.friends];
+        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.renrenUser.friends];
         sort = [[NSSortDescriptor alloc] initWithKey:@"pinyinName" ascending:YES];
     }
     else if(_type == RelationshipViewTypeWeiboFriends) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.currentWeiboUser.friends];
+        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.weiboUser.friends];
         sort = [[NSSortDescriptor alloc] initWithKey:@"updateDate" ascending:YES];
     }
     else if(_type == RelationshipViewTypeWeiboFollowers) {
-        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.currentWeiboUser.followers];
+        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.weiboUser.followers];
         sort = [[NSSortDescriptor alloc] initWithKey:@"updateDate" ascending:YES];
     }
     [request setPredicate:predicate];
@@ -98,15 +101,15 @@
 {
     if(_type == RelationshipViewTypeRenrenFriends) {
         _firstLoadFlag = YES;
-        [self.currentRenrenUser removeFriends:self.currentRenrenUser.friends];
+        [self.renrenUser removeFriends:self.renrenUser.friends];
     }
     else if(_type == RelationshipViewTypeWeiboFriends) {
         _nextCursor = -1;
-        [self.currentWeiboUser removeFriends:self.currentWeiboUser.friends];
+        [self.weiboUser removeFriends:self.weiboUser.friends];
     }
     else if(_type == RelationshipViewTypeWeiboFollowers) {
         _nextCursor = -1;
-        [self.currentWeiboUser removeFollowers:self.currentWeiboUser.followers];
+        [self.weiboUser removeFollowers:self.weiboUser.followers];
     }
 }
 
@@ -117,7 +120,7 @@
             NSArray *array = client.responseJSONObject;
             for(NSDictionary *dict in array) {
                 RenrenUser *friend = [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
-                [self.currentRenrenUser addFriendsObject:friend];
+                [self.renrenUser addFriendsObject:friend];
             }
             NSLog(@"renren friend count:%d", array.count);
             //NSLog(@"add finished");
@@ -140,10 +143,10 @@
             for (NSDictionary *dict in dictArray) {
                 WeiboUser *usr = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
                 if (_type == RelationshipViewTypeWeiboFollowers) {
-                    [self.currentWeiboUser addFollowersObject:usr];
+                    [self.weiboUser addFollowersObject:usr];
                 }
                 else if (_type == RelationshipViewTypeWeiboFriends) {
-                    [self.currentWeiboUser addFriendsObject:usr];
+                    [self.weiboUser addFriendsObject:usr];
                 }
             }
             _nextCursor = [[client.responseJSONObject objectForKey:@"next_cursor"] intValue];
@@ -159,10 +162,10 @@
         }
     }];
     if (_type == RelationshipViewTypeWeiboFriends) {
-        [client getFriendsOfUser:self.currentWeiboUser.userID cursor:_nextCursor count:20];
+        [client getFriendsOfUser:self.weiboUser.userID cursor:_nextCursor count:20];
     }
     else if(_type == RelationshipViewTypeWeiboFollowers) {
-        [client getFollowersOfUser:self.currentWeiboUser.userID cursor:_nextCursor count:20];
+        [client getFollowersOfUser:self.weiboUser.userID cursor:_nextCursor count:20];
     }
 }
 

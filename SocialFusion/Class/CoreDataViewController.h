@@ -15,10 +15,14 @@
     NSManagedObjectContext *_managedObjectContext;
     RenrenUser *_currentRenrenUser;
     WeiboUser *_currentWeibosUser;
+    RenrenUser *_renrenUser;
+    WeiboUser *_weiboUser;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) RenrenUser *currentRenrenUser;
 @property (nonatomic, retain) WeiboUser *currentWeiboUser;
+@property (retain, nonatomic) RenrenUser *renrenUser;
+@property (retain, nonatomic) WeiboUser *weiboUser;
 
 @end

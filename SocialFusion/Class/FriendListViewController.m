@@ -128,43 +128,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return;
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.selected = NO;
+    // 清空选中状态
     cell.highlighted = NO;
+    cell.selected = NO;
     [self.tableView reloadData];
-    MainPageViewController *vc = [[[MainPageViewController alloc] init] autorelease];
-    vc.currentWeiboUser = self.currentWeiboUser;
-    vc.currentRenrenUser = self.currentRenrenUser;
-    vc.toolbarItems = self.toolbarItems;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    if([_delegate respondsToSelector:@selector(didSelectFriend:withRelationType:)]) {
+        User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [_delegate didSelectFriend:usr withRelationType:_type];
+    }
 }
-
-/*- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    // 控制shadow显示
-    //NSLog(@"offset:%f, height:%f", scrollView.contentOffset.y, scrollView.contentSize.height);
-    [super scrollViewDidScroll:scrollView];
-    if(scrollView.contentOffset.y < 0 && scrollView.contentSize.height > 0 && !_reloading) {
-        _topShadowImageView.alpha = 1;
-        //NSLog(@"top!!!!!");
-        _topShadowImageView.frame = CGRectMake(0, - scrollView.contentOffset.y - 20, 320, 20);
-    }
-    else {
-        _topShadowImageView.alpha = 0;
-    }
-    if(scrollView.contentOffset.y >= scrollView.contentSize.height - self.tableView.frame.size.height && scrollView.contentSize.height > 0 && !_reloading) {
-        _bottomShadowImageView.alpha = 1;
-        //NSLog(@"bottom!!!!!");
-        _bottomShadowImageView.frame = CGRectMake(0, scrollView.contentSize.height - scrollView.contentOffset.y, 320, 20);
-    }
-    else {
-        _bottomShadowImageView.alpha = 0;
-    }
-    if(_reloading) {
-        //NSLog(@"set alpha 0");
-        _topShadowImageView.alpha = 0;
-        _bottomShadowImageView.alpha = 0;
-    }
-}*/
 
 @end

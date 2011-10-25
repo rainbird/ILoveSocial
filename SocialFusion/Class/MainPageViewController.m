@@ -7,84 +7,117 @@
 //
 
 #import "MainPageViewController.h"
-#import "NavigationToolBar.h"
 #import "FriendListViewController.h"
 #import "NewFeedListController.h"
+#import "DisplayViewController.h"
 
 @implementation MainPageViewController
 @synthesize lableViewController = _lableViewController;
-@synthesize viewControllers = _viewControllers;
+@synthesize delegate = _delegate;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
-- (void)selectDefaultLable {
-    NSIndexPath *defaultIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    _firstLoad = YES;
-    [self.lableViewController.tableView selectRowAtIndexPath:defaultIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-    [self performSelector:@selector(didSelectLabelAtIndexPath:) withObject:defaultIndexPath afterDelay:0.1];
-}
 
-- (void)setRenrenWeiboUser:(NSArray *)array {
-    for(id vc in array) {
-        if([vc isKindOfClass:[CoreDataViewController class]]) {
-            CoreDataViewController *cd = (CoreDataViewController *)vc;
-            cd.currentRenrenUser = self.currentRenrenUser;
-            cd.currentWeiboUser = self.currentWeiboUser;
-        }
+- (id)init {
+    self = [super init];
+    if(self) {
+        _lableViewController = [[LabelViewController alloc] init];
     }
-}
-
-- (void)configureViewControllers {
-    _viewControllers = [[NSMutableArray alloc] init];
-    NewFeedListController *newFeedList = [[NewFeedListController alloc] init];
-    FriendListViewController *renrenFriendList = [[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends];
-    FriendListViewController *weiboFriendList = [[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFriends];
-    FriendListViewController *weiboFollowerList = [[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers];
-    NSArray *viewControllers = [NSArray arrayWithObjects:newFeedList, renrenFriendList, weiboFriendList, weiboFollowerList, nil];
-    [self.viewControllers addObjectsFromArray:viewControllers];
-    [self setRenrenWeiboUser:self.viewControllers];
-    [self selectDefaultLable];
+    return self;
 }
 
 - (void)configureLabelViewController {
-    self.lableViewController = [[[LabelViewController alloc] init] autorelease];
     //[NSArray arrayWithObjects:@"首页", @"新鲜事", @"好友", @"关注", @"资料", @"留言板", @"访客", @"日志", @"相册", @"状态", @"分享", nil];
-    [self.lableViewController.labelName addObjectsFromArray:[NSArray arrayWithObjects:@"新鲜事", @"人人好友", @"微博关注", @"微博粉丝", nil]];
+    
+    [self.lableViewController pushLabels:[NSMutableArray arrayWithObjects:@"新鲜事", @"人人好友", @"微博关注", @"微博粉丝", nil]];
     self.lableViewController.delegate = self;
     [self.view addSubview:self.lableViewController.view];
+}
+
+- (void)pushLabelViewControllerWithType:(DisplayViewType)type withBackLabelName:(NSString *)backLabelName{
+    if(type == DisplayViewTypeRenren) {
+        [self.lableViewController pushLabels:[NSMutableArray arrayWithObjects:_displayUserName, @"人人好友", nil]];
+    }
+    else if(type == DisplayViewTypeWeibo) {
+        [self.lableViewController pushLabels:[NSMutableArray arrayWithObjects:_displayUserName, @"微博关注", @"微博粉丝", nil]];
+    }
+    _displayUserName = backLabelName;
+}
+
+- (void)popLabelViewController {
+    _displayUserName = self.lableViewController.backLabelName;
+    [self.lableViewController popLabels];
+}
+
+- (DisplayViewController *)getDisplayViewControllerWithType:(DisplayViewType)type andUser:(User *)user {
+    DisplayViewController *displayViewController = [[((DisplayViewController *)[DisplayViewController alloc]) initWithType:type] autorelease];
+    displayViewController.currentWeiboUser = self.currentWeiboUser;
+    displayViewController.currentRenrenUser = self.currentRenrenUser;
+    if(type == DisplayViewTypeRenren) 
+        displayViewController.renrenUser = (RenrenUser *)user;
+    else if(type == DisplayViewTypeWeibo) 
+    displayViewController.weiboUser = (WeiboUser *)user;
+    else if(type == DisplayViewTypeSelf) {
+        displayViewController.weiboUser = self.currentWeiboUser;
+        displayViewController.renrenUser = self.currentRenrenUser;
+    }
+    [displayViewController setDelegate:self];
+    self.delegate = displayViewController;
+    return displayViewController;
+}
+
+- (void)configureDisplayViewController {
+    // default is current user;
+    DisplayViewController *displayViewController = [self getDisplayViewControllerWithType:DisplayViewTypeSelf andUser:nil];
+    self.lableViewController.delegate = self;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:displayViewController];
+    navigationController.navigationBarHidden = YES;
+    navigationController.view.frame = CGRectMake(7, 64, 306, 389);
+    _navigationController = navigationController;
+    [self.view addSubview:_navigationController.view];
 }
 
 - (void)viewDidLoad {
     NSLog(@"main page view did load");
     [super viewDidLoad];
+    _displayUserName = self.currentRenrenUser.name;
+    [self configureDisplayViewController];
     [self configureLabelViewController];
-    [self performSelector:@selector(configureViewControllers) withObject:nil afterDelay:0.3];
 }
 
 - (void)dealloc {
     NSLog(@"main page dealloc");
+    _delegate = nil;
     [_lableViewController release];
-    [_viewControllers release];
+    [_navigationController release];
     [super dealloc];
+}
+
+#pragma mark - FriendProfileViewControllerDelegate
+- (void)didSelectFriend:(User *)user withRelationType:(RelationshipViewType)type {
+    DisplayViewController *displayViewController;
+    if(type == RelationshipViewTypeRenrenFriends) {
+        displayViewController = [self getDisplayViewControllerWithType:DisplayViewTypeRenren andUser:user];
+        [self pushLabelViewControllerWithType:DisplayViewTypeRenren withBackLabelName:user.name];
+    }
+    else {
+        displayViewController = [self getDisplayViewControllerWithType:DisplayViewTypeWeibo andUser:user];
+        [self pushLabelViewControllerWithType:DisplayViewTypeWeibo withBackLabelName:user.name];
+    }
+    self.delegate = displayViewController;
+    [_navigationController pushViewController:displayViewController animated:YES];
 }
 
 #pragma mark - Label View Controller Delegate
 
-- (void)didSelectLabelAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger row = indexPath.row;
-    if(row > _viewControllers.count - 1)
-        return;
-    
-    if(!_firstLoad) {
-        NSArray *subviews = [self.view subviews];
-        NSLog(@"subviews count:%d", [subviews count]);
-        UIView *view = [subviews objectAtIndex:1];
-        [view removeFromSuperview];
-    }
-    _firstLoad = NO;
-    
-    UIViewController *viewController = ((UIViewController *)[_viewControllers objectAtIndex:row]);
-    [self.view insertSubview:viewController.view belowSubview:self.lableViewController.view];
+- (void)didSelectLabelAtIndexPath:(NSIndexPath *)indexPath withLabelName:(NSString *)name {
+    [self.delegate didSelectLabelAtIndexPath:indexPath withLabelName:name];
+}
+
+- (void)didSelectBackLabel {
+    [self popLabelViewController];
+    [_navigationController popViewControllerAnimated:YES];
+    self.delegate = (id<MainPageViewControllerDelegate>)[_navigationController topViewController];
 }
 
 @end
