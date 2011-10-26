@@ -13,8 +13,8 @@
 @interface LabelViewController : UIViewController<UITableViewDataSource, UITableViewDelegate> {
     UITableView *_tableView;
     NSMutableArray *_labelName;
-    NSIndexPath *_currentCellIndexPath;
-    NSIndexPath *_previousCellIndexPath;
+    NSInteger _currentCellIndex;
+    NSMutableArray *_cellIndexStack;
     NSString *_backLabelName;
     id<LableViewControllerDelegate> _delegate;
     NSMutableArray *_labelStack;

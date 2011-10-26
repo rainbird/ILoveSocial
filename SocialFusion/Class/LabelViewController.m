@@ -23,6 +23,7 @@
     self = [super init];
     if(self) {
         _labelStack = [[NSMutableArray alloc] init];
+        _cellIndexStack = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -32,6 +33,7 @@
     [_backLabelName release];
     [_tableView release];
     [_labelStack release];
+    [_cellIndexStack release];
     _delegate = nil;
     [super dealloc];
 }
@@ -88,16 +90,16 @@
     return result;
 }
 
-- (void)setCellSelectedAtIndexPath:(NSIndexPath *)indexPath {
+- (void)setCellSelectedAtIndex:(NSInteger)index {
     // if there is a label on the selected label right hand
-    for(int i = indexPath.row - indexPath.row % 4; i < _labelName.count && i < 4 - indexPath.row % 4 + indexPath.row; i++) {
-        LabelTableViewCell *cell = (LabelTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
-        if(i <= indexPath.row) {
+    for(int i = index - index % 4; i < _labelName.count && i < 4 - index % 4 + index; i++) {
+        LabelTableViewCell *cell = (LabelTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        if(i <= index) {
             if (i % 4 != 0) {
                 cell.leftLabelImage.hidden = NO;
             }
             cell.highlightLeftLabelImage.hidden = YES;
-            if(i == indexPath.row) {
+            if(i == index) {
                 cell.selected = YES;
             }
         }
@@ -110,19 +112,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self setCellSelectedAtIndexPath:indexPath];
+    [self setCellSelectedAtIndex:indexPath.row];
     if(_labelStack.count > 1) {
         if(indexPath.row == 0) {
             [self.delegate didSelectBackLabel];
         }
         else {
             [self.delegate didSelectLabelAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row - 1 inSection:0] withLabelName:[_labelName objectAtIndex:indexPath.row]];
-            _currentCellIndexPath = indexPath;
+            _currentCellIndex = indexPath.row;
         }
     }
     else {
         [self.delegate didSelectLabelAtIndexPath:indexPath withLabelName:[_labelName objectAtIndex:indexPath.row]];
-        _currentCellIndexPath = indexPath;
+        _currentCellIndex = indexPath.row;
     }
 }
 
@@ -145,9 +147,9 @@
     }
     
     // 接下来判断当前滑动到的page有被选中的label的情况
-    if(indexPath.row >= _currentCellIndexPath.row - _currentCellIndexPath.row % 4
-       && indexPath.row < 4 - _currentCellIndexPath.row % 4 + _currentCellIndexPath.row) {
-        if(indexPath.row <= _currentCellIndexPath.row) {
+    if(indexPath.row >= _currentCellIndex - _currentCellIndex % 4
+       && indexPath.row < 4 - _currentCellIndex % 4 + _currentCellIndex) {
+        if(indexPath.row <= _currentCellIndex) {
             cell.highlightLeftLabelImage.hidden = YES;
             cell.leftLabelImage.hidden = NO;
         }
@@ -189,24 +191,25 @@
 }
 
 - (void)pushLabels:(NSMutableArray *)labels {
-    _previousCellIndexPath = _currentCellIndexPath;
-    _currentCellIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    [_cellIndexStack addObject:[NSNumber numberWithInt:_currentCellIndex]];
+    _currentCellIndex = 1;
     [_labelStack addObject:labels];
     _labelName = labels;
     self.backLabelName = [_labelName objectAtIndex:0];
     [self.tableView reloadData];
-    [self.tableView selectRowAtIndexPath:_currentCellIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-    [self setCellSelectedAtIndexPath:_currentCellIndexPath];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:_currentCellIndex inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [self setCellSelectedAtIndex:_currentCellIndex];
 }
 
 - (void)popLabels {
     if(_labelStack.count > 1) {
-        _currentCellIndexPath = _previousCellIndexPath;
+        _currentCellIndex = ((NSNumber *)[_cellIndexStack lastObject]).intValue;
+        [_cellIndexStack removeLastObject];
         [_labelStack removeLastObject];
         _labelName = _labelStack.lastObject;
         [self.tableView reloadData];
-        [self.tableView selectRowAtIndexPath:_currentCellIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-        [self setCellSelectedAtIndexPath:_currentCellIndexPath];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:_currentCellIndex inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+        [self setCellSelectedAtIndex:_currentCellIndex];
         self.backLabelName = [_labelName objectAtIndex:0];
     }
     else {

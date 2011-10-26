@@ -21,7 +21,6 @@
 @end
 
 @implementation FriendProfileViewController
-@synthesize delegate = _delegate;
 
 - (id)initWithType:(RelationshipViewType)type
 {
@@ -43,7 +42,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    _delegate = nil;
+    [self clearData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,7 +53,6 @@
 }
 
 - (void)dealloc {
-    _delegate = nil;
     [super dealloc];
 }
 
@@ -122,7 +120,7 @@
                 RenrenUser *friend = [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
                 [self.renrenUser addFriendsObject:friend];
             }
-            NSLog(@"renren friend count:%d", array.count);
+            //NSLog(@"renren friend count:%d", array.count);
             //NSLog(@"add finished");
         }
         [self doneLoadingTableViewData];
@@ -137,9 +135,9 @@
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
-            NSLog(@"dict:%@", client.responseJSONObject);
+            //NSLog(@"dict:%@", client.responseJSONObject);
             NSArray *dictArray = [client.responseJSONObject objectForKey:@"users"];
-            NSLog(@"count:%d", [dictArray count]);
+            //NSLog(@"count:%d", [dictArray count]);
             for (NSDictionary *dict in dictArray) {
                 WeiboUser *usr = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
                 if (_type == RelationshipViewTypeWeiboFollowers) {
@@ -150,7 +148,7 @@
                 }
             }
             _nextCursor = [[client.responseJSONObject objectForKey:@"next_cursor"] intValue];
-            NSLog(@"new cursor:%d", _nextCursor);
+            //NSLog(@"new cursor:%d", _nextCursor);
             if (_nextCursor == 0) {
                 [self hideLoadMoreDataButton];
             }

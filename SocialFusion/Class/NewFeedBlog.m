@@ -15,9 +15,9 @@
 
 -(void )dealloc
 {
-     [prefix release];
-     [title release];
- [description release];
+    [prefix release];
+    [title release];
+    [description release];
     [super dealloc];
 }
 -(id)initWithDictionary:(NSDictionary*)feedDic
@@ -47,7 +47,7 @@
     //if (description==nil)
     //description=@"";
     
-NSString* tempString=[[[NSString alloc] initWithFormat:@""] autorelease];
+    NSString* tempString=[[[NSString alloc] initWithFormat:@""] autorelease];
     
     
     int nameLength=[owner_Name length];

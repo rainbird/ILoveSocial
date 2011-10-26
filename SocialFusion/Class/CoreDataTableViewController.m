@@ -65,8 +65,8 @@
     
     [self configureRequest:fetchRequest];
     
-    [NSFetchedResultsController deleteCacheWithName:@"cache"];
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"cache"];
+    //[NSFetchedResultsController deleteCacheWithName:@"cache"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -136,21 +136,25 @@
     
     switch(type) {
         case NSFetchedResultsChangeInsert:
+             NSLog(@"did insert");
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
+             NSLog(@"did delete");
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeUpdate:
+             NSLog(@"did update");
             [self updateCell:[tableView cellForRowAtIndexPath:indexPath]
                     atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
+             NSLog(@"did move");
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]

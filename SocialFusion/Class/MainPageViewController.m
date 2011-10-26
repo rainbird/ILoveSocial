@@ -56,12 +56,11 @@
     if(type == DisplayViewTypeRenren) 
         displayViewController.renrenUser = (RenrenUser *)user;
     else if(type == DisplayViewTypeWeibo) 
-    displayViewController.weiboUser = (WeiboUser *)user;
+        displayViewController.weiboUser = (WeiboUser *)user;
     else if(type == DisplayViewTypeSelf) {
         displayViewController.weiboUser = self.currentWeiboUser;
         displayViewController.renrenUser = self.currentRenrenUser;
     }
-    [displayViewController setDelegate:self];
     self.delegate = displayViewController;
     return displayViewController;
 }
@@ -83,6 +82,11 @@
     _displayUserName = self.currentRenrenUser.name;
     [self configureDisplayViewController];
     [self configureLabelViewController];
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(didSelectFriend:) 
+                   name:kDidSelectFriendNotification 
+                 object:nil];
 }
 
 - (void)dealloc {
@@ -91,21 +95,6 @@
     [_lableViewController release];
     [_navigationController release];
     [super dealloc];
-}
-
-#pragma mark - FriendProfileViewControllerDelegate
-- (void)didSelectFriend:(User *)user withRelationType:(RelationshipViewType)type {
-    DisplayViewController *displayViewController;
-    if(type == RelationshipViewTypeRenrenFriends) {
-        displayViewController = [self getDisplayViewControllerWithType:DisplayViewTypeRenren andUser:user];
-        [self pushLabelViewControllerWithType:DisplayViewTypeRenren withBackLabelName:user.name];
-    }
-    else {
-        displayViewController = [self getDisplayViewControllerWithType:DisplayViewTypeWeibo andUser:user];
-        [self pushLabelViewControllerWithType:DisplayViewTypeWeibo withBackLabelName:user.name];
-    }
-    self.delegate = displayViewController;
-    [_navigationController pushViewController:displayViewController animated:YES];
 }
 
 #pragma mark - Label View Controller Delegate
@@ -118,6 +107,25 @@
     [self popLabelViewController];
     [_navigationController popViewControllerAnimated:YES];
     self.delegate = (id<MainPageViewControllerDelegate>)[_navigationController topViewController];
+}
+
+#pragma mark - handle notifications
+- (void)didSelectFriend:(NSNotification *)notification {
+    //(User *)user withRelationType:(RelationshipViewType)type
+    User* user = notification.object;
+    RelationshipViewType type = (RelationshipViewType)[notification.userInfo objectForKey:kDisSelectFirendType];
+    NSLog(@"select user:%@", user.name);
+    DisplayViewController *displayViewController;
+    if(type == RelationshipViewTypeRenrenFriends) {
+        displayViewController = [self getDisplayViewControllerWithType:DisplayViewTypeRenren andUser:user];
+        [self pushLabelViewControllerWithType:DisplayViewTypeRenren withBackLabelName:user.name];
+    }
+    else {
+        displayViewController = [self getDisplayViewControllerWithType:DisplayViewTypeWeibo andUser:user];
+        [self pushLabelViewControllerWithType:DisplayViewTypeWeibo withBackLabelName:user.name];
+    }
+    self.delegate = displayViewController;
+    [_navigationController pushViewController:displayViewController animated:YES];
 }
 
 @end

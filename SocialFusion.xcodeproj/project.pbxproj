@@ -618,6 +618,21 @@
 			path = BaseClass;
 			sourceTree = "<group>";
 		};
+		E13896871457E3D600FD0BE6 /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				E1EA75AF1456872A00D8A906 /* DisplayViewController.h */,
+				E1EA75B01456872A00D8A906 /* DisplayViewController.m */,
+				E1ABA421141FA882002CD0A6 /* MainPageViewController.h */,
+				E1ABA422141FA882002CD0A6 /* MainPageViewController.m */,
+				E1F1D4DB142E09EC00720635 /* LabelViewController.h */,
+				E1F1D4DC142E09ED00720635 /* LabelViewController.m */,
+				E1F1D4E2142E24FC00720635 /* LabelTableViewCell.h */,
+				E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */,
+			);
+			name = MainPage;
+			sourceTree = "<group>";
+		};
 		E19A2D0C1420927400BE491A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -768,18 +783,11 @@
 		E1ABA41C141FA882002CD0A6 /* ViewContrlloers */ = {
 			isa = PBXGroup;
 			children = (
-				E1EA75AF1456872A00D8A906 /* DisplayViewController.h */,
-				E1EA75B01456872A00D8A906 /* DisplayViewController.m */,
-				E1ABA421141FA882002CD0A6 /* MainPageViewController.h */,
-				E1ABA422141FA882002CD0A6 /* MainPageViewController.m */,
-				E1ABA42B141FA882002CD0A6 /* SocialFusionViewController.h */,
-				E1ABA42C141FA882002CD0A6 /* SocialFusionViewController.m */,
-				E1F1D4DB142E09EC00720635 /* LabelViewController.h */,
-				E1F1D4DC142E09ED00720635 /* LabelViewController.m */,
-				E1F1D4E2142E24FC00720635 /* LabelTableViewCell.h */,
-				E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */,
+				E13896871457E3D600FD0BE6 /* MainPage */,
 				E1E6E8E41451E63600FCB08B /* Friend */,
 				7309DDBD1447E95C00774011 /* NewFeed */,
+				E1ABA42B141FA882002CD0A6 /* SocialFusionViewController.h */,
+				E1ABA42C141FA882002CD0A6 /* SocialFusionViewController.m */,
 			);
 			name = ViewContrlloers;
 			path = SocialFusion/Class;

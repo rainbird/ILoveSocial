@@ -18,6 +18,7 @@
 #import "WeiboClient.h"
 #import "NavigationToolBar.h"
 #import "MainPageViewController.h"
+#import "MainPageViewController.h"
 
 #define kCustomRowCount 7
 
@@ -39,9 +40,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self configureToolbar];
     NSLog(@"friend list view did load");
-    self.egoHeaderView.textColor = [UIColor whiteColor];
+    self.egoHeaderView.textColor = [UIColor grayColor];
     /*_topShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellTopShadow.png"]];
     _topShadowImageView.frame = CGRectMake(0, -20, 320, 20);
     [self.view addSubview:_topShadowImageView];
@@ -63,6 +63,7 @@
     relationshipCell.latestStatus.text = nil;
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     relationshipCell.userName.text = usr.name;
+    //NSLog(@"cell name:%@", usr.name);
     if(_type == RelationshipViewTypeRenrenFriends && !usr.latestStatus) {
         if (self.tableView.dragging == NO && self.tableView.decelerating == NO) {
             if(indexPath.row < kCustomRowCount) {
@@ -117,6 +118,7 @@
 - (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {    
     FriendListTableViewCell *relationshipCell = (FriendListTableViewCell *)cell;
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSLog(@"update user name:%@", usr.name);
     if(![relationshipCell.latestStatus.text isEqualToString:usr.latestStatus]) {
         relationshipCell.latestStatus.text = usr.latestStatus;
         relationshipCell.latestStatus.alpha = 0.3f;
@@ -133,11 +135,11 @@
     cell.highlighted = NO;
     cell.selected = NO;
     [self.tableView reloadData];
-    
-    if([_delegate respondsToSelector:@selector(didSelectFriend:withRelationType:)]) {
-        User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        [_delegate didSelectFriend:usr withRelationType:_type];
-    }
+
+    User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[NSNumber numberWithInt:_type] forKey:kDisSelectFirendType];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidSelectFriendNotification object:usr userInfo:dic];
 }
 
 @end

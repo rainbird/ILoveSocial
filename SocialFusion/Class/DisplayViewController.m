@@ -32,6 +32,7 @@
             cd.weiboUser = self.weiboUser;
         }
     }
+    NSLog(@"renrenuser:%@, weibouser:%@", self.renrenUser.name, self.weiboUser.name);
 }
 
 - (void)configureViewControllers {
@@ -103,21 +104,12 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)setDelegate:(id<FriendProfileViewControllerDelegate>)delegate {
-    for(id vc in self.viewControllers) {
-        if([vc isKindOfClass:[FriendProfileViewController class]]) {
-            FriendProfileViewController *fp = (FriendProfileViewController *)vc;
-            fp.delegate = delegate;
-        }
-    }
-}
-
 #pragma mark - Main Page View Controller Delegate
 - (void)didSelectLabelAtIndexPath:(NSIndexPath *)indexPath withLabelName:(NSString *)name {
     NSInteger row = indexPath.row;
     NSArray *subviews = [self.view subviews];
     NSInteger insertIndex = [subviews count] - 1;
-    NSLog(@"subviews count:%d", [subviews count]);
+    //NSLog(@"subviews count:%d", [subviews count]);
     UIView *view = [subviews objectAtIndex:insertIndex];
     [view removeFromSuperview];
     

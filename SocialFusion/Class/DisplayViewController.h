@@ -25,6 +25,5 @@ typedef enum {
 @property (retain, nonatomic) NSMutableArray *viewControllers;
 
 - (id)initWithType:(DisplayViewType)type;
-- (void)setDelegate:(id<FriendProfileViewControllerDelegate>)delegate;
 
 @end

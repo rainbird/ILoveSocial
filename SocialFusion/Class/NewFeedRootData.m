@@ -25,7 +25,7 @@
 }
 -(id)initWithDictionary:(NSDictionary*)feedDic
 {
-
+    
     
     style=0;
     
@@ -38,7 +38,7 @@
     
     owner_Name=[feedDic objectForKey:@"name"];
     [owner_Name retain];
-
+    
     
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
     [form setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -76,7 +76,7 @@
     style=1;
     
     actor_ID=[[[[feedDic objectForKey:@"user"] objectForKey:@"id"] stringValue] retain];
-
+    
     
     owner_Head= [[[feedDic objectForKey:@"user"] objectForKey:@"profile_image_url"] retain];
     
@@ -90,19 +90,19 @@
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
     [form setDateFormat:@"EEE MMM dd HH:mm:ss ZZZ yyyy"];
     
-   // Sat Oct 15 21:22:56 +0800 2011
+    // Sat Oct 15 21:22:56 +0800 2011
     
     NSLocale* tempLocale=[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     [form setLocale:tempLocale];
     [tempLocale release];
     
-  //  [form setShortStandaloneWeekdaySymbols:[NSArray arrayWithObjects:@"Mon",@"Tue",@"Fri",@"Sat",@"Sun",nil]];
+    //  [form setShortStandaloneWeekdaySymbols:[NSArray arrayWithObjects:@"Mon",@"Tue",@"Fri",@"Sat",@"Sun",nil]];
     NSString* dateString=[feedDic objectForKey:@"created_at"];
     //NSLog(@"%@",dateString);
     
     
     //NSDate* date=[NSDate dateWithTimeIntervalSinceNow:0];
-   //NSLog(@"%@",[form stringFromDate:date]);
+    //NSLog(@"%@",[form stringFromDate:date]);
     //NSDate* aaa=[[form dateFromString: dateString] retain];
     //NSLog(@"%@",aaa);
 	update_Time=[[form dateFromString: dateString] retain];
@@ -111,9 +111,9 @@
     [form release];
     
     
-   // NSLog(@"%@",[feedDic objectForKey:@"comments_count"]);
+    // NSLog(@"%@",[feedDic objectForKey:@"comments_count"]);
     
-   // NSLog(@"%@",feedDic);
+    // NSLog(@"%@",feedDic);
     comment_Count=[[feedDic objectForKey:@"comment_count"] intValue];
     
     source_ID= [[[feedDic objectForKey:@"id"] stringValue] retain];
@@ -141,12 +141,12 @@
 
 -(void)dealloc
 {
-
+    
     [actor_ID release];
- [update_Time release];
-   [owner_Name release];
-       [owner_Head release];
-
+    [update_Time release];
+    [owner_Name release];
+    [owner_Head release];
+    
     [source_ID release];
     [super dealloc];
 }
