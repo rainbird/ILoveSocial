@@ -28,7 +28,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"Friend List Cell Dealloc");
+    //NSLog(@"Friend List Cell Dealloc");
     [_defaultHeadImageView release];
     [_headImageView release];
     [_userName release];

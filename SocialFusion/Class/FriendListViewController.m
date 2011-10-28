@@ -118,7 +118,7 @@
 - (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {    
     FriendListTableViewCell *relationshipCell = (FriendListTableViewCell *)cell;
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSLog(@"update user name:%@", usr.name);
+    //NSLog(@"update user name:%@", usr.name);
     if(![relationshipCell.latestStatus.text isEqualToString:usr.latestStatus]) {
         relationshipCell.latestStatus.text = usr.latestStatus;
         relationshipCell.latestStatus.alpha = 0.3f;
@@ -138,6 +138,7 @@
 
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     NSDictionary *dic = [NSMutableDictionary dictionary];
+    NSLog(@"send didSelectFriend notification. friend name:%@, type:%d", usr.name, _type);
     [dic setValue:[NSNumber numberWithInt:_type] forKey:kDisSelectFirendType];
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidSelectFriendNotification object:usr userInfo:dic];
 }

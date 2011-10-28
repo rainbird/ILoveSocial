@@ -191,6 +191,7 @@
 }
 
 - (void)pushLabels:(NSMutableArray *)labels {
+    NSLog(@"!!!push %d:", _currentCellIndex);
     [_cellIndexStack addObject:[NSNumber numberWithInt:_currentCellIndex]];
     _currentCellIndex = 1;
     [_labelStack addObject:labels];
@@ -204,6 +205,7 @@
 - (void)popLabels {
     if(_labelStack.count > 1) {
         _currentCellIndex = ((NSNumber *)[_cellIndexStack lastObject]).intValue;
+        NSLog(@"!!!pop %d:", _currentCellIndex);
         [_cellIndexStack removeLastObject];
         [_labelStack removeLastObject];
         _labelName = _labelStack.lastObject;

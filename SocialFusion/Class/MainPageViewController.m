@@ -90,7 +90,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"main page dealloc");
+    //NSLog(@"main page dealloc");
     _delegate = nil;
     [_lableViewController release];
     [_navigationController release];
@@ -98,7 +98,6 @@
 }
 
 #pragma mark - Label View Controller Delegate
-
 - (void)didSelectLabelAtIndexPath:(NSIndexPath *)indexPath withLabelName:(NSString *)name {
     [self.delegate didSelectLabelAtIndexPath:indexPath withLabelName:name];
 }
@@ -113,16 +112,20 @@
 - (void)didSelectFriend:(NSNotification *)notification {
     //(User *)user withRelationType:(RelationshipViewType)type
     User* user = notification.object;
-    RelationshipViewType type = (RelationshipViewType)[notification.userInfo objectForKey:kDisSelectFirendType];
-    NSLog(@"select user:%@", user.name);
+    NSNumber *typeContainer = ((NSNumber *)[notification.userInfo objectForKey:kDisSelectFirendType]);
+    RelationshipViewType type = typeContainer.intValue;
     DisplayViewController *displayViewController;
     if(type == RelationshipViewTypeRenrenFriends) {
         displayViewController = [self getDisplayViewControllerWithType:DisplayViewTypeRenren andUser:user];
         [self pushLabelViewControllerWithType:DisplayViewTypeRenren withBackLabelName:user.name];
     }
-    else {
+    else if(type == RelationshipViewTypeWeiboFollowers || type == RelationshipViewTypeWeiboFriends){
         displayViewController = [self getDisplayViewControllerWithType:DisplayViewTypeWeibo andUser:user];
         [self pushLabelViewControllerWithType:DisplayViewTypeWeibo withBackLabelName:user.name];
+    }
+    else {
+        NSLog(@"error while receiving notification");
+        return;
     }
     self.delegate = displayViewController;
     [_navigationController pushViewController:displayViewController animated:YES];

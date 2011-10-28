@@ -87,7 +87,7 @@
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     NSInteger count = [sectionInfo numberOfObjects];
-    NSLog(@"row count:%d", count);
+    //NSLog(@"row count:%d", count);
     if(count == 0)
         _firstLoadFlag = YES;
     else
@@ -136,25 +136,25 @@
     
     switch(type) {
         case NSFetchedResultsChangeInsert:
-             NSLog(@"did insert");
+            //NSLog(@"did insert");
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
-             NSLog(@"did delete");
+            // NSLog(@"did delete");
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeUpdate:
-             NSLog(@"did update");
+            // NSLog(@"did update");
             [self updateCell:[tableView cellForRowAtIndexPath:indexPath]
                     atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
-             NSLog(@"did move");
+            // NSLog(@"did move");
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
