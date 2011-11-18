@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NewFeedData.h"
+#import "NewFeedData+NewFeedData_Addition.h"
 
 @interface NewFeedStatusCell : UITableViewCell {
     NewFeedRootData* _feedData;

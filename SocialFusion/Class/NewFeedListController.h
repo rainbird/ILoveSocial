@@ -7,36 +7,40 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DragRefreshTableViewController.h"
 
+
+#import "EGOTableViewController.h"
+
+
+//#import "DragRefreshTableViewController.h"
+#import "NewFeedRootData.h"
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "NewFeedStatusCell.h"
 #import "NewFeedStatusWithRepostcell.h"
 #import "NewFeedBlogCell.h"
-@interface NewFeedListController : DragRefreshTableViewController<UITableViewDataSource,UITableViewDelegate> {
-
-    
-  
-    
-    NSMutableArray* _feedArray;
-    NSMutableArray* _tempArray;
+@interface NewFeedListController : EGOTableViewController {
     
     
-
+    
+    // NewFeedRootData *feedDatas;
+    //  NSMutableArray* _feedArray;
+    //  NSMutableArray* _tempArray;
+    
     
     IBOutlet NewFeedStatusCell *_feedStatusCel;
     IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;
     IBOutlet NewFeedBlogCell *_newFeedBlogCel;
     
+    
+    
+    
     int _pageNumber;
-
-
+    
+    
 }
 
--(void)loadMoreRenrenData;
 
--(void)loadRenrenData;
 
 
 -(IBAction)gotoRepostStatus:(id)sender;

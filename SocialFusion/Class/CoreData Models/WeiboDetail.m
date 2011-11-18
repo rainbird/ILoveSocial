@@ -2,7 +2,7 @@
 //  WeiboDetail.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-10-5.
+//  Created by He Ruoyun on 11-11-18.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 
 @implementation WeiboDetail
-@dynamic statusesCount;
+
 @dynamic profileImageURL;
 @dynamic followersCount;
 @dynamic verified;
@@ -25,5 +25,6 @@
 @dynamic selfDescription;
 @dynamic blogURL;
 @dynamic gender;
+@dynamic statusesCount;
 
 @end

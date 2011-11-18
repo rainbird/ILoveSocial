@@ -2,18 +2,18 @@
 //  ImageData.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-10-5.
+//  Created by He Ruoyun on 11-11-18.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Image;
 
-@interface ImageData : NSManagedObject {
-@private
-}
+@interface ImageData : NSManagedObject
+
 @property (nonatomic, retain) NSData * data;
-@property (nonatomic, retain) NSManagedObject *owner;
+@property (nonatomic, retain) Image *owner;
 
 @end

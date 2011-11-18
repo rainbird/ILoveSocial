@@ -2,7 +2,7 @@
 //  Status.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-10-5.
+//  Created by He Ruoyun on 11-11-18.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -11,9 +11,8 @@
 
 @class User;
 
-@interface Status : NSManagedObject {
-@private
-}
+@interface Status : NSManagedObject
+
 @property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) NSString * statusID;
 @property (nonatomic, retain) NSString * text;

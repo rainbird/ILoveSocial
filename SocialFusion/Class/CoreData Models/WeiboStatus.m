@@ -2,7 +2,7 @@
 //  WeiboStatus.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-10-5.
+//  Created by He Ruoyun on 11-11-18.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -12,14 +12,15 @@
 
 
 @implementation WeiboStatus
-@dynamic thumbnailPicURL;
-@dynamic bmiddlePicURL;
+
 @dynamic source;
-@dynamic repostsCount;
+@dynamic thumbnailPicURL;
 @dynamic updateDate;
+@dynamic bmiddlePicURL;
 @dynamic favorited;
 @dynamic commentsCount;
 @dynamic originalPicURL;
+@dynamic repostsCount;
 @dynamic favoritedBy;
 @dynamic repostBy;
 @dynamic repostStatus;

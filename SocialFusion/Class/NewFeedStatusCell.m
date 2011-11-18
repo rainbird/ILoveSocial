@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CommonFunction.h"
 #import "NewFeedBlog.h"
+
 @implementation NewFeedStatusCell
 
 @synthesize defaultHeadImageView = _defaultHeadImageView;

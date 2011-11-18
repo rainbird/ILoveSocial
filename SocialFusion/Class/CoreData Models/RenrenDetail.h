@@ -2,7 +2,7 @@
 //  RenrenDetail.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-10-5.
+//  Created by He Ruoyun on 11-11-18.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -11,9 +11,8 @@
 #import "DetailInformation.h"
 
 
-@interface RenrenDetail : DetailInformation {
-@private
-}
+@interface RenrenDetail : DetailInformation
+
 @property (nonatomic, retain) NSString * gender;
 @property (nonatomic, retain) NSString * mainURL;
 @property (nonatomic, retain) NSString * headURL;

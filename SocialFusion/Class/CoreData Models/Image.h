@@ -2,7 +2,7 @@
 //  Image.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-10-5.
+//  Created by He Ruoyun on 11-11-18.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -11,9 +11,8 @@
 
 @class ImageData;
 
-@interface Image : NSManagedObject {
-@private
-}
+@interface Image : NSManagedObject
+
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NSDate * updateDate;
 @property (nonatomic, retain) ImageData *imageData;

@@ -2,7 +2,7 @@
 //  DetailInformation.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-10-5.
+//  Created by He Ruoyun on 11-11-18.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -11,6 +11,7 @@
 
 
 @implementation DetailInformation
+
 @dynamic ownerID;
 @dynamic owner;
 

@@ -86,7 +86,7 @@
     
     if ([_feedData getStyle]==0)
     {
-          _pageNumber=[_feedData getComment_Count]/10+1;
+    //      _pageNumber=[_feedData getComment_Count]/10+1;
     }
     else
     {
