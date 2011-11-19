@@ -160,6 +160,16 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     [client getFriendsTimelineSinceID:nil maxID:nil startingAtPage:1 count:30 feature:0];
     
 }
+- (void)loadExtraDataForOnscreenRows 
+{
+    NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+    NSTimeInterval i = 0;
+    for (NSIndexPath *indexPath in visiblePaths)
+    {
+        i += 0.05;
+        [self performSelector:@selector(loadExtraDataForOnscreenRowsHelp:) withObject:indexPath afterDelay:i];
+    }
+}
 
 
 - (void)loadMoreRenrenData {
@@ -232,9 +242,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 
 
-// 优化显示，每次滑动停止才载入数据
-- (void)loadExtraDataForOnscreenRowsHelp:(NSIndexPath *)indexPath {
-}
+
 
 
 
@@ -293,6 +301,36 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 
 
+- (void)loadExtraDataForOnscreenRowsHelp:(NSIndexPath *)indexPath {
+    if(self.tableView.dragging || self.tableView.decelerating || _reloading)
+        return;
+    NewFeedRootData *data = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Image *image = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
+    if (!image)
+    {
+        NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        [statusCell.headImageView loadImageFromURL:data.owner_Head completion:^{
+            [self showHeadImageAnimation:statusCell.headImageView];
+        } cacheInContext:self.managedObjectContext];
+    }
+   
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    //NSLog(@"scrollViewDidEndDragging");
+    [super scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+    if (!decelerate)
+	{
+        [self loadExtraDataForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    //NSLog(@"scrollViewDidEndDecelerating");
+    [self loadExtraDataForOnscreenRows];
+}
 
 
 
