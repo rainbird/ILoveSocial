@@ -258,7 +258,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     NewFeedStatusCell* cell;
     
     //  if ([self.fetchedResultsController objectAtIndexPath:indexPath])
-    NSObject* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NewFeedRootData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     if ([a class]==[NewFeedData class])
     {
