@@ -373,7 +373,7 @@ static NSString* const AppID = @"150399";
     NSString* tempString=[[NSString alloc] initWithFormat:@"%d",pageNumber];
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
                                  @"feed.get",@"method",
-                                 @"10,20,21,30,32,33,34,50,51",@"type",
+                                 @"10,20,21,30,32,33",@"type",
                                  tempString,@"page",
                                  @"30",@"count",
                                  nil];

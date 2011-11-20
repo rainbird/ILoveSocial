@@ -198,17 +198,18 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             NSArray *array = client.responseJSONObject;
             for(NSDictionary *dict in array) {
                 
-                if ([[dict objectForKey:@"feed_type"] intValue]==10)
-                {
-                NewFeedData* data = [NewFeedData insertNewFeed:0  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
-                
-                [self.currentRenrenUser addNewFeedObject:data];
-                }
-                else if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
+         
+                 if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
                 {
                     NewFeedBlog* data = [NewFeedBlog insertNewFeed:0   getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
+                }
+               else
+                {
+                    NewFeedData* data = [NewFeedData insertNewFeed:0  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    
+                    [self.currentRenrenUser addNewFeedObject:data];
                 }
             }
             
@@ -329,7 +330,21 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
          cell.headImageView.image = [UIImage imageWithData:imageData];
     }
 
-    
+    if ([a class]==[NewFeedData class])
+    {
+    NewFeedData* data2=(NewFeedData*)a;
+    if (data2.pic_URL!=nil)
+    {
+    if([Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext]) {
+        imageData = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext].imageData.data;
+    }
+    if(imageData != nil) {
+        cell.picView.image = [UIImage imageWithData:imageData];
+        cell.picView.frame=CGRectMake(cell.picView.frame.origin.x, cell.picView.frame.origin.y,(cell.picView.frame.size.height/cell.picView.image.size.height)*cell.picView.image.size.width, cell.picView.frame.size.height);
+    }
+    }
+    }
+
     
     
     return cell;
@@ -349,7 +364,22 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             [self showHeadImageAnimation:statusCell.headImageView];
         } cacheInContext:self.managedObjectContext];
     }
-   
+ 
+    if ([data class]==[NewFeedData class])
+    {
+        NewFeedData* data2=(NewFeedData*)data;
+        image = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext];
+    if (!image)
+    {
+        NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        [statusCell.picView loadImageFromURL:data2.pic_URL completion:^{
+            [self showHeadImageAnimation:statusCell.headImageView];
+            
+            statusCell.picView.frame=CGRectMake(statusCell.picView.frame.origin.x, statusCell.picView.frame.origin.y,(statusCell.picView.frame.size.height/statusCell.picView.image.size.height)*statusCell.picView.image.size.width, statusCell.picView.frame.size.height);
+
+        } cacheInContext:self.managedObjectContext];
+    }
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate

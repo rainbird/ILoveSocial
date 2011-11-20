@@ -2,7 +2,7 @@
 //  NewFeedData.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-11-18.
+//  Created by He Ruoyun on 11-11-20.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -18,5 +18,6 @@
 @property (nonatomic, retain) NSString * repost_Status;
 @property (nonatomic, retain) NSString * repost_ID;
 @property (nonatomic, retain) NSString * repost_Name;
+@property (nonatomic, retain) NSString * pic_URL;
 
 @end

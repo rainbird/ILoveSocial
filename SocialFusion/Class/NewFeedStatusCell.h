@@ -16,6 +16,12 @@
     IBOutlet UIView* _buttonView;
     IBOutlet UIImageView* _styleView;
     IBOutlet UILabel* _commentCount;
+   
+    
+    
+    UIImageView* _picView;
+    
+    
     
     UIImageView* _defaultHeadImageView;
     UIImageView* _headImageView;
@@ -24,7 +30,7 @@
     UILabel* _time;
 }
 
-
+@property(nonatomic, retain) IBOutlet UIImageView* picView;
 @property(nonatomic, retain) IBOutlet UIImageView* defaultHeadImageView;
 @property(nonatomic, retain) IBOutlet UIImageView* headImageView;
 @property(nonatomic, retain) IBOutlet UIButton* userName;

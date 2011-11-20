@@ -36,7 +36,7 @@
 
     [super configureCell:feedData];
 
- 
+     [_picView setImage:nil];
     
     
 

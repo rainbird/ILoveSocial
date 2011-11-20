@@ -18,10 +18,10 @@
 @property (nonatomic, retain) NSString * post_ID;
 @property (nonatomic, retain) NSString * source_ID;
 @property (nonatomic, retain) NSNumber * comment_Count;
+@property (nonatomic, retain) NSDate * get_Time;
 @property (nonatomic, retain) NSString * owner_Name;
 @property (nonatomic, retain) NSDate * update_Time;
 @property (nonatomic, retain) NSString * owner_Head;
-@property (nonatomic, retain) NSDate * get_Time;
 @property (nonatomic, retain) User *owner;
 
 @end

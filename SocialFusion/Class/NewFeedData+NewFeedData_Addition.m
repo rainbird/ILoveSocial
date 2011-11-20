@@ -177,9 +177,29 @@
         result.owner=myUser;
         
         
-        
+        result.message=[dict objectForKey:@"message"];
         
         NSArray* attachments=[dict objectForKey:@"attachment"];
+        if ([[dict objectForKey:@"feed_type"] intValue]==30||[[dict objectForKey:@"feed_type"] intValue]==32)
+        {
+            if ([attachments count]!=0)
+            {
+                NSDictionary* attachment=[attachments objectAtIndex:0];
+                if ([attachment count]!=0)
+                {
+                    result.pic_URL=[attachment objectForKey:@"raw_src"];
+                    NSString* tempString1=[dict objectForKey:@"prefix"] ;
+                    NSString* tempString2=[dict objectForKey:@"title"] ;
+                    result.message=[NSString stringWithFormat:@"%@%@",tempString1,tempString2];
+                    
+                }
+                
+            }
+
+            
+        }
+        else
+        {
         if ([attachments count]!=0)
         {
             NSDictionary* attachment=[attachments objectAtIndex:0];
@@ -193,15 +213,16 @@
                 result.repost_Status=[attachment objectForKey:@"content"] ;
                 
                 result.repost_StatusID=[[attachment objectForKey:@"media_id"] stringValue] ;
-                // NSLog(@"%@",attachment)
+    
             }
-            
         }
+            
 
-            result.message=[dict objectForKey:@"message"];
-        
+        }
+                  
         
         result.get_Time=getDate;
+
         return result;
         
         // 将自己添加到对应user的statuses里
@@ -278,7 +299,7 @@
         
         
         //      NSLog(@"%@",result);
-        
+        result.pic_URL=[dict objectForKey:@"thumbnail_pic"];
         
         
         NSDictionary* attachment=[dict objectForKey:@"retweeted_status"];
@@ -299,6 +320,8 @@
                 
                 
                 result.repost_Status=[attachment objectForKey:@"text"] ;
+                
+                result.pic_URL=[attachment objectForKey:@"thumbnail_pic"];
                 
                 
                 //  post_Count=[[attachment objectForKey:@"comment_count"]  intValue];

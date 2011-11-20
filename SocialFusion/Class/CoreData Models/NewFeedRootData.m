@@ -17,10 +17,10 @@
 @dynamic post_ID;
 @dynamic source_ID;
 @dynamic comment_Count;
+@dynamic get_Time;
 @dynamic owner_Name;
 @dynamic update_Time;
 @dynamic owner_Head;
-@dynamic get_Time;
 @dynamic owner;
 
 @end

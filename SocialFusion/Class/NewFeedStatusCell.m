@@ -18,6 +18,7 @@
 @synthesize userName = _userName;
 @synthesize status = _status;
 @synthesize time = _time;
+@synthesize picView=_picView;
 - (void)awakeFromNib
 {
     self.defaultHeadImageView.layer.masksToBounds = YES;
@@ -55,12 +56,20 @@
             CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
                                       constrainedToSize:size];
             
-            if (labelSize.height<50)
-            {
-                return 70;
-            }
             
-            return labelSize.height+20;
+            if (feedData.pic_URL==nil)
+            {
+                if (labelSize.height<50)
+                {
+                    return 70;
+                }
+                
+                return labelSize.height+20;
+            }
+            else
+            {
+                return labelSize.height+110;
+            }
         }
         else
         {
@@ -216,7 +225,7 @@
     
     _feedData=feedData;
     //  修改人人／weibo小标签
-    
+    [_picView setImage:nil];
     if ([feedData getStyle]==0)
     {
         [_styleView setImage:[UIImage imageNamed:@"Renren12.png"]];
@@ -254,35 +263,74 @@
     
       [self.userName sizeToFit];
     
+    if ([feedData class]==[NewFeedData class])
+    {
+        if (feedData.pic_URL!=nil)
+        {
+            self.picView.frame=CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y+self.status.frame.size.height,
+                                          self.picView.frame.size.width,self.picView.frame.size.height); 
+            
+            
+            //时间
+            NSDate* FeedDate=[feedData getDate];
+            
+            //NSLog(@"%@",FeedDate);
+            
+            
+            NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
+            
+            //NSLog(@"%@",tempString);
+            
+            
+            
+            self.time.frame = CGRectMake(self.status.frame.origin.x, self.picView.frame.origin.y+self.picView.frame.size.height,
+                                         self.time.frame.size.width,self.time.frame.size.height); 
+            self.time.text=tempString ;
+            [tempString release];
+            
+            
+            
+            //回复数量
+            NSString* countSting=[[NSString alloc] initWithFormat:@"回复:%d",[feedData getComment_Count]];
+            _commentCount.text=countSting;
+            [countSting release];
+            [_commentCount sizeToFit];
+            [_commentCount setFrame:CGRectMake(self.status.frame.origin.x+self.status.frame.size.width-_commentCount.frame.size.width, self.time.frame.origin.y, _commentCount.frame.size.width, _commentCount.frame.size.height)];
+        }
+        else
+        {
+            //时间
+            NSDate* FeedDate=[feedData getDate];
+            
+            //NSLog(@"%@",FeedDate);
+            
+            
+            NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
+            
+            //NSLog(@"%@",tempString);
+            
+            
+            
+            self.time.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y+self.status.frame.size.height,
+                                         self.time.frame.size.width,self.time.frame.size.height); 
+            self.time.text=tempString ;
+            [tempString release];
+            
+            
+            
+            //回复数量
+            NSString* countSting=[[NSString alloc] initWithFormat:@"回复:%d",[feedData getComment_Count]];
+            _commentCount.text=countSting;
+            [countSting release];
+            [_commentCount sizeToFit];
+            [_commentCount setFrame:CGRectMake(self.status.frame.origin.x+self.status.frame.size.width-_commentCount.frame.size.width, self.time.frame.origin.y, _commentCount.frame.size.width, _commentCount.frame.size.height)];
+            
+        }
+        
 
-        //时间
-    NSDate* FeedDate=[feedData getDate];
+    }
     
-    //NSLog(@"%@",FeedDate);
-
-    
-    NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
-    
-    //NSLog(@"%@",tempString);
-    
-    
-
-    self.time.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y+self.status.frame.size.height,
-                                 self.time.frame.size.width,self.time.frame.size.height); 
-    self.time.text=tempString ;
-    [tempString release];
-  
-
-    
-    //回复数量
-    NSString* countSting=[[NSString alloc] initWithFormat:@"回复:%d",[feedData getComment_Count]];
-    _commentCount.text=countSting;
-    [countSting release];
-    [_commentCount sizeToFit];
-    [_commentCount setFrame:CGRectMake(self.status.frame.origin.x+self.status.frame.size.width-_commentCount.frame.size.width, self.time.frame.origin.y, _commentCount.frame.size.width, _commentCount.frame.size.height)];
-    
- 
-}
+  }
 
 
 -(void)setUserHeadImage:(UIImage*)image
