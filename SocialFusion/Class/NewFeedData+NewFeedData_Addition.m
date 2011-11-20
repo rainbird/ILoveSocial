@@ -128,7 +128,7 @@
 
 
 
-+ (NewFeedData *)insertNewFeed:(int)sytle Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
++ (NewFeedData *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
 {
     
     if (sytle==0)//renren
@@ -201,6 +201,7 @@
             result.message=[dict objectForKey:@"message"];
         
         
+        result.get_Time=getDate;
         return result;
         
         // 将自己添加到对应user的statuses里
@@ -308,6 +309,7 @@
         }
 
         
+        result.get_Time=getDate;
         
        result.message=[dict objectForKey:@"text"];
         

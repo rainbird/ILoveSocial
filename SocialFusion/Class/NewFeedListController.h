@@ -26,7 +26,7 @@
     // NewFeedRootData *feedDatas;
     //  NSMutableArray* _feedArray;
     //  NSMutableArray* _tempArray;
-    
+    NSDate* _currentTime;
     
     IBOutlet NewFeedStatusCell *_feedStatusCel;
     IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;

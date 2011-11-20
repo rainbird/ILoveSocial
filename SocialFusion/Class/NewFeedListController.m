@@ -40,6 +40,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     // if(_type == RelationshipViewTypeRenrenFriends && self.currentRenrenUser.friends.count > 0)
     //  return;
     //return;
+    _pageNumber=0;
     [self refresh];
 }
 
@@ -65,14 +66,22 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     //  NSLog(<#NSString *format, ...#>)[request entity];
     NSPredicate *predicate;
     NSSortDescriptor *sort;
-    
+        NSSortDescriptor *sort2;
     predicate = [NSPredicate predicateWithFormat:@"SELF IN %@||SELF IN %@", self.currentWeiboUser.newFeed, self.currentRenrenUser.newFeed];
     //  sort = [[NSSortDescriptor alloc] initWithKey:@"1" ascending:YES];
     sort = [[NSSortDescriptor alloc] initWithKey:@"update_Time" ascending:NO];
+    sort2 = [[NSSortDescriptor alloc] initWithKey:@"get_Time" ascending:YES];
+    
+    
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sort2, sort, nil];
+    
+    [request setSortDescriptors:sortDescriptors];
+    
+    
     //   [request setSortDescriptors:nil];
     [request setPredicate:predicate];
     NSArray *descriptors = [NSArray arrayWithObject:sort]; 
-    [request setSortDescriptors:descriptors]; 
+   // [request setSortDescriptors:descriptors]; 
     [sort release];
     request.fetchBatchSize = 5;
 }
@@ -80,7 +89,12 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 #pragma mark - EGORefresh Method
 - (void)refresh {
     NSLog(@"refresh!");
-    [self hideLoadMoreDataButton];
+    _pageNumber=0;
+  //  [self hideLoadMoreDataButton];
+    if (_currentTime!=nil)
+    {
+        [_currentTime release];
+    }
     [self clearData];
     [self loadMoreData];
 }
@@ -134,7 +148,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             
             NSArray *array = client.responseJSONObject;
             for(NSDictionary *dict in array) {
-                NewFeedData* data = [NewFeedData insertNewFeed:1 Owner:self.currentWeiboUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                NewFeedData* data = [NewFeedData insertNewFeed:1 getDate:_currentTime Owner:self.currentWeiboUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                 
                 [self.currentWeiboUser addNewFeedObject:data];
                 
@@ -152,12 +166,14 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             // else {
             //    [self showLoadMoreDataButton];
             // }
+            [self showLoadMoreDataButton];
             [self doneLoadingTableViewData];
+            
             _loading = NO;
         }
     }];
     
-    [client getFriendsTimelineSinceID:nil maxID:nil startingAtPage:1 count:30 feature:0];
+    [client getFriendsTimelineSinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
     
 }
 - (void)loadExtraDataForOnscreenRows 
@@ -184,13 +200,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 
                 if ([[dict objectForKey:@"feed_type"] intValue]==10)
                 {
-                NewFeedData* data = [NewFeedData insertNewFeed:0 Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                NewFeedData* data = [NewFeedData insertNewFeed:0  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                 
                 [self.currentRenrenUser addNewFeedObject:data];
                 }
                 else if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
                 {
-                    NewFeedBlog* data = [NewFeedBlog insertNewFeed:0 Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    NewFeedBlog* data = [NewFeedBlog insertNewFeed:0   getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
                 }
@@ -208,12 +224,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             // else {
             //    [self showLoadMoreDataButton];
             // }
+                        [self showLoadMoreDataButton];
             [self doneLoadingTableViewData];
             _loading = NO;
         }
     }];
     
-    [renren getNewFeed:1];
+    [renren getNewFeed:_pageNumber];
 
     
 }
@@ -222,7 +239,10 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     if(_loading)
         return;
     _loading = YES;
-    
+    _pageNumber++;
+
+    _currentTime=[[NSDate alloc] initWithTimeIntervalSinceNow:0];
+
     [self loadMoreRenrenData];
     [self loadMoreWeiboData];
     
@@ -296,6 +316,22 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     
     [cell configureCell:a];
+    
+
+   
+  
+    
+    NSData *imageData = nil;
+    if([Image imageWithURL:a.owner_Head inManagedObjectContext:self.managedObjectContext]) {
+        imageData = [Image imageWithURL:a.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
+    }
+    if(imageData != nil) {
+         cell.headImageView.image = [UIImage imageWithData:imageData];
+    }
+
+    
+    
+    
     return cell;
     
 }
@@ -335,6 +371,19 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 
 
+- (void)configureToolbar {
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
+    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    backButton.frame = CGRectMake(12, 12, 31, 34);
+    UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
+    NSMutableArray *toolBarItems = [NSMutableArray array];
+    [toolBarItems addObject:backButtonItem];
+    self.toolbarItems = nil;
+    self.toolbarItems = toolBarItems;
+    ((NavigationToolBar *)self.navigationController.toolbar).respondView = self.tableView;
+}
 
 
 @end

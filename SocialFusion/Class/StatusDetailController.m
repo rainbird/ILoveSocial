@@ -16,6 +16,7 @@
 
 @synthesize feedData=_feedData;
 
+/*
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -157,6 +158,7 @@
                     _completing=YES;
                 }
                  */
+/*
             }
             
 
@@ -379,6 +381,7 @@
              _pageNumber=[_feedData getComment_Count]/10+1;
              */
             
+/*
             [super viewDidLoad]; 
         }
         
@@ -412,6 +415,7 @@
                  _pageNumber=[_feedData getComment_Count]/10+1;
                  */
                 
+/*
                 [super viewDidLoad]; 
             }
             

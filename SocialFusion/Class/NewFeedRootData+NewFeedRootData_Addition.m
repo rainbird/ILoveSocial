@@ -62,64 +62,65 @@
 
 
 
-+ (NewFeedRootData *)insertNewFeed:(int)sytle Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
++ (NewFeedRootData *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
 {
     
     
     
     if (sytle==0)//renren
     {
-    NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
-    if (!statusID || [statusID isEqualToString:@""]) {
-        return nil;
-    }
-    
-    NewFeedRootData *result = [NewFeedRootData feedWithID:statusID inManagedObjectContext:context];
-    if (!result) {
-        result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedRootData" inManagedObjectContext:context];
-    }
-    
-    
-    result.post_ID = statusID;
-    
-    
-    result.style=[NSNumber numberWithInt:sytle];
-    
- 
-    result.actor_ID=[[dict objectForKey:@"actor_id"] stringValue];
-    
+        NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
+        if (!statusID || [statusID isEqualToString:@""]) {
+            return nil;
+        }
+        
+        NewFeedRootData *result = [NewFeedRootData feedWithID:statusID inManagedObjectContext:context];
+        if (!result) {
+            result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedRootData" inManagedObjectContext:context];
+        }
+        
+        
+        result.post_ID = statusID;
+        
+        
+        result.style=[NSNumber numberWithInt:sytle];
+        
+        
+        result.actor_ID=[[dict objectForKey:@"actor_id"] stringValue];
+        
         
         result.owner_Head= [dict objectForKey:@"headurl"] ;
         
         result.owner_Name=[dict objectForKey:@"name"] ;
         
-    
-    
-    NSDateFormatter *form = [[NSDateFormatter alloc] init];
-    [form setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
-    
-    NSString* dateString=[dict objectForKey:@"update_time"];
-	result.update_Time=[form dateFromString: dateString];
-    
-    
-    [form release];
-    
-
-    result.comment_Count=[NSNumber numberWithInt:    [ [[dict objectForKey:@"comments"] objectForKey:@"count"] intValue]];
-    
-    result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
-    
+        
+        
+        NSDateFormatter *form = [[NSDateFormatter alloc] init];
+        [form setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
+        
+        NSString* dateString=[dict objectForKey:@"update_time"];
+        result.update_Time=[form dateFromString: dateString];
+        
+        
+        [form release];
+        
+        
+        result.comment_Count=[NSNumber numberWithInt:    [[[dict objectForKey:@"comments"] objectForKey:@"count"] intValue]
+                              ];
+        
+        result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
+        
         result.owner=myUser;
-
-    
-    
-    
+        
+        
+        
+        result.get_Time=getDate;
         return result;
-  
-    // 将自己添加到对应user的statuses里
-   // NSString *authorID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"uid"]];
-   // result.author = [RenrenUser userWithID:authorID inManagedObjectContext:context];
+        
+        // 将自己添加到对应user的statuses里
+        // NSString *authorID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"uid"]];
+        // result.author = [RenrenUser userWithID:authorID inManagedObjectContext:context];
     }
     else//weibo
     {
@@ -127,7 +128,7 @@
         
         NSString *statusID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"id"]];
         
-     //   NSLog(@"%@",statusID);
+        //   NSLog(@"%@",statusID);
         if (!statusID || [statusID isEqualToString:@""]) {
             return nil;
         }
@@ -145,12 +146,12 @@
         result.style=[NSNumber numberWithInt:sytle];
         
         
-       // NSLog(@"%@",result.style);
+        // NSLog(@"%@",result.style);
         result.actor_ID=[[[dict objectForKey:@"user"] objectForKey:@"id"] stringValue] ;
         
         result.owner_Head=[[dict objectForKey:@"user"] objectForKey:@"profile_image_url"];
         
-    
+        
         
         
         
@@ -165,15 +166,15 @@
         
         //  [form setShortStandaloneWeekdaySymbols:[NSArray arrayWithObjects:@"Mon",@"Tue",@"Fri",@"Sat",@"Sun",nil]];
         NSString* dateString=[dict objectForKey:@"created_at"];
-
         
-     
+        
+        
         result.update_Time=[form dateFromString: dateString];
         
         
         [form release];
         
-
+        
         
         
         result.comment_Count=[NSNumber numberWithInt:   [[dict objectForKey:@"comment_count"] intValue]];
@@ -183,30 +184,31 @@
         
         
         
-     //  NSString *authorID =    result.actor_ID;
-       // result.owner = [WeiboUser userWithID:authorID inManagedObjectContext:context];
-       // result.owner=nil;
+        //  NSString *authorID =    result.actor_ID;
+        // result.owner = [WeiboUser userWithID:authorID inManagedObjectContext:context];
+        // result.owner=nil;
         result.owner=myUser;
         
         
         
-  //      NSLog(@"%@",result);
+        result.get_Time=getDate;
+        //      NSLog(@"%@",result);
         
         return result;
-  
+        
         
         
         
         
     }
-
     
     
     
     
-
     
-
+    
+    
+    
     
     
 }

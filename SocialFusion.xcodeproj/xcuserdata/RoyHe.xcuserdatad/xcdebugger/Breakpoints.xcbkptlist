@@ -51,13 +51,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/StatusDetailController.m"
-         timestampString = "340814596.418774"
+         timestampString = "343460733.193677"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "575"
-         endingLineNumber = "575"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
-         landmarkType = "5">
+         startingLineNumber = "579"
+         endingLineNumber = "579"
+         landmarkName = "@implementation StatusDetailController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -65,13 +65,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/StatusDetailController.m"
-         timestampString = "340812902.335735"
+         timestampString = "343460733.193677"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "134"
-         endingLineNumber = "134"
-         landmarkName = "-loadData"
-         landmarkType = "5">
+         startingLineNumber = "135"
+         endingLineNumber = "135"
+         landmarkName = "@implementation StatusDetailController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -79,13 +79,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/StatusDetailController.m"
-         timestampString = "340814596.418774"
+         timestampString = "343460733.193677"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "567"
-         endingLineNumber = "567"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
-         landmarkType = "5">
+         startingLineNumber = "571"
+         endingLineNumber = "571"
+         landmarkName = "@implementation StatusDetailController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -93,13 +93,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/StatusDetailController.m"
-         timestampString = "340812313.305091"
+         timestampString = "343460733.193677"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "120"
-         endingLineNumber = "120"
-         landmarkName = "-loadData"
-         landmarkType = "5">
+         startingLineNumber = "121"
+         endingLineNumber = "121"
+         landmarkName = "@implementation StatusDetailController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -107,13 +107,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/StatusDetailController.m"
-         timestampString = "340812902.335735"
+         timestampString = "343460733.193677"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "177"
-         endingLineNumber = "177"
-         landmarkName = "-loadData"
-         landmarkType = "5">
+         startingLineNumber = "179"
+         endingLineNumber = "179"
+         landmarkName = "@implementation StatusDetailController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -121,13 +121,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/StatusDetailController.m"
-         timestampString = "340812902.335735"
+         timestampString = "343460733.193677"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "178"
-         endingLineNumber = "178"
-         landmarkName = "-loadData"
-         landmarkType = "5">
+         startingLineNumber = "180"
+         endingLineNumber = "180"
+         landmarkName = "@implementation StatusDetailController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -135,13 +135,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/StatusDetailController.m"
-         timestampString = "340812902.335735"
+         timestampString = "343460733.193677"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "206"
-         endingLineNumber = "206"
-         landmarkName = "-loadData"
-         landmarkType = "5">
+         startingLineNumber = "208"
+         endingLineNumber = "208"
+         landmarkName = "@implementation StatusDetailController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -190,12 +190,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "343373171.219379"
+         filePath = "SocialFusion/Class/FriendHeadViewController.m"
+         timestampString = "343380728.129664"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "305"
-         endingLineNumber = "305"
+         startingLineNumber = "98"
+         endingLineNumber = "98"
          landmarkName = "-loadExtraDataForOnscreenRowsHelp:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -204,112 +204,68 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "343373270.821787"
+         filePath = "SocialFusion/Class/FriendListViewController.m"
+         timestampString = "343380833.726173"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "258"
-         endingLineNumber = "258"
+         startingLineNumber = "104"
+         endingLineNumber = "104"
+         landmarkName = "-loadExtraDataForOnscreenRowsHelp:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "SocialFusion/Class/NewFeedListController.m"
+         timestampString = "343478190.027192"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "278"
+         endingLineNumber = "278"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "343373290.258772"
+         timestampString = "343478190.027192"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "226"
-         endingLineNumber = "226"
-         landmarkName = "-loadMoreData"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "343373316.550315"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "211"
-         endingLineNumber = "211"
+         startingLineNumber = "193"
+         endingLineNumber = "193"
          landmarkName = "-loadMoreRenrenData"
          landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "343373359.924493"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "185"
-         endingLineNumber = "185"
-         landmarkName = "-loadMoreRenrenData"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "343373369.121247"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "202"
-         endingLineNumber = "202"
-         landmarkName = "-loadMoreRenrenData"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "343373437.365675"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "227"
-         endingLineNumber = "227"
-         landmarkName = "-loadMoreData"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "343373444.443655"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
-         landmarkName = "-loadMoreWeiboData"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedBlog+NewFeedBlog_Addition.m"
-         timestampString = "343373547.870413"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "68"
-         endingLineNumber = "68"
-         landmarkName = "+insertNewFeed:Owner:Dic:inManagedObjectContext:"
-         landmarkType = "5">
+         <Locations>
+            <Location
+               shouldBeEnabled = "No"
+               ignoreCount = "0"
+               continueAfterRunningActions = "No"
+               symbolName = "-[NewFeedListController loadMoreRenrenData]"
+               urlString = "file://localhost/NewFeedListController.m"
+               timestampString = "343461000.428815"
+               startingColumnNumber = "9223372036854775807"
+               endingColumnNumber = "9223372036854775807"
+               startingLineNumber = "180"
+               endingLineNumber = "180">
+            </Location>
+            <Location
+               shouldBeEnabled = "No"
+               ignoreCount = "0"
+               continueAfterRunningActions = "No"
+               symbolName = "__-[NewFeedListController loadMoreRenrenData]_block_invoke_1"
+               urlString = "file://localhost/NewFeedListController.m"
+               timestampString = "343461000.429059"
+               startingColumnNumber = "9223372036854775807"
+               endingColumnNumber = "9223372036854775807"
+               startingLineNumber = "180"
+               endingLineNumber = "180">
+            </Location>
+         </Locations>
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

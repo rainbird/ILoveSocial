@@ -9,7 +9,7 @@
 #import "NewFeedRootData.h"
 
 @interface NewFeedRootData (NewFeedRootData_Addition)
-+ (NewFeedRootData *)insertNewFeed:(int)sytle Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedRootData *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 + (NewFeedRootData *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
 -(NSString*)getFeedName;
 -(NSString*)getHeadURL;

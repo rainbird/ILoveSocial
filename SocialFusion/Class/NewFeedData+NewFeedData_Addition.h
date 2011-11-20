@@ -10,7 +10,7 @@
 
 @interface NewFeedData (NewFeedData_Addition)
 
-+ (NewFeedData *)insertNewFeed:(int)sytle Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedData *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 + (NewFeedData *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
 -(NSString*)getPostMessage;
 -(NSString*)getPostName;

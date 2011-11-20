@@ -9,7 +9,7 @@
 #import "NewFeedBlog+NewFeedBlog_Addition.h"
 
 @implementation NewFeedBlog (NewFeedBlog_Addition)
-+ (NewFeedBlog *)insertNewFeed:(int)sytle Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedBlog *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 {
     
     
@@ -69,8 +69,9 @@
 
         
         
-        
-        return result;
+    
+        result.get_Time=getDate;
+    return result;
         
         // 将自己添加到对应user的statuses里
         // NSString *authorID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"uid"]];

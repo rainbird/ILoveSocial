@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DragRefreshTableViewController.h"
+
 #import "NewFeedData.h"
 #import "StatusCommentCell.h"
 #import "NewFeedStatusCell.h"
 #import "NewFeedStatusWithRepostcell.h"
-@interface StatusDetailController : DragRefreshTableViewController<UITableViewDataSource,UITableViewDelegate>
+@interface StatusDetailController : UITableViewController<UITableViewDataSource,UITableViewDelegate>
 {
     IBOutlet StatusCommentCell *_commentCel;
     IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;
