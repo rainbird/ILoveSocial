@@ -106,18 +106,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     } completion:nil];
 }
 
-- (void)clearData
-{
-    
-    
-    _firstLoadFlag = YES;
-    // [self.currentRenrenUser ];
-    
-    
-    
-    
-}
-
 /*
  - (void)loadMoreRenrenData {
  RenrenClient *renren = [RenrenClient client];
@@ -415,5 +403,15 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     ((NavigationToolBar *)self.navigationController.toolbar).respondView = self.tableView;
 }
 
+
+- (void)clearData
+{
+
+        _firstLoadFlag = YES;
+        [self.renrenUser removeNewFeed:self.renrenUser.newFeed];
+    
+    [self.weiboUser removeNewFeed:self.weiboUser.newFeed];
+
+}
 
 @end

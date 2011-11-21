@@ -12,7 +12,8 @@
 #import "StatusCommentCell.h"
 #import "NewFeedStatusCell.h"
 #import "NewFeedStatusWithRepostcell.h"
-@interface StatusDetailController : UITableViewController<UITableViewDataSource,UITableViewDelegate>
+#import "EGOTableViewController.h"
+@interface StatusDetailController : EGOTableViewController
 {
     IBOutlet StatusCommentCell *_commentCel;
     IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;

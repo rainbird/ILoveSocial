@@ -2,7 +2,7 @@
 //  NewFeedData.m
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-11-20.
+//  Created by He Ruoyun on 11-11-21.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
@@ -15,7 +15,7 @@
 @dynamic message;
 @dynamic repost_Status;
 @dynamic repost_ID;
-@dynamic repost_Name;
 @dynamic pic_URL;
+@dynamic repost_Name;
 
 @end
