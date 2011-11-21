@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StatusCommentData.h"
+#import "StatusCommentData+StatusCommentData_Addition.h"
 @interface StatusCommentCell : UITableViewCell
 {
     UIImageView* _defaultHeadImageView;

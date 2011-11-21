@@ -16,7 +16,7 @@
     {
   
         
-        NSString  *comment_ID= [dict objectForKey:@"comment_id"] ;   
+        NSString  *comment_ID= [[dict objectForKey:@"comment_id"] stringValue] ;   
         
         
         if (!comment_ID || [comment_ID isEqualToString:@""]) {
@@ -53,7 +53,7 @@
     
     
     
-    result.comment_ID= [dict objectForKey:@"comment_id"];
+    result.comment_ID= [[dict objectForKey:@"comment_id"] stringValue];
     
     result.text=[dict objectForKey:@"text"];
     
@@ -63,7 +63,7 @@
     else
     {
         
-        NSString  *comment_ID= [dict objectForKey:@"id"] ;   
+        NSString  *comment_ID= [[dict objectForKey:@"id"] stringValue] ;   
         
         
         if (!comment_ID || [comment_ID isEqualToString:@""]) {

@@ -13,15 +13,17 @@
 #import "NewFeedStatusCell.h"
 #import "NewFeedStatusWithRepostcell.h"
 #import "EGOTableViewController.h"
+#import "NewFeedRootData.h"
 @interface StatusDetailController : EGOTableViewController
 {
     IBOutlet StatusCommentCell *_commentCel;
     IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;
     IBOutlet NewFeedStatusCell* _feedStatusCel;
-    NSMutableArray* _commentArray;
+   
     int _pageNumber;
     BOOL _showMoreButton;
     NewFeedData* _feedData;
+    
     
     //   BOOL _completing;
 }

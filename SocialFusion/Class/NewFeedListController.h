@@ -19,6 +19,7 @@
 #import "NewFeedStatusCell.h"
 #import "NewFeedStatusWithRepostcell.h"
 #import "NewFeedBlogCell.h"
+#import "NewFeedDetailViewCell.h"
 @interface NewFeedListController : EGOTableViewController {
     
     
@@ -31,10 +32,10 @@
     IBOutlet NewFeedStatusCell *_feedStatusCel;
     IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;
     IBOutlet NewFeedBlogCell *_newFeedBlogCel;
+    IBOutlet NewFeedDetailViewCell *_newFeedDetailViewCel;
     
     
-    
-    
+    int _openedCell;
     int _pageNumber;
     
     

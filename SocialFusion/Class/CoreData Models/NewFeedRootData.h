@@ -2,14 +2,14 @@
 //  NewFeedRootData.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-11-20.
+//  Created by He Ruoyun on 11-11-21.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class User;
+@class StatusCommentData, User;
 
 @interface NewFeedRootData : NSManagedObject
 
@@ -23,5 +23,13 @@
 @property (nonatomic, retain) NSDate * update_Time;
 @property (nonatomic, retain) NSString * owner_Head;
 @property (nonatomic, retain) User *owner;
+@property (nonatomic, retain) NSSet *comments;
+@end
 
+@interface NewFeedRootData (CoreDataGeneratedAccessors)
+
+- (void)addCommentsObject:(StatusCommentData *)value;
+- (void)removeCommentsObject:(StatusCommentData *)value;
+- (void)addComments:(NSSet *)values;
+- (void)removeComments:(NSSet *)values;
 @end

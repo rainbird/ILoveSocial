@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "StatusDetailController.h"
 @interface NewFeedDetailViewCell : UITableViewCell
-
+{
+    IBOutlet StatusDetailController* detailController;
+}
+-(void)initWithFeedData:(NewFeedData*)_feedData  context:(NSManagedObjectContext*)context;
 @end

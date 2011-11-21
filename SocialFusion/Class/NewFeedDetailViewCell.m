@@ -10,6 +10,17 @@
 
 @implementation NewFeedDetailViewCell
 
+
+-(void)initWithFeedData:(NewFeedData*)_feedData  context:(NSManagedObjectContext*)context
+{
+    detailController.feedData=_feedData;
+    detailController.managedObjectContext=context;
+    
+    [self.contentView addSubview:detailController.view];
+}
+
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
