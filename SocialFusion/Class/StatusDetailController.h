@@ -17,8 +17,8 @@
 @interface StatusDetailController : EGOTableViewController
 {
     IBOutlet StatusCommentCell *_commentCel;
-    IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;
-    IBOutlet NewFeedStatusCell* _feedStatusCel;
+     NewFeedStatusWithRepostcell *_feedRepostStatusCel;
+     NewFeedStatusCell* _feedStatusCel;
    
     int _pageNumber;
     BOOL _showMoreButton;
@@ -28,5 +28,6 @@
     //   BOOL _completing;
 }
 @property (nonatomic, retain) NewFeedData* feedData;
+@property (nonatomic,retain) NewFeedStatusCell* feedStatusCel;
 -(void)loadData;
 @end

@@ -25,6 +25,29 @@
 @synthesize feedData=_feedData;
 
 
+-(void)addOriStatus
+{
+   // NewFeedStatusCell* cell;
+    if ([_feedData getPostName]==nil)
+    {
+        [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil] ;
+
+        [_feedStatusCel configureCell:_feedData];
+        
+    }
+
+    NSData *imageData = nil;
+    if([Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext]) {
+        imageData = [Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
+    }
+    if(imageData != nil) {
+        _feedStatusCel.headImageView.image = [UIImage imageWithData:imageData];
+    }    
+    
+    
+    [self.view addSubview:_feedStatusCel];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,13 +60,19 @@
 }
 
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+      [self addOriStatus ];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+  
     // if(_type == RelationshipViewTypeRenrenFriends && self.currentRenrenUser.friends.count > 0)
     //  return;
     //return;
+    
     
 }
 -(void)viewDidAppear:(BOOL)animated
@@ -54,9 +83,15 @@
 }
 - (void)viewDidUnload
 {
+ 
     [super viewDidUnload];
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    //[_feedStatusCel removeFromSuperview];
+    //[_feedStatusCel release];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -66,6 +101,8 @@
 
 
 - (void)dealloc {
+    [_feedData release];
+    [_feedStatusCel release];
     [super dealloc];
 }
 

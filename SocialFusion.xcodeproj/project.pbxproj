@@ -14,7 +14,6 @@
 		73152F0D1475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73152F091475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.m */; };
 		73152F0E1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73152F0B1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.m */; };
 		7319DCD7144D6FFC006FE917 /* StatusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7319DCD5144D6FFC006FE917 /* StatusDetailController.m */; };
-		7319DCD8144D6FFC006FE917 /* StatusDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7319DCD6144D6FFC006FE917 /* StatusDetailController.xib */; };
 		731D1D9B147603B5001981B4 /* RenrenStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 731D1D9A147603B5001981B4 /* RenrenStatus.m */; };
 		731D1D9E147603B5001981B4 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 731D1D9D147603B5001981B4 /* Image.m */; };
 		731D1DA1147603B5001981B4 /* WeiboDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 731D1DA0147603B5001981B4 /* WeiboDetail.m */; };
@@ -216,7 +215,6 @@
 		73152F0B1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewFeedData+NewFeedData_Addition.m"; sourceTree = "<group>"; };
 		7319DCD4144D6FFC006FE917 /* StatusDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailController.h; sourceTree = "<group>"; };
 		7319DCD5144D6FFC006FE917 /* StatusDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailController.m; sourceTree = "<group>"; };
-		7319DCD6144D6FFC006FE917 /* StatusDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusDetailController.xib; sourceTree = "<group>"; };
 		731D1D99147603B5001981B4 /* RenrenStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenrenStatus.h; path = "SocialFusion/Class/CoreData Models/RenrenStatus.h"; sourceTree = "<group>"; };
 		731D1D9A147603B5001981B4 /* RenrenStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RenrenStatus.m; path = "SocialFusion/Class/CoreData Models/RenrenStatus.m"; sourceTree = "<group>"; };
 		731D1D9C147603B5001981B4 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = "SocialFusion/Class/CoreData Models/Image.h"; sourceTree = "<group>"; };
@@ -559,7 +557,6 @@
 			children = (
 				7319DCD4144D6FFC006FE917 /* StatusDetailController.h */,
 				7319DCD5144D6FFC006FE917 /* StatusDetailController.m */,
-				7319DCD6144D6FFC006FE917 /* StatusDetailController.xib */,
 				7305A693144DB38B00ED59AA /* StatusCommentCell.h */,
 				7305A694144DB38B00ED59AA /* StatusCommentCell.m */,
 				7305A695144DB38B00ED59AA /* StatusCommentCell.xib */,
@@ -1150,7 +1147,6 @@
 				73DD2217144C0216003BED92 /* Renren12@2x.png in Resources */,
 				73DD221A144C0347003BED92 /* Weibo12.png in Resources */,
 				73DD221B144C0347003BED92 /* Weibo12@2x.png in Resources */,
-				7319DCD8144D6FFC006FE917 /* StatusDetailController.xib in Resources */,
 				7305A697144DB38C00ED59AA /* StatusCommentCell.xib in Resources */,
 				E17817B61450084B00DB0D70 /* rootbackground.png in Resources */,
 				E17817B71450084B00DB0D70 /* rootbackground@2x.png in Resources */,

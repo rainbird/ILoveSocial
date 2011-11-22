@@ -34,8 +34,8 @@
     IBOutlet NewFeedBlogCell *_newFeedBlogCel;
     IBOutlet NewFeedDetailViewCell *_newFeedDetailViewCel;
     
-    
-    int _openedCell;
+    NSIndexPath* _indexPath;
+    //int _openedCell;
     int _pageNumber;
     
     
@@ -45,5 +45,5 @@
 
 
 -(IBAction)gotoRepostStatus:(id)sender;
-
+-(IBAction)resetToNormalList;
 @end

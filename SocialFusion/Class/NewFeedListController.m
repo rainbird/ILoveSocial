@@ -41,7 +41,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     //  return;
     //return;
     _pageNumber=0;
-    _openedCell=-1;
+    _indexPath=nil;
+    //_openedCell=-1;
     [self refresh];
 }
 
@@ -240,13 +241,14 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_openedCell==0)
+    if (_indexPath==nil)
     {
     return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     }
     else
     {
-        if (indexPath.row!=_openedCell)
+        if ([indexPath compare:_indexPath])
+  
         {
             return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         }
@@ -279,7 +281,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     static NSString *RepostStatusCell=@"NewFeedRepostCell";
     static NSString *BlogCell=@"NewFeedBlogCell";
     static NSString *DetailCell=@"DetailCell";
-if (indexPath.row!=_openedCell)
+ if ([indexPath compare:_indexPath])
 {
     NewFeedStatusCell* cell;
     
@@ -294,7 +296,7 @@ if (indexPath.row!=_openedCell)
             if (cell == nil) {
                 [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
                 cell = _feedStatusCel;
-                
+    
             }
         }
         
@@ -360,11 +362,10 @@ if (indexPath.row!=_openedCell)
         {
             if ([a getPostName]==nil)
             {
-                cell = (NewFeedDetailViewCell *)[tableView dequeueReusableCellWithIdentifier:DetailCell];
-                if (cell == nil) {
+         
                     [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailViewCell" owner:self options:nil];
                     cell = _newFeedDetailViewCel;
-                }
+            
                 [cell initWithFeedData:a context:self.managedObjectContext];
             }
         }
@@ -454,19 +455,32 @@ if (indexPath.row!=_openedCell)
 {
     
     
-    
+
     [tableView cellForRowAtIndexPath:indexPath].selected=false;
-    
+    tableView.allowsSelection=false;
     //NSLog(@"%@",[self.fetchedResultsController objectAtIndexPath:indexPath]);
     if ([[self.fetchedResultsController objectAtIndexPath:indexPath] class]==[NewFeedData class])
     {
-        _openedCell=indexPath.row;
+        //_openedCell=indexPath.row;
+            _indexPath=[indexPath retain];
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
         self.tableView.scrollEnabled=FALSE;
     }
  }
-
+-(IBAction)resetToNormalList
+{
+    
+    self.tableView.allowsSelection=YES;
+    //[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    self.tableView.scrollEnabled=true;
+    NSIndexPath* tempIndex=[_indexPath retain];
+    [_indexPath release];
+    _indexPath=nil;
+      [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:tempIndex] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView scrollToRowAtIndexPath:tempIndex atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    [tempIndex release];
+}
 
 
 
