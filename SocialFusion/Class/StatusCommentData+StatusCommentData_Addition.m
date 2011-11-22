@@ -109,7 +109,7 @@
         [form release];
         
         
-        result.comment_ID= [dict objectForKey:@"id"] ;
+        result.comment_ID= [[dict objectForKey:@"id"] stringValue] ;
         
         result.text=[dict objectForKey:@"text"] ;
         

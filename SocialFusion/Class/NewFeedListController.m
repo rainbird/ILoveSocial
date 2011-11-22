@@ -68,7 +68,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     //  NSLog(<#NSString *format, ...#>)[request entity];
     NSPredicate *predicate;
     NSSortDescriptor *sort;
-        NSSortDescriptor *sort2;
+    NSSortDescriptor *sort2;
     predicate = [NSPredicate predicateWithFormat:@"SELF IN %@||SELF IN %@", self.currentWeiboUser.newFeed, self.currentRenrenUser.newFeed];
     //  sort = [[NSSortDescriptor alloc] initWithKey:@"1" ascending:YES];
     sort = [[NSSortDescriptor alloc] initWithKey:@"update_Time" ascending:NO];
@@ -83,7 +83,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     //   [request setSortDescriptors:nil];
     [request setPredicate:predicate];
     NSArray *descriptors = [NSArray arrayWithObject:sort]; 
-   // [request setSortDescriptors:descriptors]; 
+    // [request setSortDescriptors:descriptors]; 
     [sort release];
     request.fetchBatchSize = 5;
 }
@@ -92,7 +92,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 - (void)refresh {
     NSLog(@"refresh!");
     _pageNumber=0;
-  //  [self hideLoadMoreDataButton];
+    //  [self hideLoadMoreDataButton];
     if (_currentTime!=nil)
     {
         [_currentTime release];
@@ -181,7 +181,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 - (void)loadMoreRenrenData {
     RenrenClient *renren = [RenrenClient client];
-
+    
     [renren setCompletionBlock:^(RenrenClient *client) {
         if (!client.hasError) {
             //NSLog(@"dict:%@", client.responseJSONObject);
@@ -189,14 +189,14 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             NSArray *array = client.responseJSONObject;
             for(NSDictionary *dict in array) {
                 
-         
-                 if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
+                
+                if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
                 {
                     NewFeedBlog* data = [NewFeedBlog insertNewFeed:0   getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
                 }
-               else
+                else
                 {
                     NewFeedData* data = [NewFeedData insertNewFeed:0  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
@@ -216,14 +216,14 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             // else {
             //    [self showLoadMoreDataButton];
             // }
-                        [self showLoadMoreDataButton];
+            [self showLoadMoreDataButton];
             [self doneLoadingTableViewData];
             _loading = NO;
         }
     }];
     
     [renren getNewFeed:_pageNumber];
-
+    
     
 }
 
@@ -232,9 +232,9 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         return;
     _loading = YES;
     _pageNumber++;
-
+    
     _currentTime=[[NSDate alloc] initWithTimeIntervalSinceNow:0];
-
+    
     [self loadMoreRenrenData];
     [self loadMoreWeiboData];
     
@@ -243,12 +243,12 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 {
     if (_indexPath==nil)
     {
-    return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     }
     else
     {
         if ([indexPath compare:_indexPath])
-  
+            
         {
             return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         }
@@ -281,98 +281,97 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     static NSString *RepostStatusCell=@"NewFeedRepostCell";
     static NSString *BlogCell=@"NewFeedBlogCell";
     static NSString *DetailCell=@"DetailCell";
- if ([indexPath compare:_indexPath])
-{
-    NewFeedStatusCell* cell;
-    
-    //  if ([self.fetchedResultsController objectAtIndexPath:indexPath])
-    NewFeedRootData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    if ([a class]==[NewFeedData class])
+    if ([indexPath compare:_indexPath])
     {
-        if ([a getPostName]==nil)
-        {
-            cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
-            if (cell == nil) {
-                [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
-                cell = _feedStatusCel;
-    
-            }
-        }
+        NewFeedStatusCell* cell;
         
-        else
-        {
-            cell = (NewFeedStatusWithRepostcell *)[tableView dequeueReusableCellWithIdentifier:RepostStatusCell];
-            if (cell == nil) {
-                [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusWithRepostcell" owner:self options:nil];
-                cell = _feedRepostStatusCel;
-            }
-            
-        }
-    }
-    
-    else if ([a class]==[NewFeedBlog class])
-    {
-        cell=(NewFeedBlogCell*)[tableView dequeueReusableCellWithIdentifier:BlogCell];
-        if (cell == nil) {
-            [[NSBundle mainBundle] loadNibNamed:@"NewFeedBlogCell" owner:self options:nil];
-            cell = _newFeedBlogCel;
-        }
-    }
-    
-    
-    
-    
-    [cell configureCell:a];
-    
-
-   
-  
-    
-    NSData *imageData = nil;
-    if([Image imageWithURL:a.owner_Head inManagedObjectContext:self.managedObjectContext]) {
-        imageData = [Image imageWithURL:a.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
-    }
-    if(imageData != nil) {
-         cell.headImageView.image = [UIImage imageWithData:imageData];
-    }
-
-    if ([a class]==[NewFeedData class])
-    {
-    NewFeedData* data2=(NewFeedData*)a;
-    if (data2.pic_URL!=nil)
-    {
-    if([Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext]) {
-        imageData = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext].imageData.data;
-    }
-    if(imageData != nil) {
-        cell.picView.image = [UIImage imageWithData:imageData];
-        cell.picView.frame=CGRectMake(cell.picView.frame.origin.x, cell.picView.frame.origin.y,(cell.picView.frame.size.height/cell.picView.image.size.height)*cell.picView.image.size.width, cell.picView.frame.size.height);
-    }
-    }
-    }
-   return cell;
-}
-    else
-    {
-            NewFeedDetailViewCell* cell;
-        NewFeedData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
+        //  if ([self.fetchedResultsController objectAtIndexPath:indexPath])
+        NewFeedRootData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
         
         if ([a class]==[NewFeedData class])
         {
             if ([a getPostName]==nil)
             {
-         
-                    [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailViewCell" owner:self options:nil];
-                    cell = _newFeedDetailViewCel;
+                cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
+                if (cell == nil) {
+                    [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
+                    cell = _feedStatusCel;
+                    
+                }
+            }
             
-                [cell initWithFeedData:a context:self.managedObjectContext];
+            else
+            {
+                cell = (NewFeedStatusWithRepostcell *)[tableView dequeueReusableCellWithIdentifier:RepostStatusCell];
+                if (cell == nil) {
+                    [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusWithRepostcell" owner:self options:nil];
+                    cell = _feedRepostStatusCel;
+                }
+                
             }
         }
-           return cell;
+        
+        else if ([a class]==[NewFeedBlog class])
+        {
+            cell=(NewFeedBlogCell*)[tableView dequeueReusableCellWithIdentifier:BlogCell];
+            if (cell == nil) {
+                [[NSBundle mainBundle] loadNibNamed:@"NewFeedBlogCell" owner:self options:nil];
+                cell = _newFeedBlogCel;
+            }
+        }
+        
+        
+        
+        
+        [cell configureCell:a];
+        
+        
+        
+        
+        
+        NSData *imageData = nil;
+        if([Image imageWithURL:a.owner_Head inManagedObjectContext:self.managedObjectContext]) {
+            imageData = [Image imageWithURL:a.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
+        }
+        if(imageData != nil) {
+            cell.headImageView.image = [UIImage imageWithData:imageData];
+        }
+        
+        if ([a class]==[NewFeedData class])
+        {
+            NewFeedData* data2=(NewFeedData*)a;
+            if (data2.pic_URL!=nil)
+            {
+                if([Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext]) {
+                    imageData = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext].imageData.data;
+                }
+                if(imageData != nil) {
+                    cell.picView.image = [UIImage imageWithData:imageData];
+                    cell.picView.frame=CGRectMake(cell.picView.frame.origin.x, cell.picView.frame.origin.y,(cell.picView.frame.size.height/cell.picView.image.size.height)*cell.picView.image.size.width, cell.picView.frame.size.height);
+                }
+            }
+        }
+        return cell;
+    }
+    else//展开时的cell
+    {
+        NewFeedDetailViewCell* cell;
+        NewFeedData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        if ([a class]==[NewFeedData class])
+        {
+         
+                
+                [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailViewCell" owner:self options:nil];
+                cell = _newFeedDetailViewCel;
+                
+                [cell initWithFeedData:a context:self.managedObjectContext];
+            
+        }
+        return cell;
     }
     
- 
+    
     
 }
 
@@ -389,21 +388,21 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             [self showHeadImageAnimation:statusCell.headImageView];
         } cacheInContext:self.managedObjectContext];
     }
- 
+    
     if ([data class]==[NewFeedData class])
     {
         NewFeedData* data2=(NewFeedData*)data;
         image = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext];
-    if (!image)
-    {
-        NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        [statusCell.picView loadImageFromURL:data2.pic_URL completion:^{
-            [self showHeadImageAnimation:statusCell.headImageView];
-            
-            statusCell.picView.frame=CGRectMake(statusCell.picView.frame.origin.x, statusCell.picView.frame.origin.y,(statusCell.picView.frame.size.height/statusCell.picView.image.size.height)*statusCell.picView.image.size.width, statusCell.picView.frame.size.height);
-
-        } cacheInContext:self.managedObjectContext];
-    }
+        if (!image)
+        {
+            NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            [statusCell.picView loadImageFromURL:data2.pic_URL completion:^{
+                [self showHeadImageAnimation:statusCell.headImageView];
+                
+                statusCell.picView.frame=CGRectMake(statusCell.picView.frame.origin.x, statusCell.picView.frame.origin.y,(statusCell.picView.frame.size.height/statusCell.picView.image.size.height)*statusCell.picView.image.size.width, statusCell.picView.frame.size.height);
+                
+            } cacheInContext:self.managedObjectContext];
+        }
     }
 }
 
@@ -443,31 +442,30 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 - (void)clearData
 {
-
-        _firstLoadFlag = YES;
-        [self.renrenUser removeNewFeed:self.renrenUser.newFeed];
+    
+    _firstLoadFlag = YES;
+    [self.renrenUser removeNewFeed:self.renrenUser.newFeed];
     
     [self.weiboUser removeNewFeed:self.weiboUser.newFeed];
-
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     
-
+    
     [tableView cellForRowAtIndexPath:indexPath].selected=false;
     tableView.allowsSelection=false;
     //NSLog(@"%@",[self.fetchedResultsController objectAtIndexPath:indexPath]);
-    if ([[self.fetchedResultsController objectAtIndexPath:indexPath] class]==[NewFeedData class])
-    {
-        //_openedCell=indexPath.row;
-            _indexPath=[indexPath retain];
-        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        self.tableView.scrollEnabled=FALSE;
-    }
- }
+    
+    //_openedCell=indexPath.row;
+    _indexPath=[indexPath retain];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    self.tableView.scrollEnabled=FALSE;
+    
+}
 -(IBAction)resetToNormalList
 {
     
@@ -477,7 +475,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     NSIndexPath* tempIndex=[_indexPath retain];
     [_indexPath release];
     _indexPath=nil;
-      [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:tempIndex] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:tempIndex] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView scrollToRowAtIndexPath:tempIndex atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     [tempIndex release];
 }

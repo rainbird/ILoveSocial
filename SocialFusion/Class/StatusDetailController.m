@@ -28,24 +28,58 @@
 -(void)addOriStatus
 {
    // NewFeedStatusCell* cell;
+    NSData *imageData = nil;
+    if([Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext]) {
+        imageData = [Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
+    }
+    
+    NSData *imageData2=nil; 
+        if (_feedData.pic_URL!=nil)
+        {
+            if([Image imageWithURL:_feedData.pic_URL inManagedObjectContext:self.managedObjectContext]) {
+                imageData2 = [Image imageWithURL:_feedData.pic_URL inManagedObjectContext:self.managedObjectContext].imageData.data;
+            }
+   
+        }
+    
+    
+    
     if ([_feedData getPostName]==nil)
     {
         [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil] ;
 
         [_feedStatusCel configureCell:_feedData];
+        if(imageData != nil) {
+            _feedStatusCel.headImageView.image = [UIImage imageWithData:imageData];
+        }    
+        if(imageData2 != nil) {
+            _feedStatusCel.picView.image = [UIImage imageWithData:imageData2];
+            _feedStatusCel.picView.frame=CGRectMake(_feedStatusCel.picView.frame.origin.x, _feedStatusCel.picView.frame.origin.y,(_feedStatusCel.picView.frame.size.height/_feedStatusCel.picView.image.size.height)*_feedStatusCel.picView.image.size.width, _feedStatusCel.picView.frame.size.height);
+        }
         
+         [self.view addSubview:_feedStatusCel];
+    }
+    else
+    {
+        [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusWithRepostcell" owner:self options:nil] ;
+        
+        [_feedRepostStatusCel configureCell:_feedData];
+        if(imageData != nil) {
+            _feedRepostStatusCel.headImageView.image = [UIImage imageWithData:imageData];
+        }    
+        
+        if(imageData2 != nil) {
+            _feedRepostStatusCel.picView.image = [UIImage imageWithData:imageData2];
+            _feedRepostStatusCel.picView.frame=CGRectMake(_feedRepostStatusCel.picView.frame.origin.x, _feedRepostStatusCel.picView.frame.origin.y,(_feedRepostStatusCel.picView.frame.size.height/_feedRepostStatusCel.picView.image.size.height)*_feedRepostStatusCel.picView.image.size.width, _feedRepostStatusCel.picView.frame.size.height);
+        }
+         [self.view addSubview:_feedRepostStatusCel];
     }
 
-    NSData *imageData = nil;
-    if([Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext]) {
-        imageData = [Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
-    }
-    if(imageData != nil) {
-        _feedStatusCel.headImageView.image = [UIImage imageWithData:imageData];
-    }    
+ 
+
     
     
-    [self.view addSubview:_feedStatusCel];
+   
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -79,7 +113,7 @@
 {
     [super viewDidAppear:YES];
     _pageNumber=0;
-    [self refresh];
+   // [self refresh];
 }
 - (void)viewDidUnload
 {
