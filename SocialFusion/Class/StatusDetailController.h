@@ -17,14 +17,20 @@
 @interface StatusDetailController : EGOTableViewController
 {
     IBOutlet StatusCommentCell *_commentCel;
-     NewFeedStatusWithRepostcell *_feedRepostStatusCel;
-     NewFeedStatusCell* _feedStatusCel;
+ 
    
     int _pageNumber;
     BOOL _showMoreButton;
     NewFeedData* _feedData;
     
     
+    IBOutlet UIImageView* _headImage;
+    IBOutlet UIImageView* _picImage;
+    IBOutlet UILabel* _nameLabel;
+    IBOutlet UILabel* _statusLabel;
+    
+    IBOutlet UIButton* _repostButton;
+    IBOutlet UIButton* _replyButton;
     //   BOOL _completing;
 }
 @property (nonatomic, retain) NewFeedData* feedData;

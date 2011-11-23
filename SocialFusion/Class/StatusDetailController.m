@@ -27,59 +27,54 @@
 
 -(void)addOriStatus
 {
-   // NewFeedStatusCell* cell;
+    _nameLabel.text=[_feedData getFeedName];
+    
+    _statusLabel.text=_feedData.message;
+    
+    CGSize size = CGSizeMake(271, 1000);
+    CGSize labelSize = [_statusLabel.text sizeWithFont:_statusLabel.font 
+                                    constrainedToSize:size];
+    _statusLabel.frame = CGRectMake(_statusLabel.frame.origin.x, _statusLabel.frame.origin.y,
+                                  _statusLabel.frame.size.width, labelSize.height);
+    _statusLabel.lineBreakMode = UILineBreakModeWordWrap;
+    _statusLabel.numberOfLines = 0;
+    
+    
     NSData *imageData = nil;
     if([Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext]) {
         imageData = [Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
     }
-    
-    NSData *imageData2=nil; 
+    if(imageData != nil) {
+        _headImage.image = [UIImage imageWithData:imageData];
+    }
+  
         if (_feedData.pic_URL!=nil)
         {
             if([Image imageWithURL:_feedData.pic_URL inManagedObjectContext:self.managedObjectContext]) {
-                imageData2 = [Image imageWithURL:_feedData.pic_URL inManagedObjectContext:self.managedObjectContext].imageData.data;
+                imageData = [Image imageWithURL:_feedData.pic_URL inManagedObjectContext:self.managedObjectContext].imageData.data;
             }
-   
+            if(imageData != nil) {
+                _picImage.image = [UIImage imageWithData:imageData];
+                     }
         }
     
-    
-    
-    if ([_feedData getPostName]==nil)
+    if (_picImage.image!=nil)
     {
-        [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil] ;
-
-        [_feedStatusCel configureCell:_feedData];
-        if(imageData != nil) {
-            _feedStatusCel.headImageView.image = [UIImage imageWithData:imageData];
-        }    
-        if(imageData2 != nil) {
-            _feedStatusCel.picView.image = [UIImage imageWithData:imageData2];
-            _feedStatusCel.picView.frame=CGRectMake(_feedStatusCel.picView.frame.origin.x, _feedStatusCel.picView.frame.origin.y,(_feedStatusCel.picView.frame.size.height/_feedStatusCel.picView.image.size.height)*_feedStatusCel.picView.image.size.width, _feedStatusCel.picView.frame.size.height);
-        }
-        
-         [self.view addSubview:_feedStatusCel];
+    _picImage.frame=CGRectMake(20,_statusLabel.frame.origin.y+_statusLabel.frame.size.height+10,266, 266/_picImage.image.size.width*_picImage.image.size.height);
     }
     else
     {
-        [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusWithRepostcell" owner:self options:nil] ;
-        
-        [_feedRepostStatusCel configureCell:_feedData];
-        if(imageData != nil) {
-            _feedRepostStatusCel.headImageView.image = [UIImage imageWithData:imageData];
-        }    
-        
-        if(imageData2 != nil) {
-            _feedRepostStatusCel.picView.image = [UIImage imageWithData:imageData2];
-            _feedRepostStatusCel.picView.frame=CGRectMake(_feedRepostStatusCel.picView.frame.origin.x, _feedRepostStatusCel.picView.frame.origin.y,(_feedRepostStatusCel.picView.frame.size.height/_feedRepostStatusCel.picView.image.size.height)*_feedRepostStatusCel.picView.image.size.width, _feedRepostStatusCel.picView.frame.size.height);
-        }
-         [self.view addSubview:_feedRepostStatusCel];
+        _picImage.frame=CGRectMake(20,_statusLabel.frame.origin.y+_statusLabel.frame.size.height+10,0,0);
+
     }
-
- 
-
     
+    _replyButton.frame=CGRectMake(_replyButton.frame.origin.x, _picImage.frame.origin.y+_picImage.frame.size.height+20, _replyButton.frame.size.width, _replyButton.frame.size.height);
+    
+    _repostButton.frame=CGRectMake(_repostButton.frame.origin.x, _picImage.frame.origin.y+_picImage.frame.size.height+20, _repostButton.frame.size.width, _repostButton.frame.size.height);
     
    
+    
+    [(UIScrollView*)self.view setContentSize:CGSizeMake(self.view.frame.size.width, _repostButton.frame.origin.y+70)];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -136,7 +131,7 @@
 
 - (void)dealloc {
     [_feedData release];
-    [_feedStatusCel release];
+    //[_feedStatusCel release];
     [super dealloc];
 }
 
@@ -393,7 +388,7 @@
             cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];   
             if (cell == nil) {
                 [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil] ;
-                cell=_feedStatusCel; 
+             //   cell=_feedStatusCel; 
             }
             
             
@@ -403,7 +398,7 @@
             cell = (NewFeedStatusWithRepostcell *)[tableView dequeueReusableCellWithIdentifier:RepostStatusCell];   
             if (cell == nil) {
                 [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusWithRepostcell" owner:self options:nil] ;
-                cell=_feedRepostStatusCel; 
+              //  cell=_feedRepostStatusCel; 
             }
         }
         
