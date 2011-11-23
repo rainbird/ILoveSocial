@@ -74,7 +74,17 @@
     
    
     
-    [(UIScrollView*)self.view setContentSize:CGSizeMake(self.view.frame.size.width, _repostButton.frame.origin.y+70)];
+    [(UIScrollView*)self.view setContentSize:CGSizeMake(self.view.frame.size.width*2, _repostButton.frame.origin.y+70)];
+    
+    
+    ((UIScrollView*)self.view).pagingEnabled=YES;
+    ((UIScrollView*)self.view).showsVerticalScrollIndicator=NO;
+   
+    ((UIScrollView*)self.view).directionalLockEnabled=YES;
+    self.tableView.frame=CGRectMake(306, 0, 306, 390);
+    [((UIScrollView*)self.view) addSubview:self.tableView];
+    
+    ((UIScrollView*)self.view).delegate=self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -108,7 +118,7 @@
 {
     [super viewDidAppear:YES];
     _pageNumber=0;
-   // [self refresh];
+  //  [self refresh];
 }
 - (void)viewDidUnload
 {
@@ -458,6 +468,11 @@
 
 
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+   // if (self.tableView.)
+   // self.tableView.frame=CGRectMake(306, scrollView.contentOffset.y, 306, 390);
+    
+}
 
-
-@end
+    @end
