@@ -108,17 +108,12 @@
 {
     [super viewDidLoad];
   
-    // if(_type == RelationshipViewTypeRenrenFriends && self.currentRenrenUser.friends.count > 0)
-    //  return;
-    //return;
-    
-    
 }
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
     _pageNumber=0;
-  //  [self refresh];
+   [self refresh];
 }
 - (void)viewDidUnload
 {
@@ -153,7 +148,7 @@
     NSSortDescriptor *sort;
   
     predicate = [NSPredicate predicateWithFormat:@"SELF IN %@",_feedData.comments];
-    sort = [[NSSortDescriptor alloc] initWithKey:@"update_Time" ascending:NO];
+    sort = [[NSSortDescriptor alloc] initWithKey:@"update_Time" ascending:YES];
     [request setPredicate:predicate];
     NSArray *descriptors = [NSArray arrayWithObject:sort]; 
     [request setSortDescriptors:descriptors]; 
@@ -335,23 +330,20 @@
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row==0)
-    {
-        return [NewFeedStatusCell heightForCell:_feedData];
-    }
-    else
-    {
+
         if (_showMoreButton==YES)
         {
             
-            if (indexPath.row==1)
+            if (indexPath.row==0)
             {
                 return 60;
             }
             else
             {
+                NSIndexPath* index=[NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
+                
                // indexPath=[[indexPath indexPathByRemovingLastIndex] indexPathByRemovingLastIndex];
-                return [StatusCommentCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+                return [StatusCommentCell heightForCell:[self.fetchedResultsController objectAtIndexPath:index]];
             }
         }
         else
@@ -360,7 +352,7 @@
             return [StatusCommentCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
             
         }
-    }
+
 
     
     
@@ -377,6 +369,21 @@
 
 
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    int number=[super tableView:tableView numberOfRowsInSection:section];
+    if (_showMoreButton==NO)
+    {
+        return number;
+    }
+    else
+    {
+        NSLog(@"%d",number);
+        return number+1;
+    }
+}
+
 
 
 
@@ -386,10 +393,10 @@
     
     
     static NSString *StatusComentCell = @"StatusCommentCell";
-    static NSString *StatusCell = @"NewFeedStatusCell";
-    static NSString *RepostStatusCell=@"NewFeedRepostCell";
+    //static NSString *StatusCell = @"NewFeedStatusCell";
+   // static NSString *RepostStatusCell=@"NewFeedRepostCell";
     
-    
+    /*
     if (indexPath.row==0)
     {
         NewFeedStatusCell* cell;
@@ -447,8 +454,11 @@
         }
     }
     else
-    {
+    {*/
         
+    
+     if (_showMoreButton==NO)
+     {
         StatusCommentCell* cell;
         
         cell = (StatusCommentCell *)[tableView dequeueReusableCellWithIdentifier:StatusComentCell];
@@ -457,12 +467,36 @@
             cell = _commentCel;
         }
         
-       // indexPath=[indexPath indexPathByRemovingLastIndex];
+     
         
         [cell configureCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         return cell;
-        
-    }
+     }
+    else
+    {
+        if (indexPath.row==0)
+        {
+            UITableViewCell* cell=[[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 306, 60)]; 
+            [cell.contentView addSubview:self.loadMoreDataButton];
+            return cell;
+        }
+        else
+        {
+            StatusCommentCell* cell;
+            
+            cell = (StatusCommentCell *)[tableView dequeueReusableCellWithIdentifier:StatusComentCell];
+            if (cell == nil) {
+                [[NSBundle mainBundle] loadNibNamed:@"StatusCommentCell" owner:self options:nil];
+                cell = _commentCel;
+            }
+            
+            NSIndexPath* index=[NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
+            
+            [cell configureCell:[self.fetchedResultsController objectAtIndexPath:index]];
+            return cell;
+        }
+    };  
+  
     
 }
 
