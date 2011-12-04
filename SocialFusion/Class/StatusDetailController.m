@@ -74,7 +74,9 @@
     
    
     
-    [(UIScrollView*)self.view setContentSize:CGSizeMake(self.view.frame.size.width*2, _repostButton.frame.origin.y+70)];
+    [(UIScrollView*)self.view setContentSize:CGSizeMake(self.view.frame.size.width*2,390)];
+      [_firstView setContentSize:CGSizeMake(self.view.frame.size.width,  _repostButton.frame.origin.y+70)];                                                 
+    
     
     
     ((UIScrollView*)self.view).pagingEnabled=YES;
@@ -379,7 +381,7 @@
     }
     else
     {
-        NSLog(@"%d",number);
+      //  NSLog(@"%d",number);
         return number+1;
     }
 }

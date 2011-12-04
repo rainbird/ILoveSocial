@@ -29,6 +29,7 @@
     IBOutlet UILabel* _nameLabel;
     IBOutlet UILabel* _statusLabel;
     
+    IBOutlet UIScrollView *_firstView;
     IBOutlet UIButton* _repostButton;
     IBOutlet UIButton* _replyButton;
     //   BOOL _completing;
